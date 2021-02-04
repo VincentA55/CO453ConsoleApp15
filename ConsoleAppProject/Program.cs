@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleAppProject
+namespace ConsoleAppProject.App01
 {
     /// <summary>
     /// The main method in this class is called first
@@ -20,7 +20,9 @@ namespace ConsoleAppProject
             Console.WriteLine();
             Console.Beep();
 
-
+            DistanceConverter converter = new DistanceConverter();
+            converter.PrintHeading();
+            converter.Convert();
         }
     }
 }
