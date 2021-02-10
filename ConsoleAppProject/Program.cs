@@ -42,6 +42,16 @@ namespace ConsoleAppProject.App01
                         bmi.CalculateBMI();
                         break;
                     }
+                case "7":
+                    {
+                        int i = 0;
+                        while (i < 11)
+                        {
+                            Console.Write(Console.ReadLine());
+                            i++;
+                        }
+                        break;
+                    }
             }
 
         }

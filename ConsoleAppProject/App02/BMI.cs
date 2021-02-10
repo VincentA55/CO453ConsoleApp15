@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ConsoleAppProject.App02
 {
     /// <summary>
@@ -25,8 +26,30 @@ namespace ConsoleAppProject.App02
         public void CalculateBMI()
         {
             Console.WriteLine("How would you like to enter your details?");
+            Console.WriteLine("");
             Console.WriteLine("1. Metric (Kg + cm)");
             Console.WriteLine("2. Imperial (Pounds + Feet)");
+            Console.WriteLine("");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    {
+                        Console.WriteLine("Please enter your weight in Kg");
+                        string input = Console.ReadLine();
+                        weight = double.Parse(input);
+
+                        Console.WriteLine("");
+                        Console.WriteLine("Please enter your height in cm");
+                        input = Console.ReadLine();
+                        height = double.Parse(input);
+
+                        Console.WriteLine( " " + weight + "Kg , " + height + "cm");
+
+
+                        break;
+                    }
+            }
         }
     }
 }
