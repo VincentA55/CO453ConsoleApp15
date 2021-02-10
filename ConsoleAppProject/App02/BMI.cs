@@ -1,12 +1,13 @@
 ﻿namespace ConsoleAppProject.App02
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// Calculates the BMI of the user 
     /// </summary>
     /// <author>
-    /// Student Name version 0.1
+    /// Vincent Assolutissimamente
     /// </author>
     public class BMI
     {
+
     }
 }
