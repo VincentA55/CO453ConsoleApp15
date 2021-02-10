@@ -28,7 +28,7 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("How would you like to enter your details?");
             Console.WriteLine("");
             Console.WriteLine("1. Metric (Kg + cm)");
-            Console.WriteLine("2. Imperial (Pounds + Feet)");
+            Console.WriteLine("2. Imperial (lbs + Feet)");
             Console.WriteLine("");
 
             switch (Console.ReadLine())
@@ -49,6 +49,30 @@ namespace ConsoleAppProject.App02
 
                         bmi = weight / height / height * 10000;
                         Math.Round(bmi, 2); // Rounds up to 1 decimal places
+                        Console.WriteLine("Your BMI is " + bmi);
+
+                        break;
+                    }
+
+                case "2": // Does calulations for Imperial system
+                    {
+                        Console.WriteLine("Please enter your weight in Stone");
+                        string input = Console.ReadLine();
+                        weight = double.Parse(input);
+
+                        Console.WriteLine("");
+                        Console.WriteLine("Please enter your height in Feet");
+                        input = Console.ReadLine();
+                        height = double.Parse(input);
+
+                        Console.WriteLine(" " + weight + "lbs , " + height + " feet");
+                        Console.WriteLine("");
+
+                        double hSquared = height * height;
+
+                        // BMI calculation isnt 100% atm somthing to do with feet to inches
+                        bmi = weight  * 703 / hSquared; 
+                        Math.Round(bmi, 2);
                         Console.WriteLine("Your BMI is " + bmi);
 
                         break;
