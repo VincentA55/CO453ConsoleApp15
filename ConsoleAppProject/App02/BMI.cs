@@ -33,7 +33,7 @@ namespace ConsoleAppProject.App02
 
             switch (Console.ReadLine())
             {
-                case "1":
+                case "1": // Does calculations for measurments in the Metric system
                     {
                         Console.WriteLine("Please enter your weight in Kg");
                         string input = Console.ReadLine();
@@ -44,8 +44,12 @@ namespace ConsoleAppProject.App02
                         input = Console.ReadLine();
                         height = double.Parse(input);
 
-                        Console.WriteLine( " " + weight + "Kg , " + height + "cm");
+                        Console.WriteLine(" " + weight + "Kg , " + height + "cm");
+                        Console.WriteLine("");
 
+                        bmi = weight / height / height * 10000;
+                        Math.Round(bmi, 2); // Rounds up to 1 decimal places
+                        Console.WriteLine("Your BMI is " + bmi);
 
                         break;
                     }
