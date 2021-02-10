@@ -28,6 +28,8 @@ namespace ConsoleAppProject.App01
                 Console.WriteLine(" 2. Meters");
                 Console.WriteLine(" 3. Miles");
                 Console.WriteLine();
+                Console.WriteLine("Please type in the distance and mesurement you would like to convert");
+                Console.WriteLine("Example : 10 meters");
 
                 float distance = 0;
                 string measurement = null;

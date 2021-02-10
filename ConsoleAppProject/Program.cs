@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleAppProject.App02;
+using System;
 
 namespace ConsoleAppProject.App01
 {
@@ -20,17 +21,25 @@ namespace ConsoleAppProject.App01
             Console.WriteLine();
             Console.Beep();
             Console.WriteLine("What would you like to do?");
+            Console.WriteLine("");
+            Console.WriteLine("|1. Distance converter");
+            Console.WriteLine("|2. BMI calculator");
 
             switch (Console.ReadLine())
             {
 
-                case "convert":
+                case "1":
                     {
                         DistanceConverter converter = new DistanceConverter();
                         converter.PrintHeading();
-
-
                         converter.Convert();
+                        break;
+                    }
+                case "2":
+                    {
+                        BMI bmi = new BMI();
+                        bmi.PrintHeading();
+                        bmi.CalculateBMI();
                         break;
                     }
             }
