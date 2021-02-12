@@ -9,7 +9,10 @@ namespace ConsoleAppProject.App01
     /// Vincent Assolutissimamente 04/02/2021
     /// </author>
     public class DistanceConverter
-    {
+    { 
+        public const int FEET_IN_MILES = 5280;
+        public const double METERS_IN_MILES = 1609.34;
+    
         public void PrintHeading()
         {
             Console.WriteLine("------------------------------------");
@@ -18,6 +21,10 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("------------------------------------");
         }
 
+        /**
+         * 
+         * 
+         * */
         public void Convert()
         {
             do
