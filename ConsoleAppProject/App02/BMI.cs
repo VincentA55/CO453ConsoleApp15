@@ -36,13 +36,13 @@ namespace ConsoleAppProject.App02
                 case "1": // Does calculations for measurments in the Metric system
                     {
                         Console.WriteLine("Please enter your weight in Kg");
-                        string input = Console.ReadLine();
-                        weight = double.Parse(input);
+
+                        weight = double.Parse(Console.ReadLine());
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in cm");
-                        input = Console.ReadLine();
-                        height = double.Parse(input);
+
+                        height = double.Parse(Console.ReadLine());
 
                         Console.WriteLine(" " + weight + "Kg , " + height + "cm");
                         Console.WriteLine("");
@@ -57,22 +57,23 @@ namespace ConsoleAppProject.App02
                 case "2": // Does calulations for Imperial system
                     {
                         Console.WriteLine("Please enter your weight in Stone");
-                        string input = Console.ReadLine();
-                        weight = double.Parse(input);
+
+                        weight = double.Parse(Console.ReadLine());
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in Feet");
-                        input = Console.ReadLine();
-                        height = double.Parse(input);
+
+                        height = double.Parse(Console.ReadLine());
 
                         Console.WriteLine(" " + weight + "lbs , " + height + " feet");
                         Console.WriteLine("");
 
-                        double hSquared = height * height;
+                        double wToPounds = weight * 14;
+                        double hSquared = (height * 12) * (height * 12);
 
                         // BMI calculation isnt 100% atm somthing to do with feet to inches
-                        bmi = weight  * 703 / hSquared; 
-                        Math.Round(bmi, 2);
+                        bmi = Math.Round((wToPounds / hSquared) * 703 ,2);
+                       
                         Console.WriteLine("Your BMI is " + bmi);
 
                         break;

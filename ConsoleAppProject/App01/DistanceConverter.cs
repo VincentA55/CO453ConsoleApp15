@@ -45,7 +45,7 @@ namespace ConsoleAppProject.App01
                 Console.WriteLine();
 
 
-                string[] input = Console.ReadLine().ToLower().Split();
+                string[] input = Console.ReadLine().ToLower().Split(" ") ;
 
                 if (input.Length > 1) // checks if the input has more than 1 word
                 {
