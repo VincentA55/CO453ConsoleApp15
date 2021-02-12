@@ -12,6 +12,11 @@ namespace ConsoleAppProject.App01
     { 
         public const int FEET_IN_MILES = 5280;
         public const double METERS_IN_MILES = 1609.34;
+
+        private string fromUnit;
+        private string toUnit;
+        private double fromDistance;
+        private double toDistance;
     
         public void PrintHeading()
         {
@@ -45,19 +50,54 @@ namespace ConsoleAppProject.App01
 
                 if (input.Length > 1) // checks if the input has more than 1 word
                 {
-                    distance = float.Parse(input[0]);
-                    measurement = input[1];
+                    fromDistance = float.Parse(input[0]);
+                    fromUnit = input[1];
                 }
                 else {
                     Console.WriteLine("Please type in the distance and measurement!");
                 }
 
-                switch (measurement)
+
+                Console.WriteLine(" Convert " + fromDistance + " " + fromUnit + " into...");
+                toUnit = Console.ReadLine().ToLower();
+
+                if (fromUnit == "feet" && toUnit == "meters") // feet into meters
+                {
+                    toDistance = fromDistance * 0.3048;
+                }
+                if (fromUnit == "feet" && toUnit == "miles") // feet into miles
+                {
+                    toDistance = fromDistance * FEET_IN_MILES;
+                }
+
+                if (fromUnit == "meters" && toUnit == "feet")// meters into feet
+                {
+                    toDistance = fromDistance * 3.281;
+                }
+                if (fromUnit == "meters" && toUnit == "miles") // meters into miles
+                {
+                    toDistance = fromDistance / METERS_IN_MILES;
+                }
+
+                if (fromUnit== "miles" && toUnit == "feet")// miles into feet
+                {
+                    toDistance = fromDistance * FEET_IN_MILES;
+                }
+                if(fromUnit == "miles" && toUnit == "meters")// miles into meters
+                {
+                    toDistance = fromDistance * METERS_IN_MILES;
+                }
+
+
+                switch (fromUnit)
                 {
                     case "feet": // Converts from Feet into miles and meters
-                        Console.WriteLine(" Convert " + distance + " Feet into...");
-                        string newMeasurement = Console.ReadLine().ToLower();
-                        switch (newMeasurement)
+                        Console.WriteLine(" Convert " + fromDistance + " " +  fromUnit + " into...");
+                        toUnit = Console.ReadLine().ToLower();
+
+                        
+
+                        switch (toUnit)
                         {
                             case "meters": Console.WriteLine(distance + " Feet = " + distance * 0.3048 + " Meters"); break;
 
