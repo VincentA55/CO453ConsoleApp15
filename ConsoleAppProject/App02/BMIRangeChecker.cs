@@ -6,8 +6,10 @@ namespace ConsoleAppProject.App02
 {
     class BMIRangeChecker
     {
-        public double bmiToCheck;
-
+        
+        /*
+         * uses the InRange method to check what WHO catagory each BMI falls into
+         */
         public string CheckRange(double bmi)
         {
 
