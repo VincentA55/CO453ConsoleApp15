@@ -15,6 +15,10 @@ namespace ConsoleAppProject.App02
 
         private double bmi;
 
+        /**
+         * Prints the heading for the bmi calculatior
+         */
+
         public void PrintHeading()
         {
             Console.WriteLine("------------------------------------");
@@ -23,8 +27,15 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("------------------------------------");
         }
 
+        /**
+         *  Asks the user to choose which system they would like to use to input their measurments
+         *  then does a different calculation based on their choice
+         */
+
         public void CalculateBMI()
         {
+            PrintDescription();
+
             Console.WriteLine("How would you like to enter your details?");
             Console.WriteLine("");
             Console.WriteLine("1. Metric (Kg + cm)");
@@ -47,8 +58,8 @@ namespace ConsoleAppProject.App02
                         Console.WriteLine(" " + weight + "Kg , " + height + "cm");
                         Console.WriteLine("");
 
-                        bmi = weight / height / height * 10000;
-                        Math.Round(bmi, 2); // Rounds up to 1 decimal places
+                        bmi = Math.Round(weight / height / height * 10000, 2);// Rounds up to 1 decimal places
+
                         Console.WriteLine("Your BMI is " + bmi);
 
                         break;
@@ -68,17 +79,42 @@ namespace ConsoleAppProject.App02
                         Console.WriteLine(" " + weight + "lbs , " + height + " feet");
                         Console.WriteLine("");
 
-                        double wToPounds = weight * 14;
-                        double hSquared = (height * 12) * (height * 12);
+                        double wToPounds = weight * 14; // converts the weight in stone to lbs
+                        double hSquared = (height * 12) * (height * 12);// converts feet into inches and squares them
 
-                        // BMI calculation isnt 100% atm somthing to do with feet to inches
-                        bmi = Math.Round((wToPounds / hSquared) * 703 ,2);
-                       
+                        bmi = Math.Round((wToPounds / hSquared) * 703, 2);
+
                         Console.WriteLine("Your BMI is " + bmi);
 
                         break;
                     }
             }
+        }
+
+        /**
+         * prints the text description for the bmi calculator
+         */
+        public void PrintDescription()
+        {
+            string description = @"
+_______________________________________________________________________________________________________________________
+Your BMI, or Body Mass Index, is a measure of your weight compared to your height.
+Accurate assessments of obesity are important,as being overweight or obese significantly increases
+your risk of a variety of medical conditionsincluding type 2 diabetes, heart disease and cancer.
+
+For most adults, BMI gives a good estimate of your weight-related health risks.
+If your BMI is over 35, your weight is definitely putting your health at risk, regardless of the factors below.
+However, there are some situations where BMI may underestimate or overestimate these risks in the 25-35 BMI range.
+The main ones are:
+-Children
+-Pregnant women
+-Muscle Builders
+-BAME: Black, Asian and other minority ethnic groups.
+_______________________________________________________________________________________________________________________
+
+                ";
+
+            Console.WriteLine(description);
         }
     }
 }
