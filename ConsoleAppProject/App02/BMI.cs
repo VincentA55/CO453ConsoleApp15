@@ -15,6 +15,8 @@ namespace ConsoleAppProject.App02
 
         private double bmi;
 
+        private BMIRangeChecker rangeChecker = new BMIRangeChecker();
+
         /**
          * Prints the heading for the bmi calculatior
          */
@@ -89,11 +91,24 @@ namespace ConsoleAppProject.App02
                         break;
                     }
             }
+            
+           CheckBMI();
+        }
+
+        /**
+         * checks for the range the users bmi is in
+         */
+
+        public void CheckBMI()
+        {
+            string catagory = rangeChecker.CheckRange(bmi);
+            Console.WriteLine($"You are {catagory} !");
         }
 
         /**
          * prints the text description for the bmi calculator
          */
+
         public void PrintDescription()
         {
             string description = @"
