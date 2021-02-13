@@ -91,8 +91,8 @@ namespace ConsoleAppProject.App02
                         break;
                     }
             }
-            
-           CheckBMI();
+
+            CheckBMI();
         }
 
         /**
@@ -103,6 +103,7 @@ namespace ConsoleAppProject.App02
         {
             string catagory = rangeChecker.CheckRange(bmi);
             Console.WriteLine($"You are {catagory} !");
+            Console.WriteLine("A normal BMI for an average person is 20");
         }
 
         /**
