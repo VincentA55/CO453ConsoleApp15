@@ -44,18 +44,18 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("2. Imperial (lbs + Feet)");
             Console.WriteLine("");
 
-            switch (Console.ReadLine())
+            switch (InputNumber())
             {
-                case "1": // Does calculations for measurments in the Metric system
+                case 1 : // Does calculations for measurments in the Metric system
                     {
                         Console.WriteLine("Please enter your weight in Kg");
 
-                        weight = double.Parse(Console.ReadLine());
+                        weight = InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in cm");
 
-                        height = double.Parse(Console.ReadLine());
+                        height = InputNumber();
 
                         Console.WriteLine(" " + weight + "Kg , " + height + "cm");
                         Console.WriteLine("");
@@ -67,7 +67,7 @@ namespace ConsoleAppProject.App02
                         break;
                     }
 
-                case "2": // Does calulations for Imperial system
+                case 2 : // Does calulations for Imperial system
                     {
                         Console.WriteLine("Please enter your weight in Stone");
 
@@ -92,14 +92,14 @@ namespace ConsoleAppProject.App02
                     }
             }
 
-            CheckBMI();
+            CheckBMI(bmi);
         }
 
         /**
          * checks for the range the users bmi is in
          */
 
-        public void CheckBMI()
+        public void CheckBMI(double bmi)
         {
             string catagory = rangeChecker.CheckRange(bmi);
             Console.WriteLine($"You are {catagory} !");
@@ -131,6 +131,34 @@ ________________________________________________________________________________
                 ";
 
             Console.WriteLine(description);
+        }
+
+        /**
+         * Ensures that only a number can be returned
+         */
+        public static double InputNumber()
+        {
+            double number = 0;
+            bool Isvalid;
+
+            do
+            {
+                Console.Write(">");
+                string value = Console.ReadLine();
+
+                try
+                {
+                    number = Convert.ToDouble(value);
+                    Isvalid = true;
+                }
+                catch (Exception)
+                {
+                    Isvalid = false;
+                    Console.WriteLine("Number is INVALID!!");
+                }
+            }
+            while (!Isvalid);
+            return number;
         }
     }
 }
