@@ -44,7 +44,7 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("2. Imperial (lbs + Feet)");
             Console.WriteLine("");
 
-            switch (checker.InputNumber())
+            switch (checker.InputNumberWithin(1,2))
             {
                 case 1: // Does calculations for measurments in the Metric system
                     {
