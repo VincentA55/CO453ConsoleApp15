@@ -15,7 +15,7 @@ namespace ConsoleAppProject.App02
 
         private double bmi;
 
-        private BMIRangeChecker rangeChecker = new BMIRangeChecker();
+        private InputChecker checker = new InputChecker();
 
         /**
          * Prints the heading for the bmi calculatior
@@ -44,18 +44,18 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("2. Imperial (lbs + Feet)");
             Console.WriteLine("");
 
-            switch (InputNumber())
+            switch (checker.InputNumber())
             {
-                case 1 : // Does calculations for measurments in the Metric system
+                case 1: // Does calculations for measurments in the Metric system
                     {
                         Console.WriteLine("Please enter your weight in Kg");
 
-                        weight = InputNumber();
+                        weight = checker.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in cm");
 
-                        height = InputNumber();
+                        height = checker.InputNumber();
 
                         Console.WriteLine(" " + weight + "Kg , " + height + "cm");
                         Console.WriteLine("");
@@ -67,16 +67,16 @@ namespace ConsoleAppProject.App02
                         break;
                     }
 
-                case 2 : // Does calulations for Imperial system
+                case 2: // Does calulations for Imperial system
                     {
                         Console.WriteLine("Please enter your weight in Stone");
 
-                        weight = double.Parse(Console.ReadLine());
+                        weight = checker.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in Feet");
 
-                        height = double.Parse(Console.ReadLine());
+                        height = checker.InputNumber();
 
                         Console.WriteLine(" " + weight + "lbs , " + height + " feet");
                         Console.WriteLine("");
@@ -101,7 +101,7 @@ namespace ConsoleAppProject.App02
 
         public void CheckBMI(double bmi)
         {
-            string catagory = rangeChecker.CheckRange(bmi);
+            string catagory = checker.CheckRange(bmi);
             Console.WriteLine($"You are {catagory} !");
             Console.WriteLine("A normal BMI for an average person is 20");
         }
@@ -133,32 +133,6 @@ ________________________________________________________________________________
             Console.WriteLine(description);
         }
 
-        /**
-         * Ensures that only a number can be returned
-         */
-        public static double InputNumber()
-        {
-            double number = 0;
-            bool Isvalid;
 
-            do
-            {
-                Console.Write(">");
-                string value = Console.ReadLine();
-
-                try
-                {
-                    number = Convert.ToDouble(value);
-                    Isvalid = true;
-                }
-                catch (Exception)
-                {
-                    Isvalid = false;
-                    Console.WriteLine("Number is INVALID!!");
-                }
-            }
-            while (!Isvalid);
-            return number;
-        }
     }
 }

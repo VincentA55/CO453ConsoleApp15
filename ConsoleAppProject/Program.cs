@@ -13,8 +13,11 @@ namespace ConsoleAppProject.App01
     /// </summary>
     public static class Program
     {
+        static InputChecker checker = new InputChecker();
+
         public static void Main(string[] args)
         {
+
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
@@ -25,27 +28,25 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("|1. Distance converter");
             Console.WriteLine("|2. BMI calculator");
 
-            switch (Console.ReadLine())
+
+            switch (checker.InputNumberWithin(1,2))
             {
-                case "1":
+                case 1 :
                     {
                         DistanceConverter converter = new DistanceConverter();
                         converter.PrintHeading();
                         converter.Convert();
                         break;
                     }
-                case "2":
+                case 2 :
                     {
                         BMI bmi = new BMI();
                         bmi.PrintHeading();
                         bmi.CalculateBMI();
                         break;
                     }
-                case "quit":
-                    {
-                        Console.WriteLine("Thank you and goodbye!");
-                    }
-                    break;
+
+                
             }
         }
     }
