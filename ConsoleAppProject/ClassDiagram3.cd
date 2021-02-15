@@ -3,15 +3,15 @@
   <Class Name="ConsoleAppProject.App02.BMI">
     <Position X="1.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>QAEAAAAAAAAAAAYAAAAAAAAADAAAAAggAAAAAAAAAAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAACYAAAAAAAAADAAAAAggAAAAAAAAAAA=</HashCode>
       <FileName>App02\BMI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConsoleAppProject.App02.BMIRangeChecker">
-    <Position X="5.25" Y="1.25" Width="2" />
+  <Class Name="ConsoleAppProject.App02.InputChecker">
+    <Position X="5" Y="1" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>App02\BMIRangeChecker.cs</FileName>
+      <HashCode>AgIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>App02\InputChecker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -27,7 +27,7 @@ namespace ConsoleAppProject.App01
         }
 
         /**
-         * 
+         *  Recives measurments from the user in the measurement of their choice and converts it into a different measurement of their choice
          * 
          * */
         public void Convert()
