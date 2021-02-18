@@ -9,15 +9,15 @@ namespace ConsoleAppProject.App01
     /// Vincent Assolutissimamente 04/02/2021
     /// </author>
     public class DistanceConverter
-    { 
+    {
         public const int FEET_IN_MILES = 5280;
         public const double METERS_IN_MILES = 1609;
 
-        private string fromUnit;
-        private string toUnit;
-        private double fromDistance;
-        private double toDistance;
-    
+        public string fromUnit { get; set; }
+        public string toUnit { get; set; }
+        public double fromDistance { get; set; }
+        public double toDistance { get; set; }
+
         public void PrintHeading()
         {
             Console.WriteLine("------------------------------------");
@@ -28,8 +28,9 @@ namespace ConsoleAppProject.App01
 
         /**
          *  Recives measurments from the user in the measurement of their choice and converts it into a different measurement of their choice
-         * 
+         *
          * */
+
         public void Convert()
         {
             do
@@ -44,8 +45,7 @@ namespace ConsoleAppProject.App01
                 Console.WriteLine("Example : 10 meters");
                 Console.WriteLine();
 
-
-                string[] input = Console.ReadLine().ToLower().Split(" ") ;
+                string[] input = Console.ReadLine().ToLower().Split(" ");
 
                 if (input.Length > 1) // checks if the input has more than 1 word
                 {
@@ -56,7 +56,6 @@ namespace ConsoleAppProject.App01
                 {
                     Console.WriteLine("Please type in the distance and measurement!");
                 }
-
 
                 Console.WriteLine(" Convert " + fromDistance + " " + fromUnit + " into...");
                 toUnit = Console.ReadLine().ToLower();
@@ -87,8 +86,8 @@ namespace ConsoleAppProject.App01
                 {
                     toDistance = fromDistance * METERS_IN_MILES;
                 }
-            
-                Console.WriteLine(fromDistance + " " + fromUnit + " = " + Math.Round(toDistance,4) + " " + toUnit);
+
+                Console.WriteLine(fromDistance + " " + fromUnit + " = " + Math.Round(toDistance, 4) + " " + toUnit);
                 Console.WriteLine("");
                 Console.WriteLine("Would you like to convert again?");
             }
