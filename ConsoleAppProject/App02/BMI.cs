@@ -10,10 +10,10 @@ namespace ConsoleAppProject.App02
     /// </author>
     public class BMI
     {
-        private double weight;
-        private double height;
+        public double weight { get; set; }
+        public double height { get; set; }
 
-        private double bmi;
+        public double bmi;
 
         private InputChecker checker = new InputChecker();
 
@@ -44,18 +44,18 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("2. Imperial (lbs + Feet)");
             Console.WriteLine("");
 
-            switch (checker.InputNumberWithin(1,2))
-            {
-                case 1: // Does calculations for measurments in the Metric system
+            //switch (checker.InputNumberWithin(1,2))
+          //  {
+             //   case 1: // Does calculations for measurments in the Metric system
                     {
                         Console.WriteLine("Please enter your weight in Kg");
 
-                        weight = checker.InputNumber();
+                      //  weight = checker.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in cm");
 
-                        height = checker.InputNumber();
+                       // height = checker.InputNumber();
 
                         Console.WriteLine(" " + weight + "Kg , " + height + "cm");
                         Console.WriteLine("");
@@ -64,19 +64,19 @@ namespace ConsoleAppProject.App02
 
                         Console.WriteLine("Your BMI is " + bmi);
 
-                        break;
-                    }
+                  //      break;
+                //    }
 
-                case 2: // Does calulations for Imperial system
+          /*      case 2: // Does calulations for Imperial system
                     {
                         Console.WriteLine("Please enter your weight in Stone");
 
-                        weight = checker.InputNumber();
+                      //  weight = checker.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in Feet");
 
-                        height = checker.InputNumber();
+                       // height = checker.InputNumber();
 
                         Console.WriteLine(" " + weight + "lbs , " + height + " feet");
                         Console.WriteLine("");
@@ -89,7 +89,7 @@ namespace ConsoleAppProject.App02
                         Console.WriteLine("Your BMI is " + bmi);
 
                         break;
-                    }
+                    }*/
             }
 
             CheckBMI(bmi);
