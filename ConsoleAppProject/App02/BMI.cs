@@ -10,6 +10,8 @@ namespace ConsoleAppProject.App02
     /// </author>
     public class BMI
     {
+        public string units;
+
         public double weight { get; set; }
         public double height { get; set; }
 
@@ -94,6 +96,35 @@ namespace ConsoleAppProject.App02
 
             CheckBMI(bmi);
         }
+
+
+        /**
+         * returns bmi with metric input
+         * */
+
+        public double CheckBMIMetric(double weight, double height)
+        {
+            Console.WriteLine(" " + weight + "Kg , " + height + "cm");
+            Console.WriteLine("");
+            return bmi = Math.Round(weight / height / height * 10000, 2);// Rounds up to 1 decimal places
+        }
+
+
+        /*
+         * returns bmi with imperial input
+         * */
+
+        public double CheckBMIImperial(double weight, double height)
+        {
+            Console.WriteLine(" " + weight + "lbs , " + height + " feet");
+            Console.WriteLine("");
+
+            double wToPounds = weight * 14; // converts the weight in stone to lbs
+            double hSquared = (height * 12) * (height * 12);// converts feet into inches and squares them
+
+            return bmi = Math.Round((wToPounds / hSquared) * 703, 2);
+        }
+
 
         /**
          * checks for the range the users bmi is in
