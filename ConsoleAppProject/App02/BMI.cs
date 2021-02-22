@@ -10,12 +10,12 @@ namespace ConsoleAppProject.App02
     /// </author>
     public class BMI
     {
-        public string units;
+        public string Units { get; set; }
 
-        public double weight { get; set; }
-        public double height { get; set; }
+        public double Weight { get; set; }
+        public double Height { get; set; }
 
-        public double bmi;
+        public double Bmi;
 
         private InputChecker checker = new InputChecker();
 
@@ -52,19 +52,19 @@ namespace ConsoleAppProject.App02
                     {
                         Console.WriteLine("Please enter your weight in Kg");
 
-                        weight = checker.InputNumber();
+                        Weight = checker.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in cm");
 
-                        height = checker.InputNumber();
+                        Height = checker.InputNumber();
 
-                        Console.WriteLine(" " + weight + "Kg , " + height + "cm");
+                        Console.WriteLine(" " + Weight + "Kg , " + Height + "cm");
                         Console.WriteLine("");
 
-                        bmi = Math.Round(weight / height / height * 10000, 2);// Rounds up to 1 decimal places
+                        Bmi = Math.Round(Weight / Height / Height * 10000, 2);// Rounds up to 1 decimal places
 
-                        Console.WriteLine("Your BMI is " + bmi);
+                        Console.WriteLine("Your BMI is " + Bmi);
 
                         break;
                     }
@@ -73,28 +73,28 @@ namespace ConsoleAppProject.App02
                     {
                         Console.WriteLine("Please enter your weight in Stone");
 
-                        weight = checker.InputNumber();
+                        Weight = checker.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in Feet");
 
-                        height = checker.InputNumber();
+                        Height = checker.InputNumber();
 
-                        Console.WriteLine(" " + weight + "lbs , " + height + " feet");
+                        Console.WriteLine(" " + Weight + "lbs , " + Height + " feet");
                         Console.WriteLine("");
 
-                        double wToPounds = weight * 14; // converts the weight in stone to lbs
-                        double hSquared = (height * 12) * (height * 12);// converts feet into inches and squares them
+                        double wToPounds = Weight * 14; // converts the weight in stone to lbs
+                        double hSquared = (Height * 12) * (Height * 12);// converts feet into inches and squares them
 
-                        bmi = Math.Round((wToPounds / hSquared) * 703, 2);
+                        Bmi = Math.Round((wToPounds / hSquared) * 703, 2);
 
-                        Console.WriteLine("Your BMI is " + bmi);
+                        Console.WriteLine("Your BMI is " + Bmi);
 
                         break;
                     }
             }
 
-            CheckBMI(bmi);
+            CheckBMI(Bmi);
         }
 
 
@@ -102,11 +102,11 @@ namespace ConsoleAppProject.App02
          * returns bmi with metric input
          * */
 
-        public double CheckBMIMetric(double weight, double height)
+        public double ReturnBMIMetric(double weight, double height)
         {
             Console.WriteLine(" " + weight + "Kg , " + height + "cm");
             Console.WriteLine("");
-            return bmi = Math.Round(weight / height / height * 10000, 2);// Rounds up to 1 decimal places
+            return Bmi = Math.Round(weight / height / height * 10000, 2);// Rounds up to 1 decimal places
         }
 
 
@@ -114,7 +114,7 @@ namespace ConsoleAppProject.App02
          * returns bmi with imperial input
          * */
 
-        public double CheckBMIImperial(double weight, double height)
+        public double ReturnBMIImperial(double weight, double height)
         {
             Console.WriteLine(" " + weight + "lbs , " + height + " feet");
             Console.WriteLine("");
@@ -122,7 +122,7 @@ namespace ConsoleAppProject.App02
             double wToPounds = weight * 14; // converts the weight in stone to lbs
             double hSquared = (height * 12) * (height * 12);// converts feet into inches and squares them
 
-            return bmi = Math.Round((wToPounds / hSquared) * 703, 2);
+            return Bmi = Math.Round((wToPounds / hSquared) * 703, 2);
         }
 
 
