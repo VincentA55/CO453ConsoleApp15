@@ -28,14 +28,22 @@ namespace WebApplication1.Controllers
         {
             if (bmi.Units == "Imperial")
             {
-                bmi.ReturnBMIImperial(bmi.Weight, bmi.Height);
+               
+                return RedirectToAction("HealthMessage",  bmi.ReturnBMIImperial(bmi.Weight, bmi.Height));
             }
             else if(bmi.Units == "Metric")
             {
                 bmi.ReturnBMIMetric(bmi.Weight, bmi.Height);
+                return RedirectToAction("HealthMessage",  bmi.Bmi );
             }
 
-            return RedirectToAction("HealthMessage", new { bmi });
+            else
+            {
+                ViewBag.Error = "Error!";
+                return View();
+            }
+
+           
         }
 
         public IActionResult HealthMessage(double bmi)

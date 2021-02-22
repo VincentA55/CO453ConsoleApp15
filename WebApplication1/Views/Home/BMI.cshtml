@@ -19,19 +19,19 @@
         </p>
         <label for="unit-select">Choose a unit of measurment: </label>
         <select multiple size="1" name="unit-select" asp-for="@Model.Units">
-            <option selected value="Metric">Metric</option>
-            <option selected value="Imperial">Imperial</option>
+            <option value="Imperial" selected >Imperial</option>
+            <option value="Metric">Metric</option>
         </select>
         <p>
-            <input type="number" placeholder="Feet"
+            <input type="number" placeholder="Height"
                    value="6" asp-for="@Model.Height" />
         </p>
         <p>
-            <input type="number" placeholder="Stone"
+            <input type="number" placeholder="Weight"
                    value="13" asp-for="@Model.Weight" />
         </p>
         <p>
-            <button class=" btn btn-success" type="submit">Calculate</button>
+            <button class=" btn btn-success" input type="submit">Calculate</button>
         </p>
     </form>
 </section>

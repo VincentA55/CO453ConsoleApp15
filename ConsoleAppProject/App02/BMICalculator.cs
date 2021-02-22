@@ -106,7 +106,8 @@ namespace ConsoleAppProject.App02
         {
             Console.WriteLine(" " + weight + "Kg , " + height + "cm");
             Console.WriteLine("");
-            return Bmi = Math.Round(weight / height / height * 10000, 2);// Rounds up to 1 decimal places
+            this.Bmi = Math.Round(weight / height / height * 10000, 2);// Rounds up to 1 decimal places
+            return Bmi;
         }
 
 
@@ -122,7 +123,8 @@ namespace ConsoleAppProject.App02
             double wToPounds = weight * 14; // converts the weight in stone to lbs
             double hSquared = (height * 12) * (height * 12);// converts feet into inches and squares them
 
-            return Bmi = Math.Round((wToPounds / hSquared) * 703, 2);
+            this.Bmi = Math.Round((wToPounds / hSquared) * 703, 2);
+            return Bmi;
         }
 
 
