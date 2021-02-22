@@ -8,7 +8,7 @@ namespace ConsoleAppProject.App02
     /// <author>
     /// Vincent Assolutissimamente
     /// </author>
-    public class BMI
+    public class BMICalculator
     {
         public string Units { get; set; }
 
@@ -135,6 +135,17 @@ namespace ConsoleAppProject.App02
             string catagory = checker.CheckRange(bmi);
             Console.WriteLine($"You are {catagory} !");
             Console.WriteLine("A normal BMI for an average person is 20");
+        }
+        /**
+       * returns for the range the users bmi is in
+       */
+
+        public string ReturnBMI()
+        {
+            string catagory = checker.CheckRange(Bmi);
+            return @$"Your BMI is {Bmi}
+                    You are {catagory} !
+                    A normal BMI for an average person is 20";
         }
 
         /**

@@ -8,7 +8,7 @@ namespace TestBMI
         [TestMethod]
         public void TestingBMIMetric()
         {
-            BMI bmi = new BMI();
+            BMICalculator bmi = new BMICalculator();
             bmi.Weight = 73;
             bmi.Height = 175;
             
@@ -23,7 +23,7 @@ namespace TestBMI
         [TestMethod]
         public void TestingBMIImperial()
         {
-            BMI bmi = new BMI();
+            BMICalculator bmi = new BMICalculator();
             bmi.Weight = 100;
             bmi.Height = 6;
 

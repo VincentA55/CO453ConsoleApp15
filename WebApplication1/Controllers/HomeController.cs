@@ -24,10 +24,18 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult BMI(BMI bmi)
+        public IActionResult BMI(BMICalculator bmi)
         {
-            bmi.ReturnBMIImperial(bmi.Weight,bmi.Height);
-            return View();
+            if (bmi.Units == "Imperial")
+            {
+                bmi.ReturnBMIImperial(bmi.Weight, bmi.Height);
+            }
+            else if(bmi.Units == "Metric")
+            {
+                bmi.ReturnBMIMetric(bmi.Weight, bmi.Height);
+            }
+
+            return RedirectToAction("HealthMessage", new { bmi });
         }
 
         public IActionResult HealthMessage(double bmi)

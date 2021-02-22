@@ -40,7 +40,7 @@ namespace ConsoleAppProject.App01
                     }
                 case 2 :
                     {
-                        BMI bmi = new BMI();
+                        BMICalculator bmi = new BMICalculator();
                         bmi.PrintHeading();
                         bmi.CalculateBMI();
                         break;
