@@ -141,7 +141,7 @@ namespace ConsoleAppProject.App02
          * prints the text description for the bmi calculator
          */
 
-        public void PrintDescription()
+        public string PrintDescription()
         {
             string description = @"
 _______________________________________________________________________________________________________________________
@@ -162,6 +162,7 @@ ________________________________________________________________________________
                 ";
 
             Console.WriteLine(description);
+            return description;
         }
     }
 }

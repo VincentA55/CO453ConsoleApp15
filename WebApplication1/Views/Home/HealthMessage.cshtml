@@ -1,0 +1,21 @@
+﻿@model double
+@using ConsoleAppProject.App02 
+@{
+    ViewData["Title"] = "HealthMessage";
+}
+@{
+    BMI bmi = new BMI();
+    bmi.Bmi = Model;
+ }
+
+<header class=" jumbotron">
+    <h1>BMI Health Message</h1>
+    <h2>By Vincent Assolutissimamente</h2>
+</header>
+<section>
+    <h2>Your BMI index</h2>
+    <p class=" text-lead">
+        @bmi.PrintDescription()
+    </p>
+</section>
+

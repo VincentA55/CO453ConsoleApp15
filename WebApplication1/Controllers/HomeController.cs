@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using ConsoleAppProject.App02;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -21,11 +17,23 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult BMI()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult BMI(BMI bmi)
+        {
+            bmi.ReturnBMIImperial(bmi.Weight,bmi.Height);
+            return View();
+        }
+
+        public IActionResult HealthMessage(double bmi)
+        {
+            return View(bmi);
+        }
         public IActionResult StudentMarks()
         {
             return View();

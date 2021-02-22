@@ -15,14 +15,19 @@
 
         <h2>Imperial</h2>
         <p>
-            Please enter your height and weight 
+            Please enter your height and weight
         </p>
+        <label for="unit-select">Choose a unit of measurment: </label>
+        <select multiple size="1" name="unit-select">
+            <option selected value="Metric">Metric</option>
+            <option selected value="Imperial">Imperial</option>
+        </select>
         <p>
             <input type="number" placeholder="Feet"
-                   value="6"  asp-for="@Model.Height"/>
+                   value="6" asp-for="@Model.Height" />
         </p>
         <p>
-            <input type ="number" placeholder ="Stone" 
+            <input type="number" placeholder="Stone"
                    value="13" asp-for="@Model.Weight" />
         </p>
         <p>
