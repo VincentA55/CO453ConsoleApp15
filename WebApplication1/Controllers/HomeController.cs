@@ -7,7 +7,7 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        
+        public double TempBMI;
         public IActionResult Index()
         {
             return View();
@@ -28,27 +28,24 @@ namespace WebApplication1.Controllers
         {
             if (bmi.Units == "Imperial")
             {
-               
-                return RedirectToAction("HealthMessage",  bmi.ReturnBMIImperial(bmi.Weight, bmi.Height));
+                TempBMI = bmi.ReturnBMIImperial(bmi.Weight, bmi.Height);
+                return RedirectToAction("HealthMessage", TempBMI );
             }
             else if(bmi.Units == "Metric")
             {
-                bmi.ReturnBMIMetric(bmi.Weight, bmi.Height);
-                return RedirectToAction("HealthMessage",  bmi.Bmi );
+               TempBMI = bmi.ReturnBMIMetric(bmi.Weight, bmi.Height);
+                return RedirectToAction("HealthMessage", TempBMI);
             }
-
             else
             {
                 ViewBag.Error = "Error!";
                 return View();
             }
-
-           
         }
-
-        public IActionResult HealthMessage(double bmi)
+ 
+        public IActionResult HealthMessage(double bmi) // BMI isnt recieving a value so is always 0
         {
-            return View(bmi);
+            return View(TempBMI);
         }
         public IActionResult StudentMarks()
         {
