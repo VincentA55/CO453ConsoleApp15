@@ -29,12 +29,12 @@ namespace WebApplication1.Controllers
             if (bmi.Units == "Imperial")
             {
                 TempBMI = bmi.ReturnBMIImperial(bmi.Weight, bmi.Height);
-                return RedirectToAction("HealthMessage", TempBMI );
+                return RedirectToAction("HealthMessage", new { TempBMI });
             }
             else if(bmi.Units == "Metric")
             {
                TempBMI = bmi.ReturnBMIMetric(bmi.Weight, bmi.Height);
-                return RedirectToAction("HealthMessage", TempBMI);
+                return RedirectToAction("HealthMessage",new { TempBMI });
             }
             else
             {
@@ -43,7 +43,7 @@ namespace WebApplication1.Controllers
             }
         }
  
-        public IActionResult HealthMessage(double bmi) // BMI isnt recieving a value so is always 0
+        public IActionResult HealthMessage(double TempBMI) 
         {
             return View(TempBMI);
         }
