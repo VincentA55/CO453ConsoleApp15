@@ -127,7 +127,7 @@ namespace ConsoleAppProject.App01
             }
             else
             {
-                return 80085;
+                return ToDistance = 80085;
             }
         }
     }
