@@ -13,7 +13,7 @@
 <section>
     <form method="post">
 
-        <h2>Imperial</h2>
+        <h2></h2>
         <p>
             Please enter your height and weight
         </p>
@@ -23,10 +23,12 @@
             <option value="Metric">Metric</option>
         </select>
         <p>
+            Height:
             <input type="number" placeholder="Height"
                    value="6" asp-for="@Model.Height" />
         </p>
         <p>
+            Weight:
             <input type="number" placeholder="Weight"
                    value="13" asp-for="@Model.Weight" />
         </p>
