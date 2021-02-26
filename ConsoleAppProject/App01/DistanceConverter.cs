@@ -13,10 +13,10 @@ namespace ConsoleAppProject.App01
         public const int FEET_IN_MILES = 5280;
         public const double METERS_IN_MILES = 1609;
 
-        public string fromUnit { get; set; }
-        public string toUnit { get; set; }
-        public double fromDistance { get; set; }
-        public double toDistance { get; set; }
+        public string FromUnit { get; set; }
+        public string ToUnit { get; set; }
+        public double FromDistance { get; set; }
+        public double ToDistance { get; set; }
 
         public void PrintHeading()
         {
@@ -49,45 +49,45 @@ namespace ConsoleAppProject.App01
 
                 if (input.Length > 1) // checks if the input has more than 1 word
                 {
-                    fromDistance = float.Parse(input[0]);
-                    fromUnit = input[1];
+                    FromDistance = float.Parse(input[0]);
+                    FromUnit = input[1];
                 }
                 else
                 {
                     Console.WriteLine("Please type in the distance and measurement!");
                 }
 
-                Console.WriteLine(" Convert " + fromDistance + " " + fromUnit + " into...");
-                toUnit = Console.ReadLine().ToLower();
+                Console.WriteLine(" Convert " + FromDistance + " " + FromUnit + " into...");
+                ToUnit = Console.ReadLine().ToLower();
 
-                if (fromUnit == "feet" && toUnit == "meters") // feet into meters
+                if (FromUnit == "feet" && ToUnit == "meters") // feet into meters
                 {
-                    toDistance = fromDistance * 0.3048;
+                    ToDistance = FromDistance * 0.3048;
                 }
-                if (fromUnit == "feet" && toUnit == "miles") // feet into miles
+                if (FromUnit == "feet" && ToUnit == "miles") // feet into miles
                 {
-                    toDistance = fromDistance / FEET_IN_MILES;
-                }
-
-                if (fromUnit == "meters" && toUnit == "feet")// meters into feet
-                {
-                    toDistance = fromDistance * 3.281;
-                }
-                if (fromUnit == "meters" && toUnit == "miles") // meters into miles
-                {
-                    toDistance = fromDistance / METERS_IN_MILES;
+                    ToDistance = FromDistance / FEET_IN_MILES;
                 }
 
-                if (fromUnit == "miles" && toUnit == "feet")// miles into feet
+                if (FromUnit == "meters" && ToUnit == "feet")// meters into feet
                 {
-                    toDistance = fromDistance * FEET_IN_MILES;
+                    ToDistance = FromDistance * 3.281;
                 }
-                if (fromUnit == "miles" && toUnit == "meters")// miles into meters
+                if (FromUnit == "meters" && ToUnit == "miles") // meters into miles
                 {
-                    toDistance = fromDistance * METERS_IN_MILES;
+                    ToDistance = FromDistance / METERS_IN_MILES;
                 }
 
-                Console.WriteLine(fromDistance + " " + fromUnit + " = " + Math.Round(toDistance, 4) + " " + toUnit);
+                if (FromUnit == "miles" && ToUnit == "feet")// miles into feet
+                {
+                    ToDistance = FromDistance * FEET_IN_MILES;
+                }
+                if (FromUnit == "miles" && ToUnit == "meters")// miles into meters
+                {
+                    ToDistance = FromDistance * METERS_IN_MILES;
+                }
+
+                Console.WriteLine(FromDistance + " " + FromUnit + " = " + Math.Round(ToDistance, 4) + " " + ToUnit);
                 Console.WriteLine("");
                 Console.WriteLine("Would you like to convert again?");
             }
@@ -95,6 +95,40 @@ namespace ConsoleAppProject.App01
             while (Console.ReadLine().ToLower() != "no");
 
             Console.WriteLine("Thank you and good bye!");
+        }
+
+        public double ConvertDistance(double fromDistance)
+        {
+            if (FromUnit == "feet" && ToUnit == "meters") // feet into meters
+            {
+                return ToDistance = fromDistance * 0.3048;
+            }
+            if (FromUnit == "feet" && ToUnit == "miles") // feet into miles
+            {
+                return ToDistance = fromDistance / FEET_IN_MILES;
+            }
+
+            if (FromUnit == "meters" && ToUnit == "feet")// meters into feet
+            {
+               return ToDistance = fromDistance * 3.281;
+            }
+            if (FromUnit == "meters" && ToUnit == "miles") // meters into miles
+            {
+               return ToDistance = fromDistance / METERS_IN_MILES;
+            }
+
+            if (FromUnit == "miles" && ToUnit == "feet")// miles into feet
+            {
+               return ToDistance = fromDistance * FEET_IN_MILES;
+            }
+            if (FromUnit == "miles" && ToUnit == "meters")// miles into meters
+            {
+               return ToDistance = fromDistance * METERS_IN_MILES;
+            }
+            else
+            {
+                return 80085;
+            }
         }
     }
 }

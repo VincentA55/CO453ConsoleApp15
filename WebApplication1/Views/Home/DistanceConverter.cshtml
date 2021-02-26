@@ -1,10 +1,38 @@
-﻿
+﻿@model ConsoleAppProject.App01.DistanceConverter
 @{
     ViewData["Title"] = "V.A Distance Converter";
 }
 
-<header>
+<header class=" jumbotron">
     <h1>Distance Converter</h1>
+    <h2>By Vincent Assolutissimamente</h2>
+    <p>
+        This app will take one measurment and convert it into another
+    </p>
 </header>
+<body>
+
+    <form method="post">
+        Convert :
+        <input type="number" placeholder="From value" asp-for="@Model.FromDistance" />
+
+        <select name="Units" asp-for="@Model.FromUnit">
+            <option value="Feet">Feet</option>
+            <option value="Meters">Meters</option>
+            <option value="Miles">Miles</option>
+        </select>
+
+        <label for="unit-select"> into  </label>
+        <select name="Units" asp-for="@Model.ToUnit">
+            <option value="Feet">Feet</option>
+            <option value="Meters">Meters</option>
+            <option value="Miles">Miles</option>
+        </select>
+
+        <p>
+            <button class=" btn btn-success" input type="submit">Calculate</button>
+        </p>
+    </form>
+</body>
 
 

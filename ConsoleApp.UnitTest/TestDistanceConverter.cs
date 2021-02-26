@@ -10,13 +10,13 @@ namespace ConsoleApp.UnitTest
         public void TestMilesToFeet()
         {
             DistanceConverter converter = new DistanceConverter();
-            converter.fromUnit = "miles";
-            converter.toUnit = "feet";
-            converter.fromDistance = 10;
+            converter.FromUnit = "miles";
+            converter.ToUnit = "feet";
+            converter.FromDistance = 10;
             converter.Convert();
 
             double expectedDistance = 52800;
-            Assert.AreEqual(converter.toDistance, expectedDistance);
+            Assert.AreEqual(converter.ToDistance, expectedDistance);
         }
     }
 }
