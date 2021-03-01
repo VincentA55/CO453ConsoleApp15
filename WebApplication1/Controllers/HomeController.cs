@@ -13,16 +13,15 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public IActionResult DistanceConverter()
-        {
-            return View();
-        }
-        [HttpPost]
+       
+     
         public IActionResult DistanceConverter(DistanceConverter converter)
         {
-            converter.ConvertDistance(converter.FromDistance);
-            return View();
+            if (converter.FromDistance > 0)
+            {
+                converter.ConvertDistance();  
+            }
+            return View(converter);
         }
 
         [HttpGet]

@@ -1,4 +1,5 @@
 ﻿@model ConsoleAppProject.App01.DistanceConverter
+@using ConsoleAppProject.App01
 @{
     ViewData["Title"] = "V.A Distance Converter";
 }
@@ -14,22 +15,22 @@
 
     <form method="post">
         Convert :
-        <input type="number" id ="FromValue" placeholder="From value" asp-for="@Model.FromDistance" />
+        <input type="number" id="FromValue" placeholder="From value" asp-for="@Model.FromDistance" />
 
-        <select name="Units" asp-for="@Model.FromUnit">
-            <option value="Feet">Feet</option>
-            <option value="Meters">Meters</option>
-            <option value="Miles">Miles</option>
+        <select asp-for="@Model.FromUnit">
+            <option value="feet">feet</option>
+            <option value="meters">meters</option>
+            <option value="miles">miles</option>
         </select>
 
         <label for="unit-select"> into  </label>
-        <select name="Units" asp-for="@Model.ToUnit">
-            <option value="Feet">Feet</option>
-            <option value="Meters">Meters</option>
-            <option value="Miles">Miles</option>
+        <select asp-for="@Model.ToUnit">
+            <option value="feet">feet</option>
+            <option value="meters">meters</option>
+            <option value="miles">miles</option>
         </select>
-
-        <output id="ToDistance" for=""> </output>
+         
+        <input type="text" placeholder="To Distance" asp-for="@Model.ToDistance" value="@Model.ToDistance.ToString("0.00")" />
 
         <p>
             <button class=" btn btn-success" input type="submit">Calculate</button>

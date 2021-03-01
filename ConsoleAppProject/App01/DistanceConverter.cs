@@ -97,37 +97,37 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("Thank you and good bye!");
         }
 
-        public double ConvertDistance(double fromDistance)
+        public void ConvertDistance()
         {
             if (FromUnit == "feet" && ToUnit == "meters") // feet into meters
             {
-                return ToDistance = fromDistance * 0.3048;
+                ToDistance = FromDistance * 0.3048;
             }
-            if (FromUnit == "feet" && ToUnit == "miles") // feet into miles
+           else if (FromUnit == "feet" && ToUnit == "miles") // feet into miles
             {
-                return ToDistance = fromDistance / FEET_IN_MILES;
-            }
-
-            if (FromUnit == "meters" && ToUnit == "feet")// meters into feet
-            {
-               return ToDistance = fromDistance * 3.281;
-            }
-            if (FromUnit == "meters" && ToUnit == "miles") // meters into miles
-            {
-               return ToDistance = fromDistance / METERS_IN_MILES;
+                ToDistance = FromDistance / FEET_IN_MILES;
             }
 
-            if (FromUnit == "miles" && ToUnit == "feet")// miles into feet
+           else if (FromUnit == "meters" && ToUnit == "feet")// meters into feet
             {
-               return ToDistance = fromDistance * FEET_IN_MILES;
+               ToDistance = FromDistance * 3.281;
             }
-            if (FromUnit == "miles" && ToUnit == "meters")// miles into meters
+           else if (FromUnit == "meters" && ToUnit == "miles") // meters into miles
             {
-               return ToDistance = fromDistance * METERS_IN_MILES;
+                ToDistance = FromDistance / METERS_IN_MILES;
+            }
+
+           else if (FromUnit == "miles" && ToUnit == "feet")// miles into feet
+            {
+               ToDistance = FromDistance * FEET_IN_MILES;
+            }
+            else if (FromUnit == "miles" && ToUnit == "meters")// miles into meters
+            {
+               ToDistance = FromDistance * METERS_IN_MILES;
             }
             else
             {
-                return ToDistance = 80085;
+                 ToDistance = 80085;
             }
         }
     }
