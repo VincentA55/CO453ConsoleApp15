@@ -28,12 +28,12 @@ namespace ConsoleAppProject
             {
                 double number = 0;
                 bool Isvalid;
-
+               
                 do
                 {
                     Console.Write(">");
                     string value = Console.ReadLine();
-
+                    
                     try
                     {
                         number = Convert.ToDouble(value);
