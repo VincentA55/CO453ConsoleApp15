@@ -17,20 +17,6 @@ namespace ConsoleAppProject.App02
 
         public double Bmi;
 
-        private InputChecker checker = new InputChecker();
-
-        /**
-         * Prints the heading for the bmi calculatior
-         */
-
-        public void PrintHeading()
-        {
-            Console.WriteLine("------------------------------------");
-            Console.WriteLine("      Body Mass Index calculator");
-            Console.WriteLine("    By Vincent Assoultissimamente");
-            Console.WriteLine("------------------------------------");
-        }
-
         /**
          *  Asks the user to choose which system they would like to use to input their measurments
          *  then does a different calculation based on their choice
@@ -46,18 +32,18 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("2. Imperial (lbs + Feet)");
             Console.WriteLine("");
 
-            switch (checker.InputNumberWithin(1, 2))
+            switch (InputChecker2.InputNumberWithin(1, 2))
             {
                 case 1: // Does calculations for measurments in the Metric system
                     {
                         Console.WriteLine("Please enter your weight in Kg");
 
-                        Weight = checker.InputNumber();
+                        Weight = InputChecker2.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in cm");
 
-                        Height = checker.InputNumber();
+                        Height = InputChecker2.InputNumber();
 
                         Console.WriteLine(" " + Weight + "Kg , " + Height + "cm");
                         Console.WriteLine("");
@@ -73,12 +59,12 @@ namespace ConsoleAppProject.App02
                     {
                         Console.WriteLine("Please enter your weight in Stone");
 
-                        Weight = checker.InputNumber();
+                        Weight = InputChecker2.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in Feet");
 
-                        Height = checker.InputNumber();
+                        Height = InputChecker2.InputNumber();
 
                         Console.WriteLine(" " + Weight + "lbs , " + Height + " feet");
                         Console.WriteLine("");
@@ -95,6 +81,37 @@ namespace ConsoleAppProject.App02
             }
 
             CheckBMI(Bmi);
+        }
+        public string CheckRange(double bmi)
+        {
+            if (InputChecker2.InRange(bmi, 0, 18.5))
+            {
+                return "Underweight";
+            }
+            if (InputChecker2.InRange(bmi, 18.6, 24.9))
+            {
+                return "Normal";
+            }
+            if (InputChecker2.InRange(bmi, 25, 29.9))
+            {
+                return "Overweight";
+            }
+            if (InputChecker2.InRange(bmi, 30, 34.9))
+            {
+                return "Obese Class I";
+            }
+            if (InputChecker2.InRange(bmi, 35, 39.9))
+            {
+                return "Obese Class II";
+            }
+            if (InputChecker2.InRange(bmi, 40, 9999999999))
+            {
+                return "Obese Class III";
+            }
+            else
+            {
+                return "No valid BMI";
+            }
         }
 
 
@@ -134,7 +151,7 @@ namespace ConsoleAppProject.App02
 
         public void CheckBMI(double bmi)
         {
-            string catagory = checker.CheckRange(bmi);
+            string catagory = CheckRange(bmi);
             Console.WriteLine($"You are {catagory} !");
             Console.WriteLine("A normal BMI for an average person is 20");
         }
@@ -144,7 +161,7 @@ namespace ConsoleAppProject.App02
 
         public string ReturnBMI()
         {
-            string catagory = checker.CheckRange(Bmi);
+            string catagory = CheckRange(Bmi);
             return @$"Your BMI is {Bmi}
                     You are {catagory} !
                     A normal BMI for an average person is 20";

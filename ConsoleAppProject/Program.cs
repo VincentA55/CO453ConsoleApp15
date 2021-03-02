@@ -13,9 +13,8 @@ namespace ConsoleAppProject.App01
     /// </summary>
     public static class Program
     {
-        static InputChecker checker = new InputChecker();
 
-        public static void Main(string[] args)
+        public static void Main()
         {
 
             Console.ForegroundColor = ConsoleColor.White;
@@ -29,25 +28,24 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("|2. BMI calculator");
 
 
-            switch (checker.InputNumberWithin(1,2))
+            switch (InputChecker2.InputNumberWithin(1,2))
             {
                 case 1 :
                     {
                         DistanceConverter converter = new DistanceConverter();
-                        converter.PrintHeading();
+                        ConsoleHelper.OutputHeading("Distance Converter");
                         converter.Convert();
                         break;
                     }
                 case 2 :
                     {
                         BMICalculator bmi = new BMICalculator();
-                        bmi.PrintHeading();
+                        ConsoleHelper.OutputHeading("BMI Calculator");
                         bmi.CalculateBMI();
                         break;
                     }
-
-                
             }
+            Main();
         }
     }
 }

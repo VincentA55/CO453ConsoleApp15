@@ -18,14 +18,6 @@ namespace ConsoleAppProject.App01
         public double FromDistance { get; set; }
         public double ToDistance { get; set; }
 
-        public void PrintHeading()
-        {
-            Console.WriteLine("------------------------------------");
-            Console.WriteLine("       Distance Converter");
-            Console.WriteLine("    By Vincent Assoultissimamente");
-            Console.WriteLine("------------------------------------");
-        }
-
         /**
          *  Recives measurments from the user in the measurement of their choice and converts it into a different measurement of their choice
          *
