@@ -25,7 +25,10 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("|1. Distance converter");
             Console.WriteLine("|2. BMI calculator");
 
-            switch (InputChecker2.InputNumberWithin(1, 2))
+            string[] choices = {"|1. Distance Converter", "|2. BMI Calculator", "|3. Student Grades"};
+            
+
+            switch (ConsoleHelper.SelectChoice(choices))
             {
                 case 1:
                     {
