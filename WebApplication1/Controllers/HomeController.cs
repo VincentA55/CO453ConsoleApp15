@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
             else if(bmi.Units == "Metric")
             {
                TempBMI = bmi.ReturnBMIMetric(bmi.Weight, bmi.Height);
-                return RedirectToAction("HealthMessage",new { TempBMI });
+                return RedirectToAction("HealthMessage", new { TempBMI });
             }
             else
             {
