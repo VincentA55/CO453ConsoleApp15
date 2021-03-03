@@ -24,7 +24,7 @@ namespace ConsoleAppProject
             foreach(string choice in choices)
             {
                 choiceNo++;
-                Console.WriteLine($" {choiceNo}. {choice}"):
+                Console.WriteLine($" {choiceNo}. {choice}");
             }
 
             //Input the users choice as a number
