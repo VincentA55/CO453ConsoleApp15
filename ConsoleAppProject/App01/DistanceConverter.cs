@@ -50,6 +50,7 @@ namespace ConsoleAppProject.App01
                 }
 
                 Console.WriteLine(" Convert " + FromDistance + " " + FromUnit + " into...");
+                                                                                             
                 ToUnit = Console.ReadLine().ToLower();
 
                 if (FromUnit == "feet" && ToUnit == "meters") // feet into meters

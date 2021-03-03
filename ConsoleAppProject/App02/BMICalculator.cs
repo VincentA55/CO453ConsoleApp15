@@ -82,6 +82,10 @@ namespace ConsoleAppProject.App02
 
             CheckBMI(Bmi);
         }
+
+        /**
+         * takes the bmi and checks what range it falls into amd returns a catagory
+         * */
         public string CheckRange(double bmi)
         {
             if (InputChecker2.InRange(bmi, 0, 18.5))
