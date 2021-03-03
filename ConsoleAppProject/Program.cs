@@ -25,7 +25,7 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("|1. Distance converter");
             Console.WriteLine("|2. BMI calculator");
 
-            string[] choices = {"|1. Distance Converter", "|2. BMI Calculator", "|3. Student Grades"};
+            string[] choices = {"Distance Converter", "BMI Calculator", "Student Grades"};
             
 
             switch (ConsoleHelper.SelectChoice(choices))
