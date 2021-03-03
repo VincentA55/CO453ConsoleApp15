@@ -50,7 +50,7 @@ namespace ConsoleAppProject
             }
 
             /**
-             * Ensures that only a number can be returned
+             * Ensures that only a number within a range can be returned
              */
 
             public static double InputNumberWithin(int from, int to)
