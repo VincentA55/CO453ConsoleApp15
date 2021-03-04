@@ -1,4 +1,5 @@
 ﻿using ConsoleAppProject.App02;
+using ConsoleAppProject.App03;
 using System;
 
 namespace ConsoleAppProject.App01
@@ -22,9 +23,7 @@ namespace ConsoleAppProject.App01
             Console.Beep();
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("");
-            Console.WriteLine("|1. Distance converter");
-            Console.WriteLine("|2. BMI calculator");
-
+        
             string[] choices = {"Distance Converter", "BMI Calculator", "Student Grades"};
             
 
@@ -44,8 +43,15 @@ namespace ConsoleAppProject.App01
                         bmi.CalculateBMI();
                         break;
                     }
+
+                case 3:
+                    {
+                        Grades grades = new Grades();
+                        ConsoleHelper.OutputHeading("Student Grades");
+                        
+                        break;
+                    }
             }
-            Main();
         }
     }
 }
