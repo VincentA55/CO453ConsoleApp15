@@ -100,19 +100,11 @@ namespace ConsoleAppProject
             do
             {
                 Console.Write($"Enter a number between {from} and {to} >");
-                string value = Console.ReadLine();
+                double value = InputNumber();
 
-                try
-                {
-                    number = Convert.ToInt32(value);
-                    Isvalid = true;
-                }
-                catch (Exception)
-                {
-                    Isvalid = false;
-                    Console.WriteLine("Number is INVALID!!");
-                }
-
+                number = Convert.ToInt32(value);
+                Isvalid = true;
+              
                 if (number < from || number > to)
                 {
                     Console.WriteLine($"Number must be between {from} and {to} !");
