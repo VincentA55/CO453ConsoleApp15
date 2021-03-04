@@ -20,9 +20,9 @@ namespace ConsoleAppProject
         /// </summary>
         /// <param name="choices"></param>
         /// <returns>double</returns>
-        public static double SelectChoice(string[] choices)
+        public static int SelectChoice(string[] choices)
         {
-            double choiceNo = 0;
+            int choiceNo = 0;
 
             //Display all the choices
 
@@ -32,7 +32,8 @@ namespace ConsoleAppProject
                 Console.WriteLine($"|{choiceNo}. {choice}");
             }
 
-            choiceNo = InputNumber();
+            choiceNo = InputNumberWithin(choiceNo-choiceNo+1, choiceNo);
+
 
             return choiceNo;
         }
@@ -94,12 +95,11 @@ namespace ConsoleAppProject
         /// <returns>double</returns>
         public static int InputNumberWithin(int from, int to)
         {
-            int number = 0;
+            int number;
             bool Isvalid;
 
             do
             {
-                Console.Write($"Enter a number between {from} and {to} >");
                 double value = InputNumber();
 
                 number = Convert.ToInt32(value);
