@@ -38,7 +38,7 @@ namespace ConsoleAppProject
         }
 
         /// <summary>
-        /// Ensures that only a number can be returned
+        /// Aks for a number and ensures that only a number can be returned
         /// </summary>
         /// <returns>double</returns>
         public static double InputNumber()
@@ -48,6 +48,7 @@ namespace ConsoleAppProject
 
             do
             {
+                Console.WriteLine(" ");
                 Console.Write("Enter a number >");
                 string value = Console.ReadLine();
 
@@ -98,7 +99,7 @@ namespace ConsoleAppProject
 
             do
             {
-                Console.Write(">");
+                Console.Write($"Enter a number between {from} and {to} >");
                 string value = Console.ReadLine();
 
                 try
