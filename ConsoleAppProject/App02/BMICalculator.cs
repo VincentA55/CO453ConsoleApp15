@@ -32,18 +32,18 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("2. Imperial (lbs + Feet)");
             Console.WriteLine("");
 
-            switch (InputChecker2.InputNumberWithin(1, 2))
+            switch (ConsoleHelper.InputNumberWithin(1, 2))
             {
                 case 1: // Does calculations for measurments in the Metric system
                     {
                         Console.WriteLine("Please enter your weight in Kg");
 
-                        Weight = InputChecker2.InputNumber();
+                        Weight = ConsoleHelper.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in cm");
 
-                        Height = InputChecker2.InputNumber();
+                        Height = ConsoleHelper.InputNumber();
 
                         Console.WriteLine(" " + Weight + "Kg , " + Height + "cm");
                         Console.WriteLine("");
@@ -59,12 +59,12 @@ namespace ConsoleAppProject.App02
                     {
                         Console.WriteLine("Please enter your weight in Stone");
 
-                        Weight = InputChecker2.InputNumber();
+                        Weight = ConsoleHelper.InputNumber();
 
                         Console.WriteLine("");
                         Console.WriteLine("Please enter your height in Feet");
 
-                        Height = InputChecker2.InputNumber();
+                        Height = ConsoleHelper.InputNumber();
 
                         Console.WriteLine(" " + Weight + "lbs , " + Height + " feet");
                         Console.WriteLine("");
@@ -88,27 +88,27 @@ namespace ConsoleAppProject.App02
          * */
         public string CheckRange(double bmi)
         {
-            if (InputChecker2.InRange(bmi, 0, 18.5))
+            if (ConsoleHelper.InRange(bmi, 0, 18.5))
             {
                 return "Underweight";
             }
-            if (InputChecker2.InRange(bmi, 18.6, 24.9))
+            if (ConsoleHelper.InRange(bmi, 18.6, 24.9))
             {
                 return "Normal";
             }
-            if (InputChecker2.InRange(bmi, 25, 29.9))
+            if (ConsoleHelper.InRange(bmi, 25, 29.9))
             {
                 return "Overweight";
             }
-            if (InputChecker2.InRange(bmi, 30, 34.9))
+            if (ConsoleHelper.InRange(bmi, 30, 34.9))
             {
                 return "Obese Class I";
             }
-            if (InputChecker2.InRange(bmi, 35, 39.9))
+            if (ConsoleHelper.InRange(bmi, 35, 39.9))
             {
                 return "Obese Class II";
             }
-            if (InputChecker2.InRange(bmi, 40, 9999999999))
+            if (ConsoleHelper.InRange(bmi, 40, 9999999999))
             {
                 return "Obese Class III";
             }
