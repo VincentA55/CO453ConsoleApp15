@@ -69,7 +69,7 @@ namespace ConsoleAppProject
         }
 
         /// <summary>
-        /// Checks if a value is within a given range
+        /// Only checks if a value is within a given range
         /// </summary>
         /// <param name="value"></param>
         /// <param name="from"></param>
@@ -88,7 +88,7 @@ namespace ConsoleAppProject
         }
 
         /// <summary>
-        /// Ensures that only a number within a range can be returned
+        /// Returns and Ensures that only a number within a range can be returned
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>
