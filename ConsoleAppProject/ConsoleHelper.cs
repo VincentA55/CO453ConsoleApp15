@@ -9,10 +9,10 @@ namespace ConsoleAppProject
     {
         public static void OutputHeading(string heading)
         {
-            Console.WriteLine("------------------------------------");
+            Console.WriteLine("-------------------------------------");
             Console.WriteLine($"             {heading}");
             Console.WriteLine("    By Vincent Assoultissimamente");
-            Console.WriteLine("------------------------------------");
+            Console.WriteLine("-------------------------------------");
         }
 
         /// <summary>
@@ -92,9 +92,9 @@ namespace ConsoleAppProject
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <returns>double</returns>
-        public static double InputNumberWithin(int from, int to)
+        public static int InputNumberWithin(int from, int to)
         {
-            double number = 0;
+            int number = 0;
             bool Isvalid;
 
             do
@@ -104,7 +104,7 @@ namespace ConsoleAppProject
 
                 try
                 {
-                    number = Convert.ToDouble(value);
+                    number = Convert.ToInt32(value);
                     Isvalid = true;
                 }
                 catch (Exception)
