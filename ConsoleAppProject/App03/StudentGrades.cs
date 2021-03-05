@@ -3,6 +3,15 @@ namespace ConsoleAppProject.App03
 {
     public class StudentGrades
     {
+        // Constants
+        public const int LowestMark = 0;
+        public const int LowestGradeD = 40;
+        public const int LowestGradeC = 50;
+        public const int LowestGradeB = 60;
+        public const int LowestGradeA = 70;
+        public const int HighestMark = 100;
+
+        // Properties
         public string[] Students { get; set; }
 
         public int[] Marks { get; set; }
@@ -56,7 +65,28 @@ namespace ConsoleAppProject.App03
         /// <returns>Grades</returns>
         public Grades ConvertToGrade(int mark)
         {
-            throw new NotImplementedException();
+            if (ConsoleHelper.InRange(mark, LowestMark, LowestGradeD))
+            {
+                return Grades.F;
+            }
+            else if (ConsoleHelper.InRange(mark, LowestGradeD, LowestGradeC))
+            {
+                return Grades.D;
+            }
+            else if (ConsoleHelper.InRange(mark, LowestGradeC, LowestGradeB))
+            {
+                return Grades.C;
+            }
+            else if (ConsoleHelper.InRange(mark, LowestGradeB, LowestGradeA))
+            {
+                return Grades.B;
+            }
+            else 
+            {
+                return Grades.A;
+            };
+            
+            
         }
 
         /// <summary>
