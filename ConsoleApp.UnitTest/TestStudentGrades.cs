@@ -74,5 +74,43 @@ namespace ConsoleApp.UnitTest
 
             Assert.AreEqual(expectedMean, converter.Mean);
         }
+
+
+        [TestMethod]
+        public void TestCalculateMax()
+        {
+            // Arrange
+
+            converter.Marks = testMarks;
+
+            double expectedMax = 100;
+
+            // Act
+
+            converter.CalculateStats();
+
+            // Assert
+
+            Assert.AreEqual(expectedMax, converter.Maximum);
+        }
+
+
+        [TestMethod]
+        public void TestCalculateMin()
+        {
+            // Arrange
+
+            converter.Marks = testMarks;
+
+            double expectedMin = 10;
+
+            // Act
+
+            converter.CalculateStats();
+
+            // Assert
+
+            Assert.AreEqual(expectedMin, converter.Minimum);
+        }
     }
 }

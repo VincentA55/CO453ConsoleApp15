@@ -95,6 +95,7 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void CalculateStats()
         {
+            // calculates the mean
             double total = 0;
 
             foreach(int mark in Marks)
@@ -103,6 +104,26 @@ namespace ConsoleAppProject.App03
             }
 
             Mean = total / Marks.Length;
+
+            // calculates the maximum
+            Maximum = 0; 
+            foreach (int mark in Marks)
+            {
+                if (mark > Maximum)
+                {
+                    Maximum = mark;
+                }
+            }
+
+            // calculates the minimum
+            Minimum = 100;
+            foreach (int mark in Marks)
+            {
+                if (mark < Minimum)
+                {
+                    Minimum = mark;
+                }
+            }
         }
     }
 }
