@@ -1,10 +1,12 @@
 ﻿using System;
+
 namespace ConsoleAppProject.App03
 {
     public class StudentGrades
     {
         // Constants
         public const int LowestMark = 0;
+
         public const int LowestGradeD = 40;
         public const int LowestGradeC = 50;
         public const int LowestGradeB = 60;
@@ -65,37 +67,42 @@ namespace ConsoleAppProject.App03
         /// <returns>Grades</returns>
         public Grades ConvertToGrade(int mark)
         {
-            if (ConsoleHelper.InRange(mark, LowestMark, LowestGradeD-1)) // -1 is required because InRange() checks <= not <
+            if (ConsoleHelper.InRange(mark, LowestGradeA, HighestMark)) 
             {
-                return Grades.F;
+                return Grades.A;
             }
-            else if (ConsoleHelper.InRange(mark, LowestGradeD, LowestGradeC-1))
-            {
-                return Grades.D;
-            }
-            else if (ConsoleHelper.InRange(mark, LowestGradeC, LowestGradeB-1))
-            {
-                return Grades.C;
-            }
-            else if (ConsoleHelper.InRange(mark, LowestGradeB, LowestGradeA-1))
+            else if (ConsoleHelper.InRange(mark, LowestGradeB, LowestGradeA - 1)) // -1 is required because InRange() checks <= not <
             {
                 return Grades.B;
             }
+            else if (ConsoleHelper.InRange(mark, LowestGradeC, LowestGradeB - 1))
+            {
+                return Grades.C;
+            }
+            else if (ConsoleHelper.InRange(mark, LowestGradeD, LowestGradeC - 1))
+            {
+                return Grades.D;
+            }
             else 
             {
-                return Grades.A;
+                return Grades.F;
             };
-            
-            
         }
 
         /// <summary>
-        /// Calculate and displays 
+        /// Calculate and displays
         /// min, max, and mean mark for all students
         /// </summary>
         public void CalculateStats()
         {
-            throw new NotImplementedException();
+            double total = 0;
+
+            foreach(int mark in Marks)
+            {
+                total = total + mark;
+            }
+
+            Mean = total / Marks.Length;
         }
     }
 }
