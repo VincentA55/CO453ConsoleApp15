@@ -65,19 +65,19 @@ namespace ConsoleAppProject.App03
         /// <returns>Grades</returns>
         public Grades ConvertToGrade(int mark)
         {
-            if (ConsoleHelper.InRange(mark, LowestMark, LowestGradeD))
+            if (ConsoleHelper.InRange(mark, LowestMark, LowestGradeD-1)) // -1 is required because InRange() checks <= not <
             {
                 return Grades.F;
             }
-            else if (ConsoleHelper.InRange(mark, LowestGradeD, LowestGradeC))
+            else if (ConsoleHelper.InRange(mark, LowestGradeD, LowestGradeC-1))
             {
                 return Grades.D;
             }
-            else if (ConsoleHelper.InRange(mark, LowestGradeC, LowestGradeB))
+            else if (ConsoleHelper.InRange(mark, LowestGradeC, LowestGradeB-1))
             {
                 return Grades.C;
             }
-            else if (ConsoleHelper.InRange(mark, LowestGradeB, LowestGradeA))
+            else if (ConsoleHelper.InRange(mark, LowestGradeB, LowestGradeA-1))
             {
                 return Grades.B;
             }

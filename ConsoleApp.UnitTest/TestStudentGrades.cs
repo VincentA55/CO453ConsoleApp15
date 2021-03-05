@@ -33,5 +33,18 @@ namespace ConsoleApp.UnitTest
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
         }
+
+        [TestMethod]
+        public void Convert40ToGradeD()
+        {
+            // Arrange
+            Grades expectedGrade = Grades.D;
+
+            // Act
+            Grades actualGrade = studentGrades.ConvertToGrade(40);
+
+            // Assert
+            Assert.AreEqual(expectedGrade, actualGrade);
+        }
     }
 }
