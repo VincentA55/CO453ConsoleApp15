@@ -19,6 +19,7 @@ namespace ConsoleAppProject.App01
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
+            Console.WriteLine("    Vincent Assolutissimamente 21905331");
             Console.WriteLine();
             Console.Beep();
             Console.WriteLine("What would you like to do?");

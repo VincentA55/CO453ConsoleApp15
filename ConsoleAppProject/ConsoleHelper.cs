@@ -32,7 +32,7 @@ namespace ConsoleAppProject
                 Console.WriteLine($"|{choiceNo}. {choice}");
             }
 
-            choiceNo = InputNumberWithin(choiceNo-choiceNo+1, choiceNo);
+            choiceNo = InputNumberWithin(choiceNo-choiceNo+1, choices.Length);
 
 
             return choiceNo;
