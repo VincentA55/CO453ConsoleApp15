@@ -112,5 +112,25 @@ namespace ConsoleApp.UnitTest
 
             Assert.AreEqual(expectedMin, converter.Minimum);
         }
+
+        [TestMethod]
+        public void TestGradeProfile()
+        {
+            // Arrange
+            converter.Marks = testMarks;
+
+            // Act
+            converter.CalculateGradeProfile();
+
+            bool expectedProfile;
+            expectedProfile = ((converter.GradeProfile[0] == 3) &&
+                               (converter.GradeProfile[1] == 1) &&
+                               (converter.GradeProfile[2] == 1) &&
+                               (converter.GradeProfile[3] == 1) &&
+                               (converter.GradeProfile[4] == 4));
+
+            // Assert
+            Assert.IsTrue(expectedProfile);
+        }
     }
 }

@@ -125,5 +125,22 @@ namespace ConsoleAppProject.App03
                 }
             }
         }
+
+        /// <summary>
+        /// calculates the profile for a grade
+        /// </summary>
+        public void CalculateGradeProfile()
+        {
+            for (int i = 0; i < GradeProfile.Length; i++)
+            {
+                GradeProfile[i] = 0;
+            }
+
+            foreach (int mark in Marks)
+            {
+                Grades grade = ConvertToGrade(mark);
+                GradeProfile[(int)grade]++;
+            }
+        }
     }
 }
