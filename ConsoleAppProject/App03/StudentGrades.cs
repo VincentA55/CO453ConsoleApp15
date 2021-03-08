@@ -142,5 +142,7 @@ namespace ConsoleAppProject.App03
                 GradeProfile[(int)grade]++;
             }
         }
+
+
     }
 }
