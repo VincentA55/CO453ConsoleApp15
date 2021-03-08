@@ -53,6 +53,7 @@ namespace ConsoleAppProject.App03
             bool finished = false;
             do
             {
+                Console.WriteLine();
                 switch (ConsoleHelper.SelectChoice(choices))
                 {
                     case 1:
@@ -64,6 +65,7 @@ namespace ConsoleAppProject.App03
                         break;
 
                     case 3:
+                        OutputStats();
                         break;
 
                     case 4:
@@ -103,11 +105,13 @@ ___________________________________________
         /// </summary>
         public void OutputMarks()
         {
+            Console.WriteLine("Output Marks :");
+            Console.WriteLine();
             int i = 0;
 
-            foreach(string student in Students)
+            foreach (string student in Students)
             {
-                Console.WriteLine($" {student} marks = {Marks[i]} ");
+                Console.WriteLine($" Marks for {student} :| {Marks[i]} |");
                 i++;
             }
         }
@@ -142,8 +146,7 @@ ___________________________________________
         }
 
         /// <summary>
-        /// Calculate and displays
-        /// min, max, and mean mark for all students
+        /// Calculate min, max, and mean mark for all students
         /// </summary>
         public void CalculateStats()
         {
@@ -175,6 +178,30 @@ ___________________________________________
                 {
                     Minimum = mark;
                 }
+            }
+        }
+
+        /// <summary>
+        /// prints out the stats for each student
+        /// </summary>
+        public void OutputStats()
+        {
+            int i = 0;
+
+            foreach (string student in Students)
+            {
+                CalculateGradeProfile();
+                CalculateStats(); // NOT QUIT SURE WHAT IT SUPPOSED TO HAPPEN HERE !! NOT FINSHED COME BACK HERE<--
+
+                Console.WriteLine($" {student} Stats");
+                Console.WriteLine($" ______________________");
+                OutputGradeProfile();
+                Console.WriteLine($"|Grade : {GradeProfile}");
+                Console.WriteLine($"|Maximum : {Maximum}");
+                Console.WriteLine($"|Minimum : {Minimum}");
+                Console.WriteLine($"|Average : {Mean} ");
+                Console.WriteLine($"");
+                i++;
             }
         }
 
