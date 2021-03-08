@@ -20,15 +20,16 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
             Console.WriteLine("    Vincent Assolutissimamente 21905331");
-            Console.WriteLine();
-            Console.Beep();
-            Console.WriteLine("What would you like to do?");
-            Console.WriteLine("");
-        
+
             string[] choices = {"Distance Converter", "BMI Calculator", "Student Grades", "Social Network", "RPG Game", "Quit"};
             bool finished = false;
             do
             {
+                Console.WriteLine();
+                Console.Beep();
+                Console.WriteLine("What would you like to do next?");
+                Console.WriteLine("");
+
                 switch (ConsoleHelper.SelectChoice(choices))
                 {
                     case 1:

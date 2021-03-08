@@ -72,7 +72,10 @@ namespace ConsoleAppProject.App03
                         break;
 
                     case 5:
-                        Console.WriteLine("Now quitting Student Grades...");
+                        Console.WriteLine(@"Now quitting Student Grades...
+___________________________________________
+
+");
                         finished = true;
                         break;
                 }
@@ -87,9 +90,9 @@ namespace ConsoleAppProject.App03
         {
             int i = 0;
 
-            foreach(string student in Students)
+            foreach (string student in Students)
             {
-                Console.WriteLine($"Enter the marks for {Students[i]} >");
+                Console.WriteLine($"Enter the marks for {student} >");
                 Marks[i] = ConsoleHelper.InputNumberWithin(LowestMark, HighestMark);
                 i++;
             }
@@ -100,7 +103,13 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void OutputMarks()
         {
-            throw new NotImplementedException();
+            int i = 0;
+
+            foreach(string student in Students)
+            {
+                Console.WriteLine($" {student} marks = {Marks[i]} ");
+                i++;
+            }
         }
 
         /// <summary>
