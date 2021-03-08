@@ -49,8 +49,7 @@ namespace ConsoleAppProject
 
             do
             {
-                Console.WriteLine(" ");
-                Console.Write("Enter a number >");
+                Console.Write(">");
                 string value = Console.ReadLine();
 
                 try

@@ -25,34 +25,47 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("");
         
-            string[] choices = {"Distance Converter", "BMI Calculator", "Student Grades"};
-            
-
-            switch (ConsoleHelper.SelectChoice(choices))
+            string[] choices = {"Distance Converter", "BMI Calculator", "Student Grades", "Social Network", "RPG Game", "Quit"};
+            bool finished = false;
+            do
             {
-                case 1:
-                    {
-                        DistanceConverter converter = new DistanceConverter();
-                        ConsoleHelper.OutputHeading("Distance Converter");
-                        converter.Convert();
-                        break;
-                    }
-                case 2:
-                    {
-                        BMICalculator bmi = new BMICalculator();
-                        ConsoleHelper.OutputHeading("BMI Calculator");
-                        bmi.CalculateBMI();
-                        break;
-                    }
+                switch (ConsoleHelper.SelectChoice(choices))
+                {
+                    case 1:
+                        {
+                            DistanceConverter converter = new DistanceConverter();
+                            ConsoleHelper.OutputHeading("Distance Converter");
+                            converter.Convert();
+                            break;
+                        }
+                    case 2:
+                        {
+                            BMICalculator bmi = new BMICalculator();
+                            ConsoleHelper.OutputHeading("BMI Calculator");
+                            bmi.CalculateBMI();
+                            break;
+                        }
 
-                case 3:
-                    {
-                        Grades grades = new Grades();
-                        ConsoleHelper.OutputHeading("Student Grades");
-                        
+                    case 3:
+                        {
+                            StudentGrades studentGrades = new StudentGrades();
+                            ConsoleHelper.OutputHeading("Student Grades");
+                            studentGrades.Main();
+                            break;
+                        }
+
+                    case 4: //Social Network
                         break;
-                    }
-            }
+
+                    case 5: //RPG Game
+                        break;
+
+                    case 6:
+                        Console.WriteLine("Thank you and Goodbye!");
+                        finished = true;
+                        break;
+                }
+            } while (!finished);
         }
     }
 }
