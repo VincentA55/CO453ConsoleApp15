@@ -47,7 +47,7 @@ namespace ConsoleAppProject.App03
         {
             string[] choices = new string[]
             {
-              "Input Marks", "Output Marks", "Output Stats", "Output Grade Profile", "Quit"
+              "Input Marks", "Output Marks", "Output Stats", "Output Grade Profile", "Quit", "giveMarksTesting()"
             };
 
             bool finished = false;
@@ -79,6 +79,10 @@ ___________________________________________
 
 ");
                         finished = true;
+                        break;
+
+                    case 6:
+                        giveMarksTesting();
                         break;
                 }
             } while (!finished);
@@ -192,17 +196,22 @@ ___________________________________________
             {
                 CalculateGradeProfile();
                 CalculateStats(); // NOT QUIT SURE WHAT IT SUPPOSED TO HAPPEN HERE !! NOT FINSHED COME BACK HERE<--
+                ;
 
-                Console.WriteLine($" {student} Stats");
-                Console.WriteLine($" ______________________");
-                OutputGradeProfile();
-                Console.WriteLine($"|Grade : {GradeProfile}");
-                Console.WriteLine($"|Maximum : {Maximum}");
-                Console.WriteLine($"|Minimum : {Minimum}");
-                Console.WriteLine($"|Average : {Mean} ");
+                Console.WriteLine($" |{student}");
+                Console.WriteLine(" |____________");
+                Console.WriteLine($" |Marks : {Marks[i]} |");
+                Console.WriteLine($" |Grade : { ConvertToGrade(Marks[i])}  |");
                 Console.WriteLine($"");
                 i++;
             }
+            Console.WriteLine("  ______________________");
+            Console.WriteLine(" |Stats for all students|");
+            Console.WriteLine(" |______________________|");
+
+            Console.WriteLine($" |Maximum : {Maximum}  ");
+            Console.WriteLine($" |Minimum : {Minimum}  ");
+            Console.WriteLine($" |Average : {Mean}   ");
         }
 
         /// <summary>
@@ -238,6 +247,21 @@ ___________________________________________
             }
 
             Console.WriteLine();
+        }
+
+        /// <summary>
+        ///gives each student marks for testing purposes
+        /// </summary>
+        public void giveMarksTesting()
+        {
+            int i = 0;
+            Random r = new Random();
+            foreach (string student in Students)
+            {
+                Marks[i] = r.Next(0, 100);
+                Console.WriteLine($"{student} marks : {Marks[i]}");
+                i++;
+            }
         }
     }
 }
