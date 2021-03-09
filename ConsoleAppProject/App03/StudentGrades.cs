@@ -43,6 +43,9 @@ namespace ConsoleAppProject.App03
             Marks = new int[Students.Length];
         }
 
+        /// <summary>
+        /// Main method for the StudentGrades class
+        /// </summary>
         public void Main()
         {
             string[] choices = new string[]
@@ -186,7 +189,7 @@ ___________________________________________
         }
 
         /// <summary>
-        /// prints out the stats for each student
+        /// prints out the stats for each student and the class
         /// </summary>
         public void OutputStats()
         {
