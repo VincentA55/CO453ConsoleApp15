@@ -99,7 +99,7 @@ ___________________________________________
             foreach (string student in Students)
             {
                 Console.WriteLine($"Enter the marks for {student} >");
-                Marks[i] = ConsoleHelper.InputNumberWithin(LowestMark, HighestMark);
+                Marks[i] += ConsoleHelper.InputNumberWithin(LowestMark, HighestMark);
                 i++;
             }
         }
@@ -127,7 +127,7 @@ ___________________________________________
         /// <returns>Grades</returns>
         public Grades ConvertToGrade(int mark)
         {
-            if (ConsoleHelper.InRange(mark, LowestGradeA, HighestMark))
+            if (ConsoleHelper.InRange(mark, LowestGradeA, HighestMark) || mark > 100)
             {
                 return Grades.A;
             }
@@ -196,12 +196,13 @@ ___________________________________________
             {
                 CalculateGradeProfile();
                 CalculateStats(); // NOT QUIT SURE WHAT IT SUPPOSED TO HAPPEN HERE !! NOT FINSHED COME BACK HERE<--
-                ;
-
-                Console.WriteLine($" |{student}");
+                string gradeClass = ConsoleHelper.GetDescription(ConvertToGrade(Marks[i]));
+               
+                Console.WriteLine($" |{student} :{gradeClass} ");
                 Console.WriteLine(" |____________");
-                Console.WriteLine($" |Marks : {Marks[i]} |");
                 Console.WriteLine($" |Grade : { ConvertToGrade(Marks[i])}  |");
+                Console.WriteLine($" |Marks : {Marks[i]} |");
+                Console.WriteLine($"");
                 Console.WriteLine($"");
                 i++;
             }
@@ -258,7 +259,7 @@ ___________________________________________
             Random r = new Random();
             foreach (string student in Students)
             {
-                Marks[i] = r.Next(0, 100);
+                Marks[i] += r.Next(0, 100);
                 Console.WriteLine($"{student} marks : {Marks[i]}");
                 i++;
             }
