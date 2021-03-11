@@ -198,7 +198,7 @@ ___________________________________________
             foreach (string student in Students)
             {
                 CalculateGradeProfile();
-                CalculateStats(); // NOT QUIT SURE WHAT IT SUPPOSED TO HAPPEN HERE !! NOT FINSHED COME BACK HERE<--
+                CalculateStats(); 
                 string gradeClass = ConsoleHelper.GetDescription(ConvertToGrade(Marks[i]));
                
                 Console.WriteLine($" |{student} :{gradeClass} ");
