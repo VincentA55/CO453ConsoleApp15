@@ -50,7 +50,7 @@ namespace ConsoleAppProject.App03
         {
             string[] choices = new string[]
             {
-              "Input Marks", "Output Marks", "Output Stats", "Output Grade Profile", "Quit", "giveMarksTesting()"
+              "Input Marks", "Output Marks", "Output Stats", "Output Grade Profile", "Quit", "giveMarksTesting()", "giveMarksTo()"
             };
 
             bool finished = false;
@@ -87,6 +87,10 @@ ___________________________________________
                     case 6:
                         giveMarksTesting();
                         break;
+
+                    case 7:
+                        giveMarksTo(Console.ReadLine(), ConsoleHelper.InputNumberWithin(LowestMark, HighestMark));
+                        break;
                 }
             } while (!finished);
         }
@@ -105,6 +109,39 @@ ___________________________________________
                 Marks[i] += ConsoleHelper.InputNumberWithin(LowestMark, HighestMark);
                 i++;
             }
+        }
+
+        /// <summary>
+        /// Gives marks to a specific student
+        /// </summary>
+        /// <param name="name">name of the student</param>
+        /// <param name="mark">the marks to be added to them</param>
+        /// <returns>returns that students marks</returns>
+        public int giveMarksTo(string name, int mark)
+        {
+            int i = 0;
+
+            foreach (string student in Students)
+            {
+                if (!ConsoleHelper.InRange(mark, LowestMark, HighestMark)) //checks if the mark is within range and returns -1 if it is not
+                {
+                    
+                    return -1;
+                }
+
+                string correctName = student;
+                if (correctName == name)
+                {
+                    Marks[i] += mark;
+                    break;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            return Marks[i];
         }
 
         /// <summary>
@@ -198,9 +235,9 @@ ___________________________________________
             foreach (string student in Students)
             {
                 CalculateGradeProfile();
-                CalculateStats(); 
+                CalculateStats();
                 string gradeClass = ConsoleHelper.GetDescription(ConvertToGrade(Marks[i]));
-               
+
                 Console.WriteLine($" |{student} :{gradeClass} ");
                 Console.WriteLine(" |____________");
                 Console.WriteLine($" |Grade : { ConvertToGrade(Marks[i])}  |");

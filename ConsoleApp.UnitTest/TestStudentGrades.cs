@@ -6,7 +6,7 @@ namespace ConsoleApp.UnitTest
     [TestClass]
     public class TestStudentGrades
     {
-        private readonly StudentGrades converter = new StudentGrades();
+        private readonly StudentGrades studentGradeTester = new StudentGrades();
 
         private int[] testMarks;
 
@@ -25,7 +25,7 @@ namespace ConsoleApp.UnitTest
             Grades expectedGrade = Grades.F;
 
             // Act
-            Grades actualGrade = converter.ConvertToGrade(0);
+            Grades actualGrade = studentGradeTester.ConvertToGrade(0);
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -38,7 +38,7 @@ namespace ConsoleApp.UnitTest
             Grades expectedGrade = Grades.F;
 
             // Act
-            Grades actualGrade = converter.ConvertToGrade(39);
+            Grades actualGrade = studentGradeTester.ConvertToGrade(39);
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -51,7 +51,7 @@ namespace ConsoleApp.UnitTest
             Grades expectedGrade = Grades.D;
 
             // Act
-            Grades actualGrade = converter.ConvertToGrade(40);
+            Grades actualGrade = studentGradeTester.ConvertToGrade(40);
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -62,17 +62,17 @@ namespace ConsoleApp.UnitTest
         {
             // Arrange
         
-            converter.Marks = testMarks;
+            studentGradeTester.Marks = testMarks;
 
             double expectedMean = 55.0;
 
             // Act
 
-            converter.CalculateStats();
+            studentGradeTester.CalculateStats();
 
             // Assert
 
-            Assert.AreEqual(expectedMean, converter.Mean);
+            Assert.AreEqual(expectedMean, studentGradeTester.Mean);
         }
 
 
@@ -81,17 +81,17 @@ namespace ConsoleApp.UnitTest
         {
             // Arrange
 
-            converter.Marks = testMarks;
+            studentGradeTester.Marks = testMarks;
 
             double expectedMax = 100;
 
             // Act
 
-            converter.CalculateStats();
+            studentGradeTester.CalculateStats();
 
             // Assert
 
-            Assert.AreEqual(expectedMax, converter.Maximum);
+            Assert.AreEqual(expectedMax, studentGradeTester.Maximum);
         }
 
 
@@ -100,37 +100,62 @@ namespace ConsoleApp.UnitTest
         {
             // Arrange
 
-            converter.Marks = testMarks;
+            studentGradeTester.Marks = testMarks;
 
             double expectedMin = 10;
 
             // Act
 
-            converter.CalculateStats();
+            studentGradeTester.CalculateStats();
 
             // Assert
 
-            Assert.AreEqual(expectedMin, converter.Minimum);
+            Assert.AreEqual(expectedMin, studentGradeTester.Minimum);
         }
 
         [TestMethod]
         public void TestGradeProfile()
         {
             // Arrange
-            converter.Marks = testMarks;
+            studentGradeTester.Marks = testMarks;
 
             // Act
-            converter.CalculateGradeProfile();
+            studentGradeTester.CalculateGradeProfile();
 
             bool expectedProfile;
-            expectedProfile = ((converter.GradeProfile[0] == 3) &&
-                               (converter.GradeProfile[1] == 1) &&
-                               (converter.GradeProfile[2] == 1) &&
-                               (converter.GradeProfile[3] == 1) &&
-                               (converter.GradeProfile[4] == 4));
+            expectedProfile = ((studentGradeTester.GradeProfile[0] == 3) &&
+                               (studentGradeTester.GradeProfile[1] == 1) &&
+                               (studentGradeTester.GradeProfile[2] == 1) &&
+                               (studentGradeTester.GradeProfile[3] == 1) &&
+                               (studentGradeTester.GradeProfile[4] == 4));
 
             // Assert
             Assert.IsTrue(expectedProfile);
+        }
+
+        [TestMethod]
+        public void TestGiveMarksToJaniel()
+        {
+            //Arrange
+            studentGradeTester.giveMarksTo("Janiel", 88);
+
+            //Act
+
+            //Assert
+            int expectedMark = 88;
+            Assert.IsTrue(studentGradeTester.Marks[1] == expectedMark);
+        }
+
+        [TestMethod]
+        public void TestGiveNegativeMarksToJaniel()
+        {
+            //Arrange
+            
+            //Act
+
+            //Assert
+            int expectedMark = -1;
+            Assert.IsTrue(studentGradeTester.giveMarksTo("Janiel", -88) == expectedMark);
         }
     }
 }
