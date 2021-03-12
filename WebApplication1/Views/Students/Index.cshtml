@@ -34,9 +34,9 @@
                 @Html.DisplayFor(modelItem => item.Mark)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
             </td>
         </tr>
 }
