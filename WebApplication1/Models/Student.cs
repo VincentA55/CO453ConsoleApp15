@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WebApplication1.Models
 {
-    class Student
+    public class Student
     {
         public int StudentID { get; set; }
 
