@@ -29,7 +29,12 @@ namespace ConsoleAppProject.App04
         public NewsFeed()
         {
             posts = new List<Post>();
-            
+
+            MessagePost post = new MessagePost("Vinny", "This is the very first post for FaceBook 2(beta)");
+            AddMessagePost(post);
+
+            PhotoPost photoPost = new PhotoPost("Vinny", "NewsFeedPhoto1.jpeg", "The very first Photo!");
+            AddPhotoPost(photoPost);
         }
 
 

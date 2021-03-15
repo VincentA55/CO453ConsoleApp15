@@ -40,5 +40,16 @@ namespace ConsoleAppProject.App04
             this.Filename = filename;
             this.Caption = caption;
         }
+
+        /// <summary>
+        /// override method to display photo
+        /// </summary>
+        public override void Display()
+        {
+            Console.WriteLine($" Filename : {Filename}");
+            Console.WriteLine($" Caption : {Caption}");
+
+            base.Display();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using System;
 
 namespace ConsoleAppProject.App01
@@ -55,9 +56,12 @@ namespace ConsoleAppProject.App01
                             break;
                         }
 
-                    case 4: //Social Network
-                        break;
-
+                    case 4:
+                        {
+                            NetworkApp app04 = new NetworkApp();
+                            app04.DisplayMenu();
+                            break;
+                        }
                     case 5: //RPG Game
                         break;
 

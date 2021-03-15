@@ -6,9 +6,14 @@ namespace ConsoleAppProject.App04
 {
    public class NetworkApp
     {
+        private NewsFeed news = new NewsFeed();
+
+        /// <summary>
+        /// Displays the menu for the NewsFeed
+        /// </summary>
         public void DisplayMenu()
         {
-            ConsoleHelper.OutputHeading("   Vinnys News Feed  ");
+            ConsoleHelper.OutputHeading(" Vinnys News Feed  ");
 
             string[] choices = new string[]
             {
@@ -48,7 +53,7 @@ namespace ConsoleAppProject.App04
         /// </summary>
         private void DisplayAll()
         {
-            throw new NotImplementedException();
+            news.Display();
         }
 
         /// <summary>

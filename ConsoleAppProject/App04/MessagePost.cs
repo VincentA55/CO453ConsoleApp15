@@ -29,7 +29,16 @@ namespace ConsoleAppProject.App04
         public MessagePost(String author, String text): base(author)
         {
             Message = text;
-        }        
-      }
+        }
+
+        /// <summary>
+        /// override method to display the message
+        /// </summary>
+        public override void Display()
+        {
+            Console.WriteLine($"  Message : £{Message}");
+            base.Display();
+        }
+    }
     }
 
