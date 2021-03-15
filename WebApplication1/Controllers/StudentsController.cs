@@ -41,6 +41,7 @@ namespace WebApps.Controllers
             {
                 grades.Students[index] = student.Name;
                 grades.Marks[index] = student.Mark;
+                grades.ConvertToGrade(grades.Marks[index]);
                 index++;
             }
             grades.CalculateStats();
