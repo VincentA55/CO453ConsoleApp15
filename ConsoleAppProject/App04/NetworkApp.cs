@@ -12,7 +12,7 @@ namespace ConsoleAppProject.App04
 
             string[] choices = new string[]
             {
-                "Post Message", "Post Image", "DisplayMenu All Posts"
+                "Post Message", "Post Image", "Display All Posts"
                 ,"Quit"
             };
 
@@ -40,6 +40,31 @@ namespace ConsoleAppProject.App04
                 }
             }
             while (!finished);
+        }
+
+
+        /// <summary>
+        /// Displays all the posts from the feed
+        /// </summary>
+        private void DisplayAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// post an  image to the feed
+        /// </summary>
+        private void PostImage()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// post a message to the feed
+        /// </summary>
+        private void PostMessage()
+        {
+            throw new NotImplementedException();
         }
     }
 }
