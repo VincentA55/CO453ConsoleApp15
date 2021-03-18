@@ -69,7 +69,7 @@ namespace ConsoleAppProject.App04
         /// </summary>
         private void PostMessage()
         {
-            throw new NotImplementedException();
+           
         }
     }
 }
