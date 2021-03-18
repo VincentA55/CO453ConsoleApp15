@@ -28,11 +28,11 @@ namespace ConsoleAppProject.App04
                 switch (ConsoleHelper.SelectChoice(choices))
                 {
                     case 1:
-                        PostMessage(ConsoleHelper.promptStringInput("Author:"), ConsoleHelper.promptStringInput("Message:")) ;
+                        PostMessage(ConsoleHelper.InputString("Author:"), ConsoleHelper.InputString("Message:")) ;
                         break;
 
                     case 2:
-                        PostImage();
+                        PostImage(ConsoleHelper.InputString("Author:"),ConsoleHelper.InputString("File:"), ConsoleHelper.InputString("Caption:"));
                         break;
 
                     case 3:
@@ -59,9 +59,11 @@ namespace ConsoleAppProject.App04
         /// <summary>
         /// post an  image to the feed
         /// </summary>
-        private void PostImage()
+        private void PostImage(string author, string filename, string caption)
         {
-            throw new NotImplementedException();
+            PhotoPost photoPost = new PhotoPost(author, filename, caption);
+
+            news.AddPhotoPost(photoPost);
         }
 
         /// <summary>

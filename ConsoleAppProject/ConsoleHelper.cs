@@ -150,7 +150,7 @@ namespace ConsoleAppProject
         /// </summary>
         /// <param name="promt"></param>
         /// <returns></returns>
-        public static string promptStringInput(string prompt)
+        public static string InputString(string prompt)
         {
             Console.Write(prompt);
             return Console.ReadLine();

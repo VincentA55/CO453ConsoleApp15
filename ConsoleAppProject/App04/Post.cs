@@ -65,26 +65,26 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public virtual void Display()
         {
-            Console.WriteLine($"    Author: {Username}");
-            Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
-            Console.WriteLine();
+            Console.WriteLine($"|    Author: {Username}");
+            Console.WriteLine($"|    Time Elpased: {FormatElapsedTime(Timestamp)}");
+            Console.WriteLine("|");
 
             if (likes > 0)
             {
-                Console.WriteLine($"    Likes:  {likes}  people like this.");
+                Console.WriteLine($"|    Likes:  {likes}  people like this.");
             }
             else
             {
-                Console.WriteLine();
+                Console.WriteLine("|");
             }
 
             if (comments.Count == 0)
             {
-                Console.WriteLine("    No comments.");
+                Console.WriteLine("|    No comments.");
             }
             else
             {
-                Console.WriteLine($"    {comments.Count}  comment(s). Click here to view.");
+                Console.WriteLine($"|    {comments.Count}  comment(s). Click here to view.");
             }
             
         }

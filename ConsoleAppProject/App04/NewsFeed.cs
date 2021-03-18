@@ -69,6 +69,9 @@ namespace ConsoleAppProject.App04
             {
                 post.Display();
                 Console.WriteLine();   // empty line between posts
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
+                Console.WriteLine();
+                
             }
 
         }
