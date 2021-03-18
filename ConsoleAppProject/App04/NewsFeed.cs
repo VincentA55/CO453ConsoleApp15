@@ -20,7 +20,7 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
-        private readonly List<Post> posts;
+        public readonly List<Post> posts;
         
 
         ///<summary>
@@ -33,8 +33,14 @@ namespace ConsoleAppProject.App04
             MessagePost post = new MessagePost("Vinny", "This is the very first post for FaceBook 2(beta)");
             AddMessagePost(post);
 
-            PhotoPost photoPost = new PhotoPost("Vinny", "NewsFeedPhoto1.jpeg", "The very first Photo!");
+            PhotoPost photoPost = new PhotoPost("jimmy", "NewsFeedPhoto1.jpeg", "The very first Photo!");
             AddPhotoPost(photoPost);
+
+            MessagePost post2 = new MessagePost("Bimmy", "Lovely weather we are having today");
+            AddMessagePost(post2);
+
+            MessagePost post3 = new MessagePost("Timmy", "Lol rofl lmao this social media feed sux!!!11!");
+            AddMessagePost(post3);
         }
 
 
@@ -64,16 +70,40 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void Display()
         {
+            int i = 1;
+
             // display all text posts
             foreach (Post post in posts)
             {
+                Console.WriteLine($"Post nº:[{i}]");
                 post.Display();
                 Console.WriteLine();   // empty line between posts
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
                 Console.WriteLine();
+                i++;
                 
             }
 
+        }
+
+        /// <summary>
+        /// adds a comment to an existing post
+        /// </summary>
+        /// <param name="postNo"></param>
+        /// <param name="comment"></param>
+        public void CommentOnPost(int postNo, string comment)
+        {
+            int i = 0;
+
+            foreach (Post post in posts)
+            {
+                if (postNo == i+1)
+                {
+                    post.AddComment(comment);
+                    break;
+                }
+                i++;
+            }
         }
     }
 

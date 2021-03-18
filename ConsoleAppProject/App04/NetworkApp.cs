@@ -18,13 +18,15 @@ namespace ConsoleAppProject.App04
             string[] choices = new string[]
             {
                 "Post Message", "Post Image", "Display All Posts"
-                ,"Quit"
+                ,"Comment", "Quit"
             };
 
             bool finished = false;
 
             do
             {
+                int amountOfPosts = news.posts.Count;
+
                 switch (ConsoleHelper.SelectChoice(choices))
                 {
                     case 1:
@@ -40,6 +42,10 @@ namespace ConsoleAppProject.App04
                         break;
 
                     case 4:
+                        Comment(ConsoleHelper.InputNumberWithin(1, amountOfPosts), ConsoleHelper.InputString("Comment:"));
+                        break;
+
+                    case 5:
                         finished = true;
                         break;
                 }
@@ -74,6 +80,11 @@ namespace ConsoleAppProject.App04
             MessagePost newPost = new MessagePost(author, message);
 
             news.AddMessagePost(newPost);
+        }
+
+        private void Comment(int postNo, string comment)
+        {
+            news.CommentOnPost(postNo, comment);
         }
     }
 }
