@@ -144,5 +144,16 @@ namespace ConsoleAppProject
 
             return description;
         }
+
+        /// <summary>
+        /// input a prompt for the user to input and then recieve a string
+        /// </summary>
+        /// <param name="promt"></param>
+        /// <returns></returns>
+        public static string promptStringInput(string prompt)
+        {
+            Console.Write(prompt);
+            return Console.ReadLine();
+        }
     }
 }

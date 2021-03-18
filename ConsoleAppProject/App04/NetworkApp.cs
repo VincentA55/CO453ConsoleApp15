@@ -28,7 +28,7 @@ namespace ConsoleAppProject.App04
                 switch (ConsoleHelper.SelectChoice(choices))
                 {
                     case 1:
-                        PostMessage();
+                        PostMessage(ConsoleHelper.promptStringInput("Author:"), ConsoleHelper.promptStringInput("Message:")) ;
                         break;
 
                     case 2:
@@ -67,9 +67,11 @@ namespace ConsoleAppProject.App04
         /// <summary>
         /// post a message to the feed
         /// </summary>
-        private void PostMessage()
+        private void PostMessage(string author, string message)
         {
-           
+            MessagePost newPost = new MessagePost(author, message);
+
+            news.AddMessagePost(newPost);
         }
     }
 }

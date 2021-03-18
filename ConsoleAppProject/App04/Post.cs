@@ -65,7 +65,6 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public virtual void Display()
         {
-            Console.WriteLine();
             Console.WriteLine($"    Author: {Username}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
@@ -87,6 +86,7 @@ namespace ConsoleAppProject.App04
             {
                 Console.WriteLine($"    {comments.Count}  comment(s). Click here to view.");
             }
+            
         }
 
         ///<summary>
