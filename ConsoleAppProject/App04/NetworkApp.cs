@@ -18,7 +18,7 @@ namespace ConsoleAppProject.App04
             string[] choices = new string[]
             {
                 "Post Message", "Post Image", "Display All Posts"
-                ,"Comment", "Search by author","Quit"
+                ,"Comment", "Search by author","Remove post", "Like post", "Quit"
             };
 
             bool finished = false;
@@ -47,10 +47,16 @@ namespace ConsoleAppProject.App04
                         break;
 
                     case 5:
-                        SearchByAuthor(ConsoleHelper.InputString("Search:"));
+                        SearchByAuthor(ConsoleHelper.InputString("Search for:"));
                         break;
 
-                    case 6:
+                    case 6: //remove post
+                        RemovePost(ConsoleHelper.InputNumberWithin(1, amountOfPosts));
+                        break;
+
+                    case 7: // like post
+                        break;
+                    case 8:
                         finished = true;
                         break;
                 }
@@ -103,7 +109,7 @@ namespace ConsoleAppProject.App04
         /// <param name="author"></param>
         private void SearchByAuthor(string author)
         {
-           List<Post> searchResults = news.SearchByAuthor(author);
+           List<Post> searchResults = news.SearchByAuthor(author);//places the found posts into a list
             
 
             if (searchResults.Count > 0)
@@ -127,6 +133,11 @@ namespace ConsoleAppProject.App04
                 Console.WriteLine("-----------------------------");
                 Console.WriteLine();
             }
+        }
+
+        private void RemovePost(int postNo)
+        {
+
         }
     }
 }
