@@ -18,7 +18,7 @@ namespace ConsoleAppProject.App04
             string[] choices = new string[]
             {
                 "Post Message", "Post Image", "Display All Posts"
-                ,"Comment", "Quit"
+                ,"Comment", "Search by author","Quit"
             };
 
             bool finished = false;
@@ -42,10 +42,15 @@ namespace ConsoleAppProject.App04
                         break;
 
                     case 4:
+                        Console.Write("PostNº you would like to comment on:");
                         Comment(ConsoleHelper.InputNumberWithin(1, amountOfPosts), ConsoleHelper.InputString("Comment:"));
                         break;
 
                     case 5:
+                        SearchByAuthor(ConsoleHelper.InputString("Search:"));
+                        break;
+
+                    case 6:
                         finished = true;
                         break;
                 }
@@ -82,9 +87,46 @@ namespace ConsoleAppProject.App04
             news.AddMessagePost(newPost);
         }
 
+        /// <summary>
+        /// adds a comment to a post 
+        /// </summary>
+        /// <param name="postNo"></param>
+        /// <param name="comment"></param>
         private void Comment(int postNo, string comment)
         {
             news.CommentOnPost(postNo, comment);
+        }
+
+        /// <summary>
+        /// searchs for posts from a given author
+        /// </summary>
+        /// <param name="author"></param>
+        private void SearchByAuthor(string author)
+        {
+           List<Post> searchResults = news.SearchByAuthor(author);
+            
+
+            if (searchResults.Count > 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Found {searchResults.Count} result(s) ");
+                Console.WriteLine();
+         
+                foreach(Post post in searchResults)
+                {
+                    post.Display();
+                    Console.WriteLine();   // empty line between posts
+                    Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine($"NO RESULTS FOUND FOR:[ {author} ]!");
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine();
+            }
         }
     }
 }

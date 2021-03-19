@@ -105,6 +105,26 @@ namespace ConsoleAppProject.App04
                 i++;
             }
         }
+
+        /// <summary>
+        /// returns a List of posts that have a matching author 
+        /// </summary>
+        /// <param name="author"></param>
+        /// <returns>List(Post)</returns>
+        public List<Post> SearchByAuthor(string author)
+        {
+            List<Post> searchResults = new List<Post>();
+
+            foreach(Post post in posts)
+            {
+                if (author.ToLower().Equals(post.Username.ToLower()))
+                {
+                    searchResults.Add(post);
+                }
+            }
+
+            return searchResults;
+        }
     }
 
 }
