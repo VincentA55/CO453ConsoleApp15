@@ -38,7 +38,14 @@ namespace ConsoleAppProject.App04
                         break;
 
                     case 3:
-                        DisplayAll();
+                        if (amountOfPosts < 1)
+                        {
+                            Console.WriteLine("No posts to display");
+                        }
+                        else
+                        {
+                            DisplayAll();
+                        }
                         break;
 
                     case 4:
@@ -50,11 +57,12 @@ namespace ConsoleAppProject.App04
                         SearchByAuthor(ConsoleHelper.InputString("Search for:"));
                         break;
 
-                    case 6: //remove post
+                    case 6:
+                        Console.Write("PostNº to remove:");
                         RemovePost(ConsoleHelper.InputNumberWithin(1, amountOfPosts));
                         break;
 
-                    case 7: // like post
+                    case 7: 
                         break;
                     case 8:
                         finished = true;
@@ -135,9 +143,11 @@ namespace ConsoleAppProject.App04
             }
         }
 
+
+
         private void RemovePost(int postNo)
         {
-
+            news.RemovePost(postNo);
         }
     }
 }
