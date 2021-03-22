@@ -18,7 +18,7 @@ namespace ConsoleAppProject.App04
             string[] choices = new string[]
             {
                 "Post Message", "Post Image", "Display All Posts"
-                ,"Comment", "Search by author","Remove post", "Like post", "Quit"
+                ,"Comment", "Search by author","Remove post", "Like post", "Unlike post", "Quit"
             };
 
             bool finished = false;
@@ -62,9 +62,17 @@ namespace ConsoleAppProject.App04
                         RemovePost(ConsoleHelper.InputNumberWithin(1, amountOfPosts));
                         break;
 
-                    case 7: 
+                    case 7:
+                        Console.WriteLine("PostNº to Like:");
+                        LikePost(ConsoleHelper.InputNumberWithin(1, amountOfPosts));
                         break;
+
                     case 8:
+                        Console.WriteLine("PostNº to Unlike:");
+                        UnlikePost(ConsoleHelper.InputNumberWithin(1, amountOfPosts));
+                        break;
+
+                    case 9:
                         finished = true;
                         break;
                 }
@@ -123,7 +131,7 @@ namespace ConsoleAppProject.App04
             if (searchResults.Count > 0)
             {
                 Console.WriteLine();
-                Console.WriteLine($"Found {searchResults.Count} result(s) ");
+                Console.WriteLine($"Found {searchResults.Count} result(s) for {author}");
                 Console.WriteLine();
          
                 foreach(Post post in searchResults)
@@ -144,10 +152,31 @@ namespace ConsoleAppProject.App04
         }
 
 
-
+        /// <summary>
+        /// removes a post from the newsfeed
+        /// </summary>
+        /// <param name="postNo"></param>
         private void RemovePost(int postNo)
         {
             news.RemovePost(postNo);
+        }
+
+        /// <summary>
+        /// Likes a post
+        /// </summary>
+        /// <param name="postNo"></param>
+        private void LikePost(int postNo)
+        {
+            news.LikePost(postNo);
+        }
+
+        /// <summary>
+        /// Unlikes a post
+        /// </summary>
+        /// <param name="postNo"></param>
+        private void UnlikePost(int postNo)
+        {
+            news.UnlikePost(postNo);
         }
     }
 }

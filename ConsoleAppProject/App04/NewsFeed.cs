@@ -148,6 +148,60 @@ namespace ConsoleAppProject.App04
                 Console.WriteLine($"PostNº [{postNo}] not found!");
             }
         }
-       
+
+        /// <summary>
+        /// adds a Like to a post
+        /// </summary>
+        /// <param name="postNo"></param>
+        public void LikePost(int postNo)
+        {
+            int i = 0;
+            bool postLiked = false;
+
+            foreach (Post post in posts)
+            {
+                if (postNo == i + 1)
+                {
+                    post.Like();
+                    Console.WriteLine($"PostNº [{postNo}] liked");
+                    Console.WriteLine();
+                    postLiked = true;
+                    break;
+                }
+                i++;
+            }
+
+            if (!postLiked)//not sure it this validation is necessary
+            {
+                Console.WriteLine($"PostNº [{postNo}] not found!");
+            }
+        }
+        /// <summary>
+        /// Unlikes a post
+        /// </summary>
+        /// <param name="postNo"></param>
+        public void UnlikePost(int postNo)
+        {
+            int i = 0;
+            bool unlikedPost = false;
+
+            foreach (Post post in posts)
+            {
+                if (postNo == i + 1)
+                {
+                    post.Unlike();
+                    Console.WriteLine($"PostNº [{postNo}] UN-liked");
+                    Console.WriteLine();
+                    unlikedPost = true;
+                    break;
+                }
+                i++;
+            }
+
+            if (!unlikedPost)//not sure it this validation is necessary
+            {
+                Console.WriteLine($"PostNº [{postNo}] not found!");
+            }
+        }
     }
 }
