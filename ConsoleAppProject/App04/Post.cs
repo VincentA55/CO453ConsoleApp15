@@ -80,11 +80,16 @@ namespace ConsoleAppProject.App04
 
             if (comments.Count == 0)
             {
-                Console.WriteLine("|    No comments.");
+                Console.WriteLine("|  No comments.");
             }
             else
             {
-                Console.WriteLine($"|    {comments.Count}  comment(s). Click here to view.");
+                Console.WriteLine("|  Comments :");
+                foreach(String comment in comments)
+                {
+                    Console.WriteLine($"- {comment} ");
+                    Console.WriteLine();
+                }
             }
             
         }
