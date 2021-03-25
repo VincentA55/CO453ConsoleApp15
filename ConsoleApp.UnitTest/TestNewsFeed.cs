@@ -101,6 +101,36 @@ namespace ConsoleApp.UnitTest
             Assert.IsTrue(newsFeedTester.ErrorDetected);
         }
 
+        [TestMethod]
+        public void RemovePost()
+        {
+            //Arrange
+            newsFeedTester.RemovePost(1);
+
+            //Assert
+            Assert.IsFalse(newsFeedTester.ErrorDetected);
+        }
+
+
+        [TestMethod]
+        public void RemovePostErrorNumberTooHigh()
+        {
+            //Arrange
+            newsFeedTester.RemovePost(89);
+
+            //Assert
+            Assert.IsTrue(newsFeedTester.ErrorDetected);
+        }
+
+        [TestMethod]
+        public void RemovePostErrorNegativeNumber()
+        {
+            //Arrange
+            newsFeedTester.RemovePost(-3);
+
+            //Assert
+            Assert.IsTrue(newsFeedTester.ErrorDetected);
+        }
     } 
 }
 

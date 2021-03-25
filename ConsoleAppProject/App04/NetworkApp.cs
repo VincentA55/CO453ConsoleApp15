@@ -77,6 +77,8 @@ namespace ConsoleAppProject.App04
                     case 9:
                         finished = true;
                         break;
+
+                    
                 }
             }
             while (!finished);
