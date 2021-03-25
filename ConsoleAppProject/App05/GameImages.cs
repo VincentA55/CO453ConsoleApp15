@@ -10,14 +10,14 @@ namespace ConsoleAppProject.App05
     /// <author>
     /// Unkown ??
     /// </author>
-    public static class GameImages
+    public class GameImages
     {
         /// <summary>
         /// *******************************************************
         /// 
         /// *******************************************************
         /// </summary>
-        public static void DrawScissors(int x, int y)
+        public void DrawScissors(int x, int y)
         {
             Console.SetCursorPosition(x, y++);   // set start position then increment y to move down
             Console.Write("     \\            /");
@@ -49,7 +49,7 @@ namespace ConsoleAppProject.App05
         /// 
         /// *******************************************************
         /// </summary>
-        public static void DrawRock(int x, int y)
+        public void DrawRock(int x, int y)
         {
             Console.SetCursorPosition(x, y++);   // set start position then increment y to move down
             Console.Write("                 ___---___     ");

@@ -42,7 +42,7 @@ namespace ConsoleAppProject
         }
 
         /// <summary>
-        /// Aks for a number and ensures that only a number can be returned
+        /// Aks for a double number and ensures that only a number can be returned
         /// </summary>
         /// <returns>double</returns>
         public static double InputNumber()
@@ -58,6 +58,35 @@ namespace ConsoleAppProject
                 try
                 {
                     number = Convert.ToDouble(value);
+                    Isvalid = true;
+                }
+                catch (Exception)
+                {
+                    Isvalid = false;
+                    Console.WriteLine("Number is INVALID!!");
+                }
+            }
+            while (!Isvalid);
+            return number;
+        }
+
+        /// <summary>
+        /// Aks for an Int number and ensures that only a number can be returned
+        /// </summary>
+        /// <returns>double</returns>
+        public static int InputInt()
+        {
+            int number = 0;
+            bool Isvalid = false;
+
+            do
+            {
+                Console.Write(">");
+                string value = Console.ReadLine();
+
+                try
+                {
+                    number = Convert.ToInt32(value);
                     Isvalid = true;
                 }
                 catch (Exception)

@@ -1,6 +1,7 @@
 ﻿using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
 using ConsoleAppProject.App04;
+using ConsoleAppProject.App05;
 using System;
 
 namespace ConsoleAppProject.App01
@@ -22,7 +23,7 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
             Console.WriteLine("    Vincent Assolutissimamente 21905331");
 
-            string[] choices = {"Distance Converter", "BMI Calculator", "Student Grades", "Social Network", "RPG Game", "Quit"};
+            string[] choices = {"Distance Converter", "BMI Calculator", "Student Grades", "Social Network", "RPG Game","RockScissors", "Quit"};
             bool finished = false;
             do
             {
@@ -65,7 +66,11 @@ namespace ConsoleAppProject.App01
                     case 5: //RPG Game
                         break;
 
-                    case 6:
+                    case 6: GameImager Imager = new GameImager();
+                        Imager.Menu();
+                        break;
+
+                    case 7:
                         Console.WriteLine("Thank you and Goodbye!");
                         finished = true;
                         break;
