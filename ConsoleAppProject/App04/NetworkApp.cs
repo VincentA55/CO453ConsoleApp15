@@ -8,6 +8,8 @@ namespace ConsoleAppProject.App04
     {
         private NewsFeed news = new NewsFeed();
 
+        Boolean ErrorDetected = false;
+
         /// <summary>
         /// Displays the menu for the NewsFeed
         /// </summary>
@@ -132,7 +134,8 @@ namespace ConsoleAppProject.App04
         public void SearchByAuthor(string author)
         {
            List<Post> searchResults = news.SearchByAuthor(author);//places the found posts into a list
-            
+
+            ErrorDetected = false;
 
             if (searchResults.Count > 0)
             {
@@ -154,6 +157,7 @@ namespace ConsoleAppProject.App04
                 Console.WriteLine($"NO RESULTS FOUND FOR:[ {author} ]!");
                 Console.WriteLine("-----------------------------");
                 Console.WriteLine();
+                ErrorDetected = true;
             }
         }
 

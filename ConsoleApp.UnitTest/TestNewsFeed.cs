@@ -13,7 +13,7 @@ namespace ConsoleApp.UnitTest
 
 
         [TestMethod]
-        public void FirstPostAuthor()
+        public void SearchAuthorVinny()
         {
             //Arrange
             string expectedAuthor = ("Vinny");
@@ -27,6 +27,20 @@ namespace ConsoleApp.UnitTest
             Assert.AreEqual(testList[0].Username, expectedAuthor);
 
         }
+
+        [TestMethod]
+        public void SearchAuthorErrorAuthorNotFound()
+        {
+            //Arrange
+            newsFeedTester.SearchByAuthor("asdfghj");
+
+            //Act
+
+            //Assert
+            Assert.IsFalse(newsFeedTester.ErrorDetected);
+        }
+
+
         [TestMethod]
         public void LikePost()
         {
@@ -38,7 +52,7 @@ namespace ConsoleApp.UnitTest
         }
 
         [TestMethod]
-        public void LikePostError()
+        public void LikePostErrorNumberTooHigh()
         {
             //Arrange
             newsFeedTester.LikePost(8);
@@ -46,6 +60,17 @@ namespace ConsoleApp.UnitTest
             //Assert
             Assert.IsTrue(newsFeedTester.ErrorDetected);
         }
+
+        [TestMethod]
+        public void LikePostErrorNegativeNumber()
+        {
+            //Arrange
+            newsFeedTester.LikePost(-8);
+
+            //Assert
+            Assert.IsTrue(newsFeedTester.ErrorDetected);
+        }
+
     } 
 }
 

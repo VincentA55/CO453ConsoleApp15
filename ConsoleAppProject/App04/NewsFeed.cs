@@ -132,6 +132,8 @@ namespace ConsoleAppProject.App04
             int i = 0;
             bool postRemoved = false;
 
+            ErrorDetected = false;
+
             foreach (Post post in posts)
             {
                 if (postNo == i + 1)
@@ -148,6 +150,7 @@ namespace ConsoleAppProject.App04
             if (!postRemoved)//not sure it this validation is necessary
             {
                 Console.WriteLine($"PostNº [{postNo}] not found!");
+                ErrorDetected = true;
             }
         }
 
@@ -190,6 +193,8 @@ namespace ConsoleAppProject.App04
             int i = 0;
             bool unlikedPost = false;
 
+            ErrorDetected = false;
+
             foreach (Post post in posts)
             {
                 if (postNo == i + 1)
@@ -206,6 +211,7 @@ namespace ConsoleAppProject.App04
             if (!unlikedPost)//not sure it this validation is necessary
             {
                 Console.WriteLine($"PostNº [{postNo}] not found!");
+                ErrorDetected = true;
             }
         }
     }
