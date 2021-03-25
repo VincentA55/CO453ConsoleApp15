@@ -129,7 +129,7 @@ namespace ConsoleAppProject.App04
         /// searchs for posts from a given author
         /// </summary>
         /// <param name="author"></param>
-        private void SearchByAuthor(string author)
+        public void SearchByAuthor(string author)
         {
            List<Post> searchResults = news.SearchByAuthor(author);//places the found posts into a list
             

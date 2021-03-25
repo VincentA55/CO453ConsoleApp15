@@ -22,7 +22,7 @@ namespace ConsoleAppProject.App04
         public readonly List<Post> posts;
 
         ///<summary>
-        /// Construct an empty news feed.
+        /// Construct an news feed with 4 example posts
         ///</summary>
         public NewsFeed()
         {
