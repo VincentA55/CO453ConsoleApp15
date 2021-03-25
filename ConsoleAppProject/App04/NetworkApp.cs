@@ -97,6 +97,9 @@ namespace ConsoleAppProject.App04
             PhotoPost photoPost = new PhotoPost(author, filename, caption);
 
             news.AddPhotoPost(photoPost);
+            Console.WriteLine();
+            Console.WriteLine("Photo posted successfully!");
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -107,6 +110,9 @@ namespace ConsoleAppProject.App04
             MessagePost newPost = new MessagePost(author, message);
 
             news.AddMessagePost(newPost);
+            Console.WriteLine();
+            Console.WriteLine("Post posted successfully!");
+            Console.WriteLine();
         }
 
         /// <summary>
