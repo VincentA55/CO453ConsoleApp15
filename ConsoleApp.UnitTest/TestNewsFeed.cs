@@ -55,7 +55,7 @@ namespace ConsoleApp.UnitTest
         public void LikePostErrorNumberTooHigh()
         {
             //Arrange
-            newsFeedTester.LikePost(8);
+            newsFeedTester.LikePost(100);
 
             //Assert
             Assert.IsTrue(newsFeedTester.ErrorDetected);
@@ -66,6 +66,36 @@ namespace ConsoleApp.UnitTest
         {
             //Arrange
             newsFeedTester.LikePost(-8);
+
+            //Assert
+            Assert.IsTrue(newsFeedTester.ErrorDetected);
+        }
+
+        [TestMethod]
+        public void UnLikePost()
+        {
+            //Arrange
+            newsFeedTester.UnlikePost(1);
+
+            //Assert
+            Assert.IsFalse(newsFeedTester.ErrorDetected);
+        }
+
+        [TestMethod]
+        public void UnLikePostErrorNumberTooHigh()
+        {
+            //Arrange
+            newsFeedTester.UnlikePost(100);
+
+            //Assert
+            Assert.IsTrue(newsFeedTester.ErrorDetected);
+        }
+
+        [TestMethod]
+        public void UnLikePostNegativeNumber()
+        {
+            //Arrange
+            newsFeedTester.UnlikePost(-50);
 
             //Assert
             Assert.IsTrue(newsFeedTester.ErrorDetected);
