@@ -20,14 +20,31 @@ namespace ConsoleApp.UnitTest
 
 
             //Act
-
            List<Post> testList = newsFeedTester.SearchByAuthor("Vinny");
 
 
             //Assert
-
             Assert.AreEqual(testList[0].Username, expectedAuthor);
 
+        }
+        [TestMethod]
+        public void LikePost()
+        {
+            //Arrange
+            newsFeedTester.LikePost(1);
+
+            //Assert
+            Assert.IsFalse(newsFeedTester.ErrorDetected);
+        }
+
+        [TestMethod]
+        public void LikePostError()
+        {
+            //Arrange
+            newsFeedTester.LikePost(8);
+
+            //Assert
+            Assert.IsTrue(newsFeedTester.ErrorDetected);
         }
     } 
 }

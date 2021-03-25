@@ -21,6 +21,8 @@ namespace ConsoleAppProject.App04
     {
         public readonly List<Post> posts;
 
+        public Boolean ErrorDetected = false;
+
         ///<summary>
         /// Construct an news feed with 4 example posts
         ///</summary>
@@ -158,6 +160,8 @@ namespace ConsoleAppProject.App04
             int i = 0;
             bool postLiked = false;
 
+            ErrorDetected = false;
+
             foreach (Post post in posts)
             {
                 if (postNo == i + 1)
@@ -174,6 +178,7 @@ namespace ConsoleAppProject.App04
             if (!postLiked)//not sure it this validation is necessary
             {
                 Console.WriteLine($"PostNº [{postNo}] not found!");
+                ErrorDetected = true;
             }
         }
         /// <summary>
