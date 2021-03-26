@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace ConsoleAppProject.App04
 {
@@ -15,7 +15,8 @@ namespace ConsoleAppProject.App04
     public class MessagePost : Post
     {
         // an arbitrarily long, multi-line message
-        public String Message { get; }
+        [StringLength (256), DataType(DataType.MultilineText) ]
+        public String Message { get; set; }
 
         /// <summary>
         /// Constructor for objects of class MessagePost.

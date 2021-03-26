@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace ConsoleAppProject.App04
 {
@@ -16,9 +16,11 @@ namespace ConsoleAppProject.App04
     {
         
         // the name of the image file
+        [StringLength(128), Required]
         public String Filename { get; set; }
         
         // a one line image caption
+        [StringLength(30), Required]
         public String Caption { get; set; }   
       
 

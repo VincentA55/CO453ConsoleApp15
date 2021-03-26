@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConsoleAppProject.App04
 {
     public class Post
     {
-        private int likes;
+        public int PostId { get; set; }
+         
+        public int likes { get; set; }
 
-        private readonly List<String> comments;
+        public readonly List<String> comments;
 
         // username of the post's author
-        public String Username { get; }
+        [StringLength(30),Required]
+        public String Username { get; set; }
 
-        public DateTime Timestamp { get; }
+        public DateTime Timestamp { get; set; }
 
         /// <summary>
         /// Constructor for the post class

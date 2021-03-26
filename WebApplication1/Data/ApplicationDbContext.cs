@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WebApplication1.Models;
+using WebApps.Models;
 
 namespace WebApplication1.Data
 {
@@ -14,6 +15,12 @@ namespace WebApplication1.Data
         {
         }
 
+        //App03
         public DbSet<Student> Students { get; set; }
+
+        //App04
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<MessagePost> MessagePosts { get; set; }
+        public DbSet<PhotoPost> PhotoPosts { get; set; }
     }
 }
