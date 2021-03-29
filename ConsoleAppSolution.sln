@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp.UnitTest", "Cons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApps", "WebApplication1\WebApps.csproj", "{D390E3D0-A47E-43EB-9F58-207098D9F6C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBMI", "TestBMI\TestBMI.csproj", "{32E4D079-B114-408B-82A1-5519CF09150F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBMI", "TestBMI\TestBMI.csproj", "{32E4D079-B114-408B-82A1-5519CF09150F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App05", "App05\App05.csproj", "{F9440D8A-52F9-4414-8419-049CC1475B1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{32E4D079-B114-408B-82A1-5519CF09150F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32E4D079-B114-408B-82A1-5519CF09150F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32E4D079-B114-408B-82A1-5519CF09150F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9440D8A-52F9-4414-8419-049CC1475B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9440D8A-52F9-4414-8419-049CC1475B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9440D8A-52F9-4414-8419-049CC1475B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9440D8A-52F9-4414-8419-049CC1475B1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
