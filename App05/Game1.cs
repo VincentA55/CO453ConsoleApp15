@@ -9,6 +9,9 @@ namespace App05
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Texture2D _texture;
+        private Vector2 _position;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -28,6 +31,9 @@ namespace App05
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            _texture = Content.Load<Texture2D>("YelloBird");
+            _position = new Vector2(0, 0);
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,6 +51,10 @@ namespace App05
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(_texture,_position, Color.White);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
