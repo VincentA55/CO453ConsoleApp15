@@ -35,12 +35,14 @@ namespace App05
 
             // TODO: use this.Content to load your game content here
 
-            var texture = Content.Load<Texture2D>("YelloBird");
+            var YelloBird = Content.Load<Texture2D>("YelloBird");
+            var RedBird = Content.Load<Texture2D>("RedBird");
 
             _sprites = new List<Sprite>()
             {
-                new Sprite(texture)
+                new Sprite(YelloBird)
                 {
+                    Speed = 4f,
                     Postition = new Vector2(100,100), 
                     Input = new Input()
                     {
@@ -51,7 +53,7 @@ namespace App05
                     } 
                 },
 
-                new Sprite(texture)
+                new Sprite(RedBird)
                 {
                     Speed = 5f,
                     Postition = new Vector2(0,100),
@@ -65,10 +67,10 @@ namespace App05
                 }
             };
 
-            _sprite1 = new Sprite(texture);
+            _sprite1 = new Sprite(YelloBird);
             _sprite1.Postition = new Vector2(100, 100);
 
-            _sprite2 = new Sprite(texture)
+            _sprite2 = new Sprite(RedBird)
             {
                 Postition = new Vector2(200, 100),
                 Speed = 3f,
