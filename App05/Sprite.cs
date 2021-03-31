@@ -24,8 +24,10 @@ namespace App05
         public Vector2 Origin;
 
 
-        public float RotationVelocity = 3f;
+        public float RotationVelocity = 4f;
         public float LinearVelocity = 2f;
+
+        public SpriteEffects SpriteEffect;
 
         public Vector2 Postition;
 
@@ -53,13 +55,13 @@ namespace App05
             if (Keyboard.GetState().IsKeyDown(Input.Left))
             {
                 _rotation -= MathHelper.ToRadians(RotationVelocity);
-                Postition.X -= LinearVelocity;
+                
             }
 
             if (Keyboard.GetState().IsKeyDown(Input.Right))
             {
                 _rotation += MathHelper.ToRadians(RotationVelocity);
-                Postition.X += LinearVelocity;
+
             }
            
           var direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
@@ -82,7 +84,12 @@ namespace App05
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Postition, null , Color.White, _rotation, Origin, 1, SpriteEffects.None, 0f);
+            if (_rotation > 180)
+            {
+                SpriteEffect = SpriteEffects.FlipVertically;
+            }
+
+            spriteBatch.Draw(_texture, Postition, null , Color.White, _rotation, Origin, 1, SpriteEffect, 0f);
         }
 
     

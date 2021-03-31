@@ -42,6 +42,7 @@ namespace App05
             {
                 new Sprite(YelloBird)
                 {
+                    Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2 ),
                     LinearVelocity = 4f,
                     Postition = new Vector2(100,100), 
                     Input = new Input()
@@ -55,6 +56,7 @@ namespace App05
 
                 new Sprite(RedBird)
                 {
+                    Origin = new Vector2(RedBird.Width - 45, RedBird.Height / 2 ),
                     LinearVelocity = 5f,
                     Postition = new Vector2(0,100),
                     Input = new Input()
