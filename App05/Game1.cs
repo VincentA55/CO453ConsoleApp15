@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using App05.Sprites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -11,9 +12,6 @@ namespace App05
         private SpriteBatch _spriteBatch;
 
         private List<Sprite> _sprites;
-
-        private Sprite _sprite1;
-        private Sprite _sprite2;
 
         public Game1()
         {
@@ -40,11 +38,12 @@ namespace App05
 
             _sprites = new List<Sprite>()
             {
-                new Sprite(YelloBird)
+                new Bird(YelloBird)
                 {
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2 ),
                     LinearVelocity = 4f,
-                    Postition = new Vector2(100,100), 
+                    Position = new Vector2(100,100), 
+                    Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
                     {
                         Up = Keys.W, 
@@ -54,11 +53,12 @@ namespace App05
                     } 
                 },
 
-                new Sprite(RedBird)
+                new Bird(RedBird)
                 {
                     Origin = new Vector2(RedBird.Width - 45, RedBird.Height / 2 ),
                     LinearVelocity = 5f,
-                    Postition = new Vector2(0,100),
+                    Position = new Vector2(50,100),
+                    Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
                     {
                         Up = Keys.Up,
@@ -68,24 +68,29 @@ namespace App05
                     }
                 }
             };
-
-            _sprite1 = new Sprite(YelloBird);
-            _sprite1.Postition = new Vector2(100, 100);
-
-            _sprite2 = new Sprite(RedBird)
-            {
-                Postition = new Vector2(200, 100),
-                LinearVelocity = 3f,
-             };
         }
 
         protected override void Update(GameTime gameTime)
         {
-            foreach (var sprite in _sprites)
-                sprite.Update();
-            
+            foreach (var sprite in _sprites.ToArray())
+                sprite.Update(gameTime, _sprites);
+
+            PostUpdate();
 
             base.Update(gameTime);
+        }
+
+        private void PostUpdate()
+        {
+            //where we reomve stuff from the collection
+            for (int i = 0; i < _sprites.Count; i++)
+            {
+                if (_sprites[i].IsRemoved)
+                {
+                    _sprites.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         protected override void Draw(GameTime gameTime)
