@@ -42,7 +42,7 @@ namespace App05
             {
                 new Sprite(YelloBird)
                 {
-                    Speed = 4f,
+                    LinearVelocity = 4f,
                     Postition = new Vector2(100,100), 
                     Input = new Input()
                     {
@@ -55,7 +55,7 @@ namespace App05
 
                 new Sprite(RedBird)
                 {
-                    Speed = 5f,
+                    LinearVelocity = 5f,
                     Postition = new Vector2(0,100),
                     Input = new Input()
                     {
@@ -73,7 +73,7 @@ namespace App05
             _sprite2 = new Sprite(RedBird)
             {
                 Postition = new Vector2(200, 100),
-                Speed = 3f,
+                LinearVelocity = 3f,
              };
         }
 
