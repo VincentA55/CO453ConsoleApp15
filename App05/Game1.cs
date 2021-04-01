@@ -23,7 +23,7 @@ namespace App05
 
         private float _timer;
 
-        private bool _hasStared = false;
+        private bool _hasStarted = false;
 
         public Game1()
         {
@@ -49,33 +49,46 @@ namespace App05
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            var Cloud = Content.Load<Texture2D>("Cloud");
+
+            Restart();
+            
+        }
+
+        /// <summary>
+        /// Loads the players and their sprites
+        /// </summary>
+        public void Restart()
+        {
 
             var YelloBird = Content.Load<Texture2D>("YelloBird");
             var RedBird = Content.Load<Texture2D>("RedBird");
+
+
 
             _sprites = new List<Sprite>()
             {
                 new Player(YelloBird)
                 {
-                    Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2 ),
+                    Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
                     LinearVelocity = 4f,
-                    Position = new Vector2(100,100), 
+                    Position = new Vector2(100, 100),
                     Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
                     {
-                        Up = Keys.W, 
-                        Down = Keys.S, 
-                        Left = Keys.A, 
+                        Up = Keys.W,
+                        Down = Keys.S,
+                        Left = Keys.A,
                         Right = Keys.D,
                         Shoot = Keys.Space
-                    } 
+                    }
                 },
 
                 new Player(RedBird)
                 {
-                    Origin = new Vector2(RedBird.Width - 45, RedBird.Height / 2 ),
+                    Origin = new Vector2(RedBird.Width - 45, RedBird.Height / 2),
                     LinearVelocity = 5f,
-                    Position = new Vector2(50,100),
+                    Position = new Vector2(50, 100),
                     Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
                     {
@@ -83,16 +96,40 @@ namespace App05
                         Down = Keys.Down,
                         Left = Keys.Left,
                         Right = Keys.Right,
-                        Shoot = Keys.RightShift
+                        Shoot = Keys.NumPad0
                     }
                 }
+
             };
+
+            _hasStarted = false;
         }
+                
 
         protected override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))// THIS PART DOESNT WORK. COME BACK HERE. SUPPOSED TO PRESS SPACE THAN GAME BEGINS!!!!
+            {
+                _hasStarted = true;
+            }
+
+            if (!_hasStarted)
+            {
+                return;
+            }
+
+            _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
             foreach (var sprite in _sprites.ToArray())
                 sprite.Update(gameTime, _sprites);
+
+            // timer for the clouds
+            if (_timer > 1f)
+            {
+                _timer = 0;
+                _sprites.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
+            }
 
             PostUpdate();
 
@@ -104,12 +141,26 @@ namespace App05
             //where we reomve stuff from the collection
             for (int i = 0; i < _sprites.Count; i++)
             {
+                var sprite = _sprites[i];
+
                 if (_sprites[i].IsRemoved)
                 {
                     _sprites.RemoveAt(i);
                     i--;
                 }
+
+            // checks if the player has died
+            if(sprite is Player)
+                {
+                    var player = sprite as Player;
+                    if (player.HadDied)
+                    {
+                        Restart();
+                    }
+                }
+
             }
+
         }
 
         protected override void Draw(GameTime gameTime)

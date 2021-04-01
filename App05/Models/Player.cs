@@ -30,14 +30,7 @@ namespace App05.Models
 
             Move();
 
-            _previousKey = _currentKey;
-            _currentKey = Keyboard.GetState();
-
-            //Shooting
-            if (_currentKey.IsKeyDown(Input.Shoot) && _previousKey.IsKeyUp(Input.Shoot))
-            {
-                Shoot(sprites);
-            }
+            Shoot(sprites);
 
             foreach (var sprite in sprites)
             {
@@ -61,7 +54,16 @@ namespace App05.Models
 
         public void Shoot(List<Sprite> sprites)
         {
-            AddBullet(sprites);
+            _previousKey = _currentKey;
+            _currentKey = Keyboard.GetState();
+
+            //Shooting
+            if (_currentKey.IsKeyDown(Input.Shoot) && _previousKey.IsKeyUp(Input.Shoot))
+            {
+               AddBullet(sprites); 
+            }
+
+            
         }
 
         private void AddBullet(List<Sprite> sprites)
@@ -69,7 +71,7 @@ namespace App05.Models
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = this.Direction;
             bullet.Position = this.Position;
-            bullet.LinearVelocity = this.LinearVelocity;
+            bullet.LinearVelocity = 6;
             bullet._rotation = this._rotation;
             bullet.LifeSpan = 2f;
             bullet.Parent = this;
