@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace App05
@@ -12,6 +13,11 @@ namespace App05
         private SpriteBatch _spriteBatch;
 
         private List<Sprite> _sprites;
+
+        public static int ScreenHeight;
+        public static int ScreenWidth;
+
+        public static Random Random;
 
         public Game1()
         {

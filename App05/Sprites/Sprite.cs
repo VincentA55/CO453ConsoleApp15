@@ -26,6 +26,8 @@ namespace App05
 
         public float RotationVelocity = 4f;
         public float LinearVelocity = 4f;
+        public float Speed;
+        
 
         public SpriteEffects SpriteEffect;
 
@@ -42,6 +44,18 @@ namespace App05
 
         public float LifeSpan = 0f;
         public bool IsRemoved = false;
+
+
+        /// <summary>
+        /// returns a "hitbox" of the sprite
+        /// </summary>
+        public Rectangle Rectangle
+        {
+            get
+            {
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+            }
+        }
 
         public Sprite(Texture2D texture)
         {
@@ -101,5 +115,7 @@ namespace App05
         {
             return this.MemberwiseClone();
         }
+
+     
     }
 }
