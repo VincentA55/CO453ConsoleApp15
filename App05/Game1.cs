@@ -66,7 +66,8 @@ namespace App05
                         Up = Keys.W, 
                         Down = Keys.S, 
                         Left = Keys.A, 
-                        Right = Keys.D
+                        Right = Keys.D,
+                        Shoot = Keys.Space
                     } 
                 },
 
@@ -81,7 +82,8 @@ namespace App05
                         Up = Keys.Up,
                         Down = Keys.Down,
                         Left = Keys.Left,
-                        Right = Keys.Right
+                        Right = Keys.Right,
+                        Shoot = Keys.RightShift
                     }
                 }
             };

@@ -44,12 +44,18 @@ namespace App05.Sprites
             {
                 Position -= Direction * LinearVelocity;
             }
-
-            if (_currentKey.IsKeyDown(Keys.Space) && _previousKey.IsKeyUp(Keys.Space))
+            
+            //Shooting
+            if (_currentKey.IsKeyDown(Input.Shoot) &&  _previousKey.IsKeyUp(Input.Shoot))
             {
-                AddBullet(sprites);
+                Shoot(sprites);
             }
 
+        }
+
+        public void Shoot(List<Sprite> sprites)
+        {
+            AddBullet(sprites);
         }
 
         private void AddBullet(List<Sprite> sprites)

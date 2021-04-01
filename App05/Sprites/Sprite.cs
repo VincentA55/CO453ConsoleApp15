@@ -103,7 +103,15 @@ namespace App05
             {
                 Position -=  Direction * LinearVelocity;
             }
+
+         
         }
+
+        public void Shoot(List<Sprite> sprites)
+        {
+            
+        }
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
