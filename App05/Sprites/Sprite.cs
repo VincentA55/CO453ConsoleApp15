@@ -17,7 +17,7 @@ namespace App05
         /// <summary>
         /// the angle of roation
         /// </summary>
-        protected float _rotation;
+        public float _rotation;
         /// <summary>
         /// the point from which it rotates
         /// </summary>

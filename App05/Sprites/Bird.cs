@@ -58,6 +58,7 @@ namespace App05.Sprites
             bullet.Direction = this.Direction;
             bullet.Position = this.Position;
             bullet.LinearVelocity = this.LinearVelocity;
+            bullet._rotation = this._rotation;
             bullet.LifeSpan = 2f;
             bullet.Parent = this;
             bullet.Input = null;
