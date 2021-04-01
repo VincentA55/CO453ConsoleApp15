@@ -30,6 +30,15 @@ namespace App05.Models
 
             Move();
 
+            _previousKey = _currentKey;
+            _currentKey = Keyboard.GetState();
+
+            //Shooting
+            if (_currentKey.IsKeyDown(Input.Shoot) && _previousKey.IsKeyUp(Input.Shoot))
+            {
+                Shoot(sprites);
+            }
+
             foreach (var sprite in sprites)
             {
                 if (sprite == this)
@@ -50,7 +59,24 @@ namespace App05.Models
             Position.Y = MathHelper.Clamp(Position.Y, 0 + _texture.Height / 2, Game1.ScreenHeight - _texture.Height / 2);
         }
 
+        public void Shoot(List<Sprite> sprites)
+        {
+            AddBullet(sprites);
+        }
 
+        private void AddBullet(List<Sprite> sprites)
+        {
+            var bullet = Bullet.Clone() as Bullet;
+            bullet.Direction = this.Direction;
+            bullet.Position = this.Position;
+            bullet.LinearVelocity = this.LinearVelocity;
+            bullet._rotation = this._rotation;
+            bullet.LifeSpan = 2f;
+            bullet.Parent = this;
+            bullet.Input = null;
+
+            sprites.Add(bullet);
+        }
 
     }
 }

@@ -45,31 +45,6 @@ namespace App05.Sprites
                 Position -= Direction * LinearVelocity;
             }
             
-            //Shooting
-            if (_currentKey.IsKeyDown(Input.Shoot) &&  _previousKey.IsKeyUp(Input.Shoot))
-            {
-                Shoot(sprites);
-            }
-
-        }
-
-        public void Shoot(List<Sprite> sprites)
-        {
-            AddBullet(sprites);
-        }
-
-        private void AddBullet(List<Sprite> sprites)
-        {
-            var bullet = Bullet.Clone() as Bullet;
-            bullet.Direction = this.Direction;
-            bullet.Position = this.Position;
-            bullet.LinearVelocity = this.LinearVelocity;
-            bullet._rotation = this._rotation;
-            bullet.LifeSpan = 2f;
-            bullet.Parent = this;
-            bullet.Input = null;
-
-            sprites.Add(bullet);
         }
     }
 }
