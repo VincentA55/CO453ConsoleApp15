@@ -1,9 +1,11 @@
-﻿using App05.Sprites;
+﻿using App05.Models;
+using App05.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+
 
 namespace App05
 {
@@ -19,11 +21,20 @@ namespace App05
 
         public static Random Random;
 
+        private float _timer;
+
+        private bool _hasStared = false;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            Random = new Random();
+
+            ScreenWidth = _graphics.PreferredBackBufferWidth;
+            ScreenHeight = _graphics.PreferredBackBufferHeight;
         }
 
         protected override void Initialize()
@@ -44,7 +55,7 @@ namespace App05
 
             _sprites = new List<Sprite>()
             {
-                new Bird(YelloBird)
+                new Player(YelloBird)
                 {
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2 ),
                     LinearVelocity = 4f,
@@ -59,7 +70,7 @@ namespace App05
                     } 
                 },
 
-                new Bird(RedBird)
+                new Player(RedBird)
                 {
                     Origin = new Vector2(RedBird.Width - 45, RedBird.Height / 2 ),
                     LinearVelocity = 5f,

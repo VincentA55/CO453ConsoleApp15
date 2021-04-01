@@ -73,7 +73,7 @@ namespace App05
             Move();
         }
 
-        private void Move()
+        public void Move()
         {
             if (Input == null)
                 return;
