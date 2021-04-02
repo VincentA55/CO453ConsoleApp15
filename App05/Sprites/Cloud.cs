@@ -11,17 +11,19 @@ namespace App05.Sprites
         public Cloud(Texture2D texture)
             :base(texture)
         {
+           
             //Spawn location for the clouds
-            Position = new Vector2(Game1.Random.Next(0, Game1.ScreenWidth - _texture.Width),-_texture.Height);
+            Position.X = MathHelper.Clamp(Position.X,Game1.ScreenWidth, Game1.ScreenWidth);
+            Position.Y = Game1.Random.Next(Game1.ScreenHeight);
             Speed = Game1.Random.Next(1, 5);
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            Position.X += Speed;
+            Position.X -= Speed;
 
             //if it hits the left of the window
-            if(Rectangle.Left >= Game1.ScreenWidth)
+            if(Rectangle.Right <= 0)
             {
                 IsRemoved = true;
             }

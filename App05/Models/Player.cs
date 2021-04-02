@@ -39,12 +39,9 @@ namespace App05.Models
                     continue;
                 }
 
-                if (sprite.Rectangle.Intersects(this.Rectangle) && sprite.Parent != this)
+                if (sprite.Rectangle.Intersects(this.Rectangle) && sprite.Parent != this && sprite is Bullet)
                 {
-                    
-                    {
                         this.HadDied = true;
-                    }
                 }
             }
 

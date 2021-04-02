@@ -53,8 +53,9 @@ namespace App05
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width - 10, _texture.Height -20);
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width - 10, _texture.Height - 20);
             }
+            
         }
 
         public Sprite(Texture2D texture)

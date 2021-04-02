@@ -120,7 +120,7 @@ namespace App05
                 sprite.Update(gameTime, _sprites);
 
             // timer for the clouds
-            if (_timer > 1f)
+            if (_timer > 3f)
             {
                 _timer = 0;
                 _sprites.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
