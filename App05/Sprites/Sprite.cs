@@ -27,8 +27,9 @@ namespace App05
         public float RotationVelocity = 4f;
         public float LinearVelocity = 4f;
         public float Speed;
-        
 
+        public float LayerDepth;
+        public float Size = 1;
         public SpriteEffects SpriteEffect;
 
         public Vector2 Position;
@@ -107,7 +108,7 @@ namespace App05
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, null , Color.White, _rotation, Origin, 1, SpriteEffect, 0f);
+            spriteBatch.Draw(_texture, Position, null , Color.White, _rotation, Origin, Size, SpriteEffect, LayerDepth);
         }
 
 

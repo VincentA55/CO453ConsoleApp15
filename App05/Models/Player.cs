@@ -19,6 +19,7 @@ namespace App05.Models
         public Player(Texture2D texture) 
             : base(texture)
         {
+            LayerDepth = 0.5f;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -70,12 +71,13 @@ namespace App05.Models
         {
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = this.Direction;
-            bullet.Position = this.Position;
+            bullet.Position = Position;
             bullet.LinearVelocity = 6;
             bullet._rotation = this._rotation;
             bullet.LifeSpan = 2f;
             bullet.Parent = this;
             bullet.Input = null;
+            bullet.LayerDepth = this.LayerDepth - 0.1f;
 
             sprites.Add(bullet);
         }

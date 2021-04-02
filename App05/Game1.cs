@@ -165,7 +165,7 @@ namespace App05
 
             // TODO: Add your drawing code here
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.BackToFront);
 
             foreach (var sprite in _sprites)
              sprite.Draw(_spriteBatch);

@@ -13,6 +13,7 @@ namespace App05.Sprites
         public Bullet(Texture2D texture)
             : base(texture)
         {
+            
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
