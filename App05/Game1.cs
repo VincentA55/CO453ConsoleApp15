@@ -25,6 +25,8 @@ namespace App05
 
         private bool _hasStarted = false;
 
+        private Player Player;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -53,6 +55,7 @@ namespace App05
 
             Restart();
             
+            
         }
 
         /// <summary>
@@ -72,7 +75,7 @@ namespace App05
                 {
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
                     LinearVelocity = 4f,
-                    Position = new Vector2(100, 100),
+                    Position = new Vector2(300, 100),
                     Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
                     {
@@ -86,7 +89,7 @@ namespace App05
 
                 new Player(RedBird)
                 {
-                    Origin = new Vector2(RedBird.Width - 45, RedBird.Height / 2),
+                    Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
                     LinearVelocity = 5f,
                     Position = new Vector2(50, 100),
                     Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
@@ -108,15 +111,7 @@ namespace App05
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))// THIS PART DOESNT WORK. COME BACK HERE. SUPPOSED TO PRESS SPACE THAN GAME BEGINS!!!!
-            {
-                _hasStarted = true;
-            }
-
-            if (!_hasStarted)
-            {
-                return;
-            }
+            
 
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -130,7 +125,7 @@ namespace App05
                 _timer = 0;
                 _sprites.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
             }
-
+           
             PostUpdate();
 
             base.Update(gameTime);
@@ -155,7 +150,8 @@ namespace App05
                     var player = sprite as Player;
                     if (player.HadDied)
                     {
-                        Restart();
+                        player.Position = new Vector2(Random.Next(0,ScreenWidth), ScreenHeight);
+                        player.HadDied = false;
                     }
                 }
 

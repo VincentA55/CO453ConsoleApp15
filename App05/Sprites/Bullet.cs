@@ -1,19 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace App05.Sprites
 {
     public class Bullet : Sprite
     {
         private float _timer;
-        
+
+        public bool IsBullet = true;
+
         public Bullet(Texture2D texture)
             : base(texture)
         {
-
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -22,14 +21,10 @@ namespace App05.Sprites
 
             if (_timer > LifeSpan)
             {
-                IsRemoved = true; 
+                IsRemoved = true;
             }
 
             Position += Direction * LinearVelocity;
+            }
         }
-
-
-
-
     }
-}

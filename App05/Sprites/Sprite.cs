@@ -53,7 +53,7 @@ namespace App05
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width - 10, _texture.Height -20);
             }
         }
 
@@ -65,12 +65,7 @@ namespace App05
 
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
         {
-
-        }
-
-        public void Update()
-        {
-            Move();
+          
         }
 
         public void Move()

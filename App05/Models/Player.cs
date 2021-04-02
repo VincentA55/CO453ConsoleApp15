@@ -32,16 +32,19 @@ namespace App05.Models
 
             Shoot(sprites);
 
-            foreach (var sprite in sprites)
+            foreach (var sprite in sprites) // hit detection
             {
-                if (sprite == this)
+                if (sprite is Player)
                 {
                     continue;
                 }
 
-                if (sprite.Rectangle.Intersects(this.Rectangle))
+                if (sprite.Rectangle.Intersects(this.Rectangle) && sprite.Parent != this)
                 {
-                 this.HadDied = true;
+                    
+                    {
+                        this.HadDied = true;
+                    }
                 }
             }
 
