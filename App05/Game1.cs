@@ -16,6 +16,8 @@ namespace App05
 
         private List<Sprite> _sprites;
 
+        private SpriteFont _font;
+
         public static int ScreenHeight;
         public static int ScreenWidth;
 
@@ -24,8 +26,6 @@ namespace App05
         private float _timer;
 
         private bool _hasStarted = false;
-
-        private Player Player;
 
         public Game1()
         {
@@ -67,15 +67,13 @@ namespace App05
             var YelloBird = Content.Load<Texture2D>("YelloBird");
             var RedBird = Content.Load<Texture2D>("RedBird");
 
-
-
             _sprites = new List<Sprite>()
             {
                 new Player(YelloBird)
                 {
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
                     LinearVelocity = 4f,
-                    Position = new Vector2(300, 100),
+                    Position = new Vector2(ScreenWidth - YelloBird.Width, 100),
                     Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
                     {
@@ -91,7 +89,7 @@ namespace App05
                 {
                     Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
                     LinearVelocity = 5f,
-                    Position = new Vector2(50, 100),
+                    Position = new Vector2(RedBird.Width, 100),
                     Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
                     {
@@ -119,13 +117,8 @@ namespace App05
             foreach (var sprite in _sprites.ToArray())
                 sprite.Update(gameTime, _sprites);
 
-            // timer for the clouds
-            if (_timer > 3f)
-            {
-                _timer = 0;
-                _sprites.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
-            }
-           
+            SpawnCloud();
+
             PostUpdate();
 
             base.Update(gameTime);
@@ -165,7 +158,8 @@ namespace App05
 
             // TODO: Add your drawing code here
 
-            _spriteBatch.Begin(SpriteSortMode.BackToFront);
+             //front to back is layer 0 at thoe bottom
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
             foreach (var sprite in _sprites)
              sprite.Draw(_spriteBatch);
@@ -173,6 +167,19 @@ namespace App05
             _spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// Spawns clouds
+        /// </summary>
+        public void SpawnCloud()
+        {
+            // timer for the clouds
+            if (_timer > 3f)
+            {
+                _timer = 0;
+                _sprites.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
+            }
         }
     }
 }

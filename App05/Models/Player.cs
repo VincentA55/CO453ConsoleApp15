@@ -16,6 +16,8 @@ namespace App05.Models
 
         public Bullet Bullet;
 
+        public int Score;
+
         public Player(Texture2D texture) 
             : base(texture)
         {
@@ -42,13 +44,14 @@ namespace App05.Models
 
                 if (sprite.Rectangle.Intersects(this.Rectangle) && sprite.Parent != this && sprite is Bullet)
                 {
-                        this.HadDied = true;
+                   Score++;
+                   this.HadDied = true;
                 }
             }
 
             
 
-            //Keep the sprite on the screen
+            //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
             Position.X = MathHelper.Clamp(Position.X, 0 + _texture.Width / 2, Game1.ScreenWidth - _texture.Width / 2);
             Position.Y = MathHelper.Clamp(Position.Y, 0 + _texture.Height / 2, Game1.ScreenHeight - _texture.Height / 2);
         }

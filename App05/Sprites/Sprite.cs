@@ -23,6 +23,7 @@ namespace App05
         /// </summary>
         public Vector2 Origin;
 
+        public Color Color = Color.White;
 
         public float RotationVelocity = 4f;
         public float LinearVelocity = 4f;
@@ -75,7 +76,8 @@ namespace App05
             if (Input == null)
                 return;
 
-            
+            // the reason for no else ifs is so they can go diagonal
+
             if (Keyboard.GetState().IsKeyDown(Input.Left))
             {
                 _rotation -= MathHelper.ToRadians(RotationVelocity);
@@ -108,7 +110,7 @@ namespace App05
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, null , Color.White, _rotation, Origin, Size, SpriteEffect, LayerDepth);
+            spriteBatch.Draw(_texture, Position, null , Color , _rotation, Origin, Size, SpriteEffect, LayerDepth);
         }
 
 

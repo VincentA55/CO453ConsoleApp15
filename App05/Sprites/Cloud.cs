@@ -20,6 +20,10 @@ namespace App05.Sprites
             Position.Y = Game1.Random.Next(Game1.ScreenHeight);
             Speed = Game1.Random.Next(1, 5);
 
+            if (LayerDepth < 0.5)
+            {
+                Color = Color.LightBlue;
+            };
 
         }
 
