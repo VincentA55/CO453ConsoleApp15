@@ -103,6 +103,8 @@ namespace App05
 
             };
 
+            _font = Content.Load<SpriteFont>("Font"); 
+
             _hasStarted = false;
         }
                 
@@ -163,6 +165,19 @@ namespace App05
 
             foreach (var sprite in _sprites)
              sprite.Draw(_spriteBatch);
+
+            var fontY = 10;
+            var i = 0;
+            foreach(var sprite in _sprites)
+            {
+                if (sprite is Player)
+                {
+                    _spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i,((Player)sprite).Score), new Vector2(10, fontY += 20), Color.Black);
+                }
+            }
+
+
+
 
             _spriteBatch.End();
 
