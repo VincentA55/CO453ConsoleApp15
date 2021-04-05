@@ -16,7 +16,7 @@ namespace App05.Sprites
             LayerDepth = Game1.Random.Next(0, 2);
 
             //Spawn location for the clouds
-            Position.X = MathHelper.Clamp(Position.X,Game1.ScreenWidth, Game1.ScreenWidth);
+            Position.X = MathHelper.Clamp(Position.X,Game1.ScreenWidth +_texture.Width, Game1.ScreenWidth);
             Position.Y = Game1.Random.Next(Game1.ScreenHeight);
             Speed = Game1.Random.Next(1, 5);
 
