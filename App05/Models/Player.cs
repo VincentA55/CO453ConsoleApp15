@@ -45,6 +45,7 @@ namespace App05.Models
                 if (sprite.Rectangle.Intersects(this.Rectangle) && sprite.Parent != this && sprite is Bullet)
                 {
                    Score++;
+                   this.Color = Color.Red;
                    this.HadDied = true;
                 }
             }

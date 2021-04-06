@@ -73,6 +73,7 @@ namespace App05
                 {
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
                     LinearVelocity = 4f,
+                    Color = Color.White,
                     Position = new Vector2(ScreenWidth - YelloBird.Width, 100),
                     Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
@@ -89,6 +90,7 @@ namespace App05
                 {
                     Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
                     LinearVelocity = 5f,
+                    Color = Color.White,
                     Position = new Vector2(RedBird.Width, 100),
                     Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
                     Input = new Input()
@@ -139,19 +141,19 @@ namespace App05
                     i--;
                 }
 
-            // checks if the player has died
-            if(sprite is Player)
+                // checks if the player has died
+                if (sprite is Player)
                 {
                     var player = sprite as Player;
                     if (player.HadDied)
                     {
-                        player.Position = new Vector2(Random.Next(0,ScreenWidth), ScreenHeight);
+
+                        player.Position = new Vector2(Random.Next(0, ScreenWidth), ScreenHeight);
                         player.HadDied = false;
                     }
                 }
 
             }
-
         }
 
         protected override void Draw(GameTime gameTime)

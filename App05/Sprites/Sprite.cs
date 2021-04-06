@@ -119,6 +119,16 @@ namespace App05
             return this.MemberwiseClone();
         }
 
-     
+
+        #region Collision
+        protected bool IsTouchingLeft(Sprite sprite)
+        {
+            return this.Rectangle.Right + this.Position.X > sprite.Rectangle.Left &&
+                   this.Rectangle.Left < sprite.Rectangle.Left &&
+                   this.Rectangle.Bottom > sprite.Rectangle.Top &&
+                   this.Rectangle.Top < sprite.Rectangle.Bottom;
+        }
+        #endregion
+
     }
 }
