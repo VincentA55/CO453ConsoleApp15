@@ -16,6 +16,8 @@ namespace App05
 
         private List<Sprite> _sprites;
 
+        public List<Player> _players;
+
         private SpriteFont _font;
 
         public static int ScreenHeight;
@@ -55,7 +57,6 @@ namespace App05
 
             Restart();
             
-            
         }
 
         /// <summary>
@@ -84,6 +85,7 @@ namespace App05
                         Right = Keys.D,
                         Shoot = Keys.Space
                     }
+
                 },
 
                 new Player(RedBird)
@@ -105,7 +107,7 @@ namespace App05
 
             };
 
-            _font = Content.Load<SpriteFont>("Font"); 
+            _font = Content.Load<SpriteFont>("Font");
 
             _hasStarted = false;
         }

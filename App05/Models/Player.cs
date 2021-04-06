@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace App05.Models
 {
@@ -18,15 +17,19 @@ namespace App05.Models
 
         public int Score;
 
-        public Player(Texture2D texture) 
+        public List<Player> players;
+
+        public Player(Texture2D texture)
             : base(texture)
         {
             LayerDepth = 0.5f;
+
+            players = new List<Player>();
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            if(Input == null)
+            if (Input == null)
             {
                 throw new Exception("Please assign a value to Input");
             }
@@ -39,18 +42,32 @@ namespace App05.Models
             {
                 if (sprite is Player)
                 {
+                    players.Add((Player)sprite);
                     continue;
                 }
-
+                //for bullets
                 if (sprite.Rectangle.Intersects(this.Rectangle) && sprite.Parent != this && sprite is Bullet)
                 {
-                   Score++;
-                   this.Color = Color.Red;
-                   this.HadDied = true;
+                    Score++;
+                    this.Color = Color.Red;
+                    this.HadDied = true;
                 }
             }
 
-            
+            foreach (Player player in players)
+            {
+                //for other players
+                if (this.IsTouchingLeft(player) || this.IsTouchingRight(player))
+                {
+                    Color = Color.Red;
+                    this.Direction += this.Direction * this.LinearVelocity;
+                }
+                if ( this.IsTouchingTop(player) || this.IsTouchingBottom(player))
+                {
+                    Color = Color.Blue;
+                    
+                }
+            }
 
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
             Position.X = MathHelper.Clamp(Position.X, 0 + _texture.Width / 2, Game1.ScreenWidth - _texture.Width / 2);
@@ -65,10 +82,8 @@ namespace App05.Models
             //Shooting
             if (_currentKey.IsKeyDown(Input.Shoot) && _previousKey.IsKeyUp(Input.Shoot))
             {
-               AddBullet(sprites); 
+                AddBullet(sprites);
             }
-
-            
         }
 
         private void AddBullet(List<Sprite> sprites)
@@ -85,6 +100,5 @@ namespace App05.Models
 
             sprites.Add(bullet);
         }
-
     }
 }
