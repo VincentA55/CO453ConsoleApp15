@@ -54,13 +54,13 @@ namespace App05.Models
                 }
             }
 
-            foreach (Player player in players)
+            foreach (Player player in players) // NOT WORKING PROPERLY
             {
                 //for other players
-                if (this.IsTouchingLeft(player) || this.IsTouchingRight(player))
+                if (this.IsTouchingLeft(player) || this.IsTouchingRight(player) || this.IsTouchingTop(player) || this.IsTouchingBottom(player))
                 {
                     Color = Color.Red;
-                    this.Direction += this.Direction * this.LinearVelocity;
+                    _rotation -= MathHelper.ToRadians(180);
                 }
                 if ( this.IsTouchingTop(player) || this.IsTouchingBottom(player))
                 {

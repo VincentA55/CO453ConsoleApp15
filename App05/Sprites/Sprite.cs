@@ -48,6 +48,7 @@ namespace App05
         public bool IsRemoved = false;
 
 
+
         /// <summary>
         /// returns a "hitbox" of the sprite
         /// </summary>
@@ -55,10 +56,11 @@ namespace App05
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width - 10, _texture.Height - 20);
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
             }
             
         }
+
 
         public Sprite(Texture2D texture)
         {
