@@ -53,7 +53,6 @@ namespace App05
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            var Cloud = Content.Load<Texture2D>("Cloud");
 
             Restart();
             
@@ -68,6 +67,8 @@ namespace App05
             var YelloBird = Content.Load<Texture2D>("YelloBird");
             var RedBird = Content.Load<Texture2D>("RedBird");
 
+            var Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet"));
+
             _sprites = new List<Sprite>()
             {
                 new Player(_graphics.GraphicsDevice,YelloBird)
@@ -77,7 +78,7 @@ namespace App05
                     LinearVelocity = 4f,
                     Color = Color.White,
                     Position = new Vector2(ScreenWidth - YelloBird.Width, 100),
-                    Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
+                    Bullet = Bullet,
                     Input = new Input()
                     {
                         Up = Keys.W,
@@ -95,7 +96,7 @@ namespace App05
                     LinearVelocity = 5f,
                     Color = Color.White,
                     Position = new Vector2(RedBird.Width, 100),
-                    Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet")),
+                    Bullet = Bullet,
                     Input = new Input()
                     {
                         Up = Keys.Up,
@@ -116,8 +117,6 @@ namespace App05
 
         protected override void Update(GameTime gameTime)
         {
-            
-
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
@@ -133,30 +132,41 @@ namespace App05
 
         private void PostUpdate()
         {
-            //where we reomve stuff from the collection
+            foreach(var spriteA in _sprites)
+            {
+                foreach(var spriteB in _sprites)
+                {
+                    if (spriteA == spriteB)
+                    {
+                        continue;
+                    }
+                    if(spriteA is Cloud || spriteB is Cloud)
+                    {
+                       continue;
+                    }
+
+                }
+            }
+
+            int count = _sprites.Count;
+            for (int i = 0; i < count; i++)
+            {
+                foreach (var child in _sprites[i].Children)
+                    _sprites.Add(child);
+
+                _sprites[i].Children.Clear();
+            }
+
+
             for (int i = 0; i < _sprites.Count; i++)
             {
-                var sprite = _sprites[i];
-
                 if (_sprites[i].IsRemoved)
                 {
                     _sprites.RemoveAt(i);
                     i--;
                 }
-
-                // checks if the player has died
-                if (sprite is Player)
-                {
-                    var player = sprite as Player;
-                    if (player.HadDied)
-                    {
-
-                        player.Position = new Vector2(Random.Next(0, ScreenWidth), ScreenHeight);
-                        player.HadDied = false;
-                    }
-                }
-
             }
+
         }
 
         protected override void Draw(GameTime gameTime)

@@ -13,7 +13,6 @@ namespace App05.Sprites
         public Bullet(Texture2D texture)
             : base(texture)
         {
-            
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -26,6 +25,20 @@ namespace App05.Sprites
             }
 
             Position += Direction * LinearVelocity;
+        }
+
+        public override void OnCollide(Sprite sprite)
+        {
+            if (sprite == this.Parent)
+            {
+                return;
             }
+            if (sprite is Bullet)
+            {
+                return;
+            }
+
+            IsRemoved = true;
         }
     }
+}

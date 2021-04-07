@@ -19,6 +19,8 @@ namespace App05.Models
 
         public List<Player> players;
 
+        
+
         public Player(GraphicsDevice graphicsDevice, Texture2D texture)
             : base( graphicsDevice ,texture)
         {
@@ -36,7 +38,7 @@ namespace App05.Models
 
             Move();
 
-            Shoot(sprites);
+            Shoot();
 
             foreach (var sprite in sprites) // hit detection
             {
@@ -46,7 +48,7 @@ namespace App05.Models
                     continue;
                 }
                 //for bullets
-                if (sprite.Rectangle.Intersects(this.Rectangle) && sprite.Parent != this && sprite is Bullet)
+                if (sprite.Intersects(sprite))
                 {
                     Score++;
                     this.Color = Color.Red;
@@ -54,27 +56,13 @@ namespace App05.Models
                 }
             }
 
-            foreach (Player player in players) // NOT WORKING PROPERLY
-            {
-                //for other players
-                if (this.IsTouchingLeft(player) || this.IsTouchingRight(player) || this.IsTouchingTop(player) || this.IsTouchingBottom(player))
-                {
-                    Color = Color.Red;
-                    
-                }
-                if ( this.IsTouchingTop(player) || this.IsTouchingBottom(player))
-                {
-                    Color = Color.Blue;
-                    
-                }
-            }
-
+            
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
             Position.X = MathHelper.Clamp(Position.X, 0 + _texture.Width / 2, Game1.ScreenWidth - _texture.Width / 2);
             Position.Y = MathHelper.Clamp(Position.Y, 0 + _texture.Height / 2, Game1.ScreenHeight - _texture.Height / 2);
         }
 
-        public void Shoot(List<Sprite> sprites)
+        public void Shoot()
         {
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
@@ -82,11 +70,11 @@ namespace App05.Models
             //Shooting
             if (_currentKey.IsKeyDown(Input.Shoot) && _previousKey.IsKeyUp(Input.Shoot))
             {
-                AddBullet(sprites);
+                AddBullet();
             }
         }
 
-        private void AddBullet(List<Sprite> sprites)
+        private void AddBullet()
         {
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = this.Direction;
@@ -98,12 +86,14 @@ namespace App05.Models
             bullet.Input = null;
             bullet.LayerDepth = this.LayerDepth - 0.1f;
 
-            sprites.Add(bullet);
+            Children.Add(bullet);
         }
 
-        private void PushPlayer()
+        public override void OnCollide(Sprite sprite)
         {
-            this.Position += Position * LinearVelocity;
+            Score++;
+            this.Color = Color.Red;
+            this.HadDied = true;
         }
     }
 }
