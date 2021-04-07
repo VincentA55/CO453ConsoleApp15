@@ -70,8 +70,9 @@ namespace App05
 
             _sprites = new List<Sprite>()
             {
-                new Player(YelloBird)
+                new Player(_graphics.GraphicsDevice,YelloBird)
                 {
+                    ShowRectangle = true,
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
                     LinearVelocity = 4f,
                     Color = Color.White,
@@ -88,7 +89,7 @@ namespace App05
 
                 },
 
-                new Player(RedBird)
+                new Player(_graphics.GraphicsDevice, RedBird)
                 {
                     Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
                     LinearVelocity = 5f,
@@ -162,13 +163,16 @@ namespace App05
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
 
              //front to back is layer 0 at thoe bottom
+
             _spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
             foreach (var sprite in _sprites)
-             sprite.Draw(_spriteBatch);
+            {
+                sprite.ShowRectangle = true;
+                sprite.Draw(_spriteBatch);
+            }
 
             var fontY = 10;
             var i = 0;

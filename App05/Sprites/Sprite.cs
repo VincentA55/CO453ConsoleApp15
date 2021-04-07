@@ -10,7 +10,7 @@ namespace App05
    public class Sprite : ICloneable
     {
         /// <summary>
-        /// the actual 
+        /// the actual sprites texture
         /// </summary>
         protected Texture2D _texture;
 
@@ -47,8 +47,7 @@ namespace App05
         public float LifeSpan = 0f;
         public bool IsRemoved = false;
 
-
-
+        protected Texture2D _rectangleTexture;
         /// <summary>
         /// returns a "hitbox" of the sprite
         /// </summary>
@@ -56,16 +55,55 @@ namespace App05
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X - _texture.Width, (int)Position.Y - _texture.Height, _texture.Width / 2, _texture.Height / 2);
             }
             
         }
 
+        public bool ShowRectangle { get; set; }
 
         public Sprite(Texture2D texture)
         {
             _texture = texture;
             Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
+
+            ShowRectangle = false;
+        }
+
+        //rectangle related
+        public Sprite(GraphicsDevice graphics, Texture2D texture)
+            :this(texture)
+        {
+            SetRectangleTexture(graphics, texture);
+        }
+
+        //rectangle related
+        public void SetRectangleTexture(GraphicsDevice graphics, Texture2D texture)
+        {
+            var colours = new List<Color>();
+
+            for (int y = 0; y < texture.Height; y++)
+            {
+                for (int x = 0; x < texture.Width; x++)
+                {
+                    if (x == 0 || // left side
+                        y == 0 || //top side
+                        x == texture.Width - 1 || // right side
+                        y == texture.Height -1)// bottom side
+                    {
+                        colours.Add(new Color(255, 255, 255, 255));
+                    }
+                    else
+                    {
+                        colours.Add(new Color(0, 0, 0, 0));
+                    }
+
+                }
+            }
+
+            _rectangleTexture = new Texture2D(graphics, texture.Width, texture.Height);
+            _rectangleTexture.SetData<Color>(colours.ToArray());
+
         }
 
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
@@ -112,6 +150,14 @@ namespace App05
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, Position, null , Color , _rotation, Origin, Size, SpriteEffect, LayerDepth);
+
+            if (ShowRectangle)
+            {
+                if (_rectangleTexture != null)
+                {
+                    spriteBatch.Draw(_rectangleTexture, Position, Color);
+                }
+            }
         }
 
 

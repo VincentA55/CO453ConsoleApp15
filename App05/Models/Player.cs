@@ -19,8 +19,8 @@ namespace App05.Models
 
         public List<Player> players;
 
-        public Player(Texture2D texture)
-            : base(texture)
+        public Player(GraphicsDevice graphicsDevice, Texture2D texture)
+            : base( graphicsDevice ,texture)
         {
             LayerDepth = 0.5f;
 
@@ -60,7 +60,7 @@ namespace App05.Models
                 if (this.IsTouchingLeft(player) || this.IsTouchingRight(player) || this.IsTouchingTop(player) || this.IsTouchingBottom(player))
                 {
                     Color = Color.Red;
-                    _rotation -= MathHelper.ToRadians(180);
+                    
                 }
                 if ( this.IsTouchingTop(player) || this.IsTouchingBottom(player))
                 {
@@ -99,6 +99,11 @@ namespace App05.Models
             bullet.LayerDepth = this.LayerDepth - 0.1f;
 
             sprites.Add(bullet);
+        }
+
+        private void PushPlayer()
+        {
+            this.Position += Position * LinearVelocity;
         }
     }
 }
