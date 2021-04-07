@@ -37,5 +37,10 @@ namespace App05.Sprites
                 IsRemoved = true;
             }
         }
+
+        public override void OnCollide(Sprite sprite)
+        {
+            return;
+        }
     }
 }

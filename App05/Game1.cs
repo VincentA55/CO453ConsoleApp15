@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 
-
 namespace App05
 {
     public class Game1 : Game
@@ -55,7 +54,6 @@ namespace App05
             // TODO: use this.Content to load your game content here
 
             Restart();
-            
         }
 
         /// <summary>
@@ -63,7 +61,6 @@ namespace App05
         /// </summary>
         public void Restart()
         {
-
             var YelloBird = Content.Load<Texture2D>("YelloBird");
             var RedBird = Content.Load<Texture2D>("RedBird");
 
@@ -87,7 +84,6 @@ namespace App05
                         Right = Keys.D,
                         Shoot = Keys.Space
                     }
-
                 },
 
                 new Player(_graphics.GraphicsDevice, RedBird)
@@ -106,19 +102,16 @@ namespace App05
                         Shoot = Keys.NumPad0
                     }
                 }
-
             };
 
             _font = Content.Load<SpriteFont>("Font");
 
             _hasStarted = false;
         }
-                
 
         protected override void Update(GameTime gameTime)
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
 
             foreach (var sprite in _sprites.ToArray())
                 sprite.Update(gameTime, _sprites);
@@ -132,19 +125,25 @@ namespace App05
 
         private void PostUpdate()
         {
-            foreach(var spriteA in _sprites)
+            foreach (var spriteA in _sprites)
             {
-                foreach(var spriteB in _sprites)
+                if (spriteA is Cloud)
+                {
+                    continue;
+                }
+
+                foreach (var spriteB in _sprites)
                 {
                     if (spriteA == spriteB)
                     {
                         continue;
                     }
-                    if(spriteA is Cloud || spriteB is Cloud)
+             
+                    if (spriteA.Intersects(spriteB)) // HIT DETECTION NOT WORKING PROPERLY. SOMETGHNG TO DO WITH PARENT / CHILD 
                     {
-                       continue;
+                        spriteA.OnCollide(spriteB);
+                        spriteB.Color = Color.Red;
                     }
-
                 }
             }
 
@@ -157,7 +156,6 @@ namespace App05
                 _sprites[i].Children.Clear();
             }
 
-
             for (int i = 0; i < _sprites.Count; i++)
             {
                 if (_sprites[i].IsRemoved)
@@ -166,15 +164,13 @@ namespace App05
                     i--;
                 }
             }
-
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
-             //front to back is layer 0 at thoe bottom
+            //front to back is layer 0 at thoe bottom
 
             _spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
@@ -186,16 +182,13 @@ namespace App05
 
             var fontY = 10;
             var i = 0;
-            foreach(var sprite in _sprites)
+            foreach (var sprite in _sprites)
             {
                 if (sprite is Player)
                 {
-                    _spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i,((Player)sprite).Score), new Vector2(10, fontY += 20), Color.Black);
+                    _spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 20), Color.Black);
                 }
             }
-
-
-
 
             _spriteBatch.End();
 

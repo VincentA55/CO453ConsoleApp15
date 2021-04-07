@@ -29,15 +29,11 @@ namespace App05.Sprites
 
         public override void OnCollide(Sprite sprite)
         {
-            if (sprite == this.Parent)
+            if (sprite == this.Parent || sprite is Bullet || sprite is Cloud)
             {
                 return;
             }
-            if (sprite is Bullet)
-            {
-                return;
-            }
-
+          
             IsRemoved = true;
         }
     }

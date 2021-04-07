@@ -17,7 +17,7 @@ namespace App05.Models
 
         public int Score;
 
-        public List<Player> players;
+       
 
         
 
@@ -26,7 +26,7 @@ namespace App05.Models
         {
             LayerDepth = 0.5f;
 
-            players = new List<Player>();
+           
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -36,25 +36,12 @@ namespace App05.Models
                 throw new Exception("Please assign a value to Input");
             }
 
+         
             Move();
 
             Shoot();
 
-            foreach (var sprite in sprites) // hit detection
-            {
-                if (sprite is Player)
-                {
-                    players.Add((Player)sprite);
-                    continue;
-                }
-                //for bullets
-                if (sprite.Intersects(sprite))
-                {
-                    Score++;
-                    this.Color = Color.Red;
-                    this.HadDied = true;
-                }
-            }
+           
 
             
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
@@ -92,8 +79,7 @@ namespace App05.Models
         public override void OnCollide(Sprite sprite)
         {
             Score++;
-            this.Color = Color.Red;
-            this.HadDied = true;
+            
         }
     }
 }
