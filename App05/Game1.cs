@@ -72,9 +72,10 @@ namespace App05
                 {
                     ShowRectangle = true,
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
+                    Name = "YelloBird",
                     LinearVelocity = 4f,
                     Color = Color.White,
-                    Position = new Vector2(ScreenWidth - YelloBird.Width, 100),
+                    Position = new Vector2(YelloBird.Width, 100),
                     Bullet = Bullet,
                     Input = new Input()
                     {
@@ -89,9 +90,10 @@ namespace App05
                 new Player(_graphics.GraphicsDevice, RedBird)
                 {
                     Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
+                    Name = "RedBird",
                     LinearVelocity = 5f,
                     Color = Color.White,
-                    Position = new Vector2(RedBird.Width, 100),
+                    Position = new Vector2(ScreenWidth - RedBird.Width, 100),
                     Bullet = Bullet,
                     Input = new Input()
                     {
@@ -127,22 +129,23 @@ namespace App05
         {
             foreach (var spriteA in _sprites)
             {
-                if (spriteA is Cloud)
+                if (spriteA.CollisionEnabled)
                 {
-                    continue;
-                }
+                    foreach (var spriteB in _sprites)
+                    {
+                        if (spriteB.CollisionEnabled)
+                        {
+                            if (spriteA == spriteB)
+                            {
+                                continue;
+                            }
 
-                foreach (var spriteB in _sprites)
-                {
-                    if (spriteA == spriteB)
-                    {
-                        continue;
-                    }
-             
-                    if (spriteA.Intersects(spriteB)) // HIT DETECTION NOT WORKING PROPERLY. SOMETGHNG TO DO WITH PARENT / CHILD 
-                    {
-                        spriteA.OnCollide(spriteB);
-                        spriteB.Color = Color.Red;
+                            if (spriteA.Intersects(spriteB)) // HIT DETECTION NOT WORKING PROPERLY. SOMETGHNG TO DO WITH PARENT / CHILD
+                            {
+                                spriteA.OnCollide(spriteB);
+                                
+                            }
+                        }
                     }
                 }
             }
@@ -182,11 +185,13 @@ namespace App05
 
             var fontY = 10;
             var i = 0;
-            foreach (var sprite in _sprites)
+            foreach (var sprite in _sprites) // displays the players score
             {
                 if (sprite is Player)
                 {
-                    _spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 20), Color.Black);
+                    string Name = sprite.Name;
+
+                    _spriteBatch.DrawString(_font,( Name + string.Format(" : {1}", ++i, ((Player)sprite).Score)), new Vector2(10, fontY += 20), Color.Black);
                 }
             }
 
@@ -196,7 +201,7 @@ namespace App05
         }
 
         /// <summary>
-        /// Spawns clouds
+        /// Spawns clouds every 3 seconds
         /// </summary>
         public void SpawnCloud()
         {

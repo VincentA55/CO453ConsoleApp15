@@ -78,7 +78,16 @@ namespace App05.Models
 
         public override void OnCollide(Sprite sprite)
         {
-            Score++;
+            var Parent = this;
+
+            if (sprite.Parent == Parent)
+            {
+                return;
+            }
+            else if (Bullet.HitPlayer(sprite))
+            {
+                Score++;
+            }
             
         }
     }

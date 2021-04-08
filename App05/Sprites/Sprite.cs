@@ -24,6 +24,7 @@ namespace App05
         public Vector2 Origin;
 
         public Color Color = Color.White;
+        public String Name { get; set; }
 
         public float RotationVelocity = 4f;
         public float LinearVelocity = 4f;
@@ -47,6 +48,8 @@ namespace App05
         public float LifeSpan = 0f;
         public bool IsRemoved = false;
 
+
+
         protected Texture2D _rectangleTexture;
         /// <summary>
         /// returns a "hitbox" of the sprite
@@ -64,6 +67,8 @@ namespace App05
 
 
         //Hit detection stuff
+        public bool CollisionEnabled = true;
+
         public readonly Color[] TextureData;
         public Matrix Transform
         {
@@ -75,11 +80,15 @@ namespace App05
             }
         }
 
-
+/// <summary>
+/// Constructor
+/// </summary>
+/// <param name="texture"></param>
         public Sprite(Texture2D texture)
         {
             _texture = texture;
             Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
+            
 
             ShowRectangle = false;
 

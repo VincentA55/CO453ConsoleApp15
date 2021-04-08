@@ -29,12 +29,25 @@ namespace App05.Sprites
 
         public override void OnCollide(Sprite sprite)
         {
-            if (sprite == this.Parent || sprite is Bullet || sprite is Cloud)
-            {
-                return;
-            }
-          
+           
             IsRemoved = true;
+        }
+
+        /// <summary>
+        /// returns a bool if it hits a player
+        /// </summary>
+        /// <param name="sprite"></param>
+        /// <returns></returns>
+        public bool HitPlayer(Sprite sprite)
+        {
+            if (sprite is Models.Player && sprite != this.Parent)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
