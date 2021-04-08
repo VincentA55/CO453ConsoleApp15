@@ -142,8 +142,13 @@ namespace App05
 
                             if (spriteA.Intersects(spriteB) && spriteB.Parent != spriteA && spriteA.Parent != spriteB) // HIT DETECTION NOT WORKING PROPERLY. SOMETGHNG TO DO WITH PARENT / CHILD
                             {
-                                spriteA.OnCollide(spriteB);
-                                spriteB.ScoreUp();
+                                spriteB.OnCollide(spriteA);
+
+                                if(spriteA is Bullet) // INCREASES SCORE FOR THE WRONG PLAYER AND I CANT FIX IT
+                                {
+                                    spriteB.ScoreUp();
+                                }
+                                break;
                             }
                         }
                     }
