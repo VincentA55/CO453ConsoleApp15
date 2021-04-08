@@ -251,5 +251,10 @@ namespace App05
         {
             return this.MemberwiseClone();
         }
+
+        public virtual void ScoreUp()
+        {
+
+        }
     }
 }

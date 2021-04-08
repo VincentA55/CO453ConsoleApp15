@@ -140,10 +140,10 @@ namespace App05
                                 continue;
                             }
 
-                            if (spriteA.Intersects(spriteB)) // HIT DETECTION NOT WORKING PROPERLY. SOMETGHNG TO DO WITH PARENT / CHILD
+                            if (spriteA.Intersects(spriteB) && spriteB.Parent != spriteA && spriteA.Parent != spriteB) // HIT DETECTION NOT WORKING PROPERLY. SOMETGHNG TO DO WITH PARENT / CHILD
                             {
                                 spriteA.OnCollide(spriteB);
-                                
+                                spriteB.ScoreUp();
                             }
                         }
                     }

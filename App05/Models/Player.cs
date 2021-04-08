@@ -15,7 +15,7 @@ namespace App05.Models
 
         public Bullet Bullet;
 
-        public int Score;
+        public int Score { get; set; }
 
        
 
@@ -40,9 +40,6 @@ namespace App05.Models
             Move();
 
             Shoot();
-
-           
-
             
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
             Position.X = MathHelper.Clamp(Position.X, 0 + _texture.Width / 2, Game1.ScreenWidth - _texture.Width / 2);
@@ -73,22 +70,17 @@ namespace App05.Models
             bullet.Input = null;
             bullet.LayerDepth = this.LayerDepth - 0.1f;
 
-            Children.Add(bullet);
+            Children.Add(bullet);    
         }
 
         public override void OnCollide(Sprite sprite)
         {
-            var Parent = this;
-
-            if (sprite.Parent == Parent)
-            {
-                return;
-            }
-            else if (Bullet.HitPlayer(sprite))
-            {
-                Score++;
-            }
             
+        }
+
+        public override void ScoreUp()
+        {
+            Score++;
         }
     }
 }
