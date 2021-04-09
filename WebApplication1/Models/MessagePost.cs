@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApps.Models
+namespace WebApplication1.Models
 {
-    public class MessagePost
+    public class MessagePost : Post
     {
 
         // an arbitrarily long, multi-line message

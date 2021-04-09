@@ -9,7 +9,7 @@ using WebApplication1.Data;
 using WebApplication1.Models;
 using ConsoleAppProject.App03;
 
-namespace WebApps.Controllers
+namespace WebApplication1.Controllers
 {
     public class StudentsController : Controller
     {

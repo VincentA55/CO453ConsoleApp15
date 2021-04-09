@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApps.Models
+namespace WebApplication1.Models
 {
-    public class PhotoPost
+    public class PhotoPost : Post
     {
         // the name of the image file
         [StringLength(128), Required]
