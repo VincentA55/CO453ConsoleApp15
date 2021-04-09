@@ -70,7 +70,6 @@ namespace App05
             {
                 new Player(_graphics.GraphicsDevice,YelloBird)
                 {
-                    ShowRectangle = true,
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
                     Name = "YelloBird",
                     LinearVelocity = 4f,
@@ -144,9 +143,9 @@ namespace App05
                             {
                                 spriteB.OnCollide(spriteA);
 
-                                if(spriteA is Bullet) // INCREASES SCORE FOR THE WRONG PLAYER AND I CANT FIX IT
+                                if(spriteA is Bullet && !(spriteB is Bullet)) 
                                 {
-                                    spriteB.ScoreUp();
+                                    spriteA.Parent.ScoreUp();
                                 }
                                 break;
                             }
@@ -184,7 +183,6 @@ namespace App05
 
             foreach (var sprite in _sprites)
             {
-                sprite.ShowRectangle = true;
                 sprite.Draw(_spriteBatch);
             }
 
