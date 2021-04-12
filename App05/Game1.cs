@@ -51,7 +51,8 @@ namespace App05
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+          
+            
 
             Restart();
         }
@@ -61,6 +62,17 @@ namespace App05
         /// </summary>
         public void Restart()
         {
+            var yelloAnimations = new Dictionary<string, Animation>()
+            {
+                {"FlapWings", new Animation(Content.Load<Texture2D>("YelloBirdAnimationStrip"), 4) },
+            };
+
+            var redAnimations = new Dictionary<string, Animation>()
+            {
+                {"FlapWings", new Animation(Content.Load<Texture2D>("RedBirdAnimationStrip"), 4) },
+
+            };
+
             var YelloBird = Content.Load<Texture2D>("YelloBird");
             var RedBird = Content.Load<Texture2D>("RedBird");
 
@@ -68,6 +80,19 @@ namespace App05
 
             _sprites = new List<Sprite>()
             {
+                new Sprite(yelloAnimations)
+                {
+                    Position = new Vector2 (100, 100),
+                    Input = new Input()
+                    {
+                        Up = Keys.T,
+                        Down = Keys.G,
+                        Left = Keys.F,
+                        Right = Keys.H,
+                    }
+                },
+
+
                 new Player(_graphics.GraphicsDevice,YelloBird)
                 {
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),

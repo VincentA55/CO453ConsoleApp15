@@ -56,7 +56,7 @@ namespace App05
         /// <summary>
         /// returns a "hitbox" of the sprite
         /// </summary>
-        public Rectangle Rectangle
+        public Rectangle Rectangle //STOPING THE GAME, TRY TO REMOVE RECTANGLES
         {
             get
             {
@@ -164,6 +164,8 @@ namespace App05
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
         {
             SetAnimations();
+
+            _animationManager.Update(gameTime);
         }
 
         public void Move()
@@ -213,13 +215,13 @@ namespace App05
                 _animationManager.Draw(spriteBatch);
             }
 
-           // if (ShowRectangle)
-           // {
-           //     if (_rectangleTexture != null)
-           //     {
-           //         spriteBatch.Draw(_rectangleTexture, Position, Color);
-           //     }
-           // }
+           if (ShowRectangle)
+           {
+               if (_rectangleTexture != null)
+               {
+                   spriteBatch.Draw(_rectangleTexture, Position, Color);
+               }
+           }
         }
 
         public virtual void OnCollide(Sprite sprite)
