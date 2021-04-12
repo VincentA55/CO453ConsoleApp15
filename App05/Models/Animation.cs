@@ -23,7 +23,13 @@ namespace App05.Models
 
         public Animation (Texture2D texture, int frameCount)
         {
+            Texture = texture;
 
+            FrameCount = frameCount;
+
+            IsLooping = true;
+
+            FrameSpeed = 0.2f;
         }
 
 
