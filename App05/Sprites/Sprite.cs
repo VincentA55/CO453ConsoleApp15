@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using App05.Models;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace App05
@@ -34,7 +36,7 @@ namespace App05
         public float Size = 1;
         public SpriteEffects SpriteEffect;
 
-        public Vector2 Position;
+       
         public Vector2 Direction;
 
         public Input Input;
@@ -78,6 +80,31 @@ namespace App05
                        Matrix.CreateRotationZ(_rotation) *
                        Matrix.CreateTranslation(new Vector3(Position, 0));
             }
+        }
+
+        //Animation stuff
+        protected AnimationManager _animationManager;
+        protected Dictionary<string, Animation> _animations;
+        protected Vector2 _position;
+
+        public Vector2 Position; // NOT EXACTLY SURE ABOUT THIS CODE SO TEMP COMMENTED OUT!
+     //   {
+       //     get { return _position; }
+         //   set
+          //  {
+          //      _position = value; // this is just incase we have a manager but no texture
+          //      if (_animationManager != null)
+          //      {
+          //          _animationManager.Position = _position;
+          //      }
+          //  }
+       // }
+
+        // extra constuctor
+        public Sprite(Dictionary<string, Animation> animations)
+        {
+            _animations = animations;
+            _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animayion
         }
 
 /// <summary>
@@ -136,7 +163,7 @@ namespace App05
 
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
         {
-          
+            SetAnimations();
         }
 
         public void Move()
@@ -177,15 +204,22 @@ namespace App05
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, null , Color , _rotation, Origin, Size, SpriteEffect, LayerDepth);
-
-            if (ShowRectangle)
+            if(_texture != null)
             {
-                if (_rectangleTexture != null)
-                {
-                    spriteBatch.Draw(_rectangleTexture, Position, Color);
-                }
+            spriteBatch.Draw(_texture, Position, null , Color , _rotation, Origin, Size, SpriteEffect, LayerDepth);
             }
+            else if (_animationManager != null)
+            {
+                _animationManager.Draw(spriteBatch);
+            }
+
+           // if (ShowRectangle)
+           // {
+           //     if (_rectangleTexture != null)
+           //     {
+           //         spriteBatch.Draw(_rectangleTexture, Position, Color);
+           //     }
+           // }
         }
 
         public virtual void OnCollide(Sprite sprite)
@@ -255,6 +289,14 @@ namespace App05
         public virtual void ScoreUp()
         {
 
+        }
+
+        protected virtual void SetAnimations()
+        {
+            if (LinearVelocity > 0)
+            {
+                _animationManager.Play(_animations["FlapWings"]);
+            }
         }
     }
 }
