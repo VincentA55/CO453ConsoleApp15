@@ -20,5 +20,24 @@ namespace WebApplication1.Models
 
         public DateTime Timestamp { get; set; }
 
+        
+        public Post()
+        {
+            Timestamp = DateTime.Now;
+            likes = 0;
+        }
+
+        public void Like()
+        {
+            likes++;
+        }
+
+        public void Unlike()
+        {
+            if (likes > 0)
+            {
+                likes--;
+            }
+        }
     }
 }
