@@ -56,11 +56,11 @@ namespace App05
         /// <summary>
         /// returns a "hitbox" of the sprite
         /// </summary>
-        public Rectangle Rectangle //STOPING THE GAME, TRY TO REMOVE RECTANGLES
+        public Rectangle Rectangle
         {
             get
             {
-                return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, 10, 10);
             }
             
         }
@@ -101,16 +101,25 @@ namespace App05
        // }
 
         // extra constuctor
-        public Sprite(Dictionary<string, Animation> animations)
+        public Sprite(Texture2D texture, Dictionary<string, Animation> animations)
         {
             _animations = animations;
             _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animayion
+
+            _texture = texture;
+            Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
+
+            Children = new List<Sprite>();
+
+            TextureData = new Color[_texture.Width * _texture.Height];
+            _texture.GetData(TextureData);
+
         }
 
-/// <summary>
-/// Constructor
-/// </summary>
-/// <param name="texture"></param>
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="texture"></param>
         public Sprite(Texture2D texture)
         {
             _texture = texture;
@@ -295,7 +304,7 @@ namespace App05
 
         protected virtual void SetAnimations()
         {
-            if (LinearVelocity > 0)
+            if (Keyboard.GetState().IsKeyDown(Input.Up))
             {
                 _animationManager.Play(_animations["FlapWings"]);
             }

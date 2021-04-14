@@ -80,8 +80,10 @@ namespace App05
 
             _sprites = new List<Sprite>()
             {
-                new Sprite(yelloAnimations)
+                new Player(_graphics.GraphicsDevice,YelloBird,yelloAnimations)
                 {
+                    Name = "Flapping Bird",
+                    LinearVelocity = 4f,
                     Position = new Vector2 (100, 100),
                     Input = new Input()
                     {

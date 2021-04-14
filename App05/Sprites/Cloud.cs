@@ -34,10 +34,7 @@ namespace App05.Sprites
             Position.X -= Speed;
 
             //if it hits the left of the window
-            if(Rectangle.Right <= 0)
-            {
-                IsRemoved = true;
-            }
+         
         }
 
         public override void OnCollide(Sprite sprite)

@@ -26,8 +26,15 @@ namespace App05.Models
         {
             LayerDepth = 0.5f;
 
-           
         }
+
+        public Player(GraphicsDevice graphicsDevice, Texture2D texture,Dictionary<string, Animation> animations)
+            : base(graphicsDevice, texture)
+        {
+            LayerDepth = 0.5f;
+
+        }
+
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {

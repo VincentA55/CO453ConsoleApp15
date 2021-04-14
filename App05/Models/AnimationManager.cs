@@ -33,7 +33,7 @@ namespace App05.Models
 
         public void Play(Animation animation)
         {
-            if (_animation == animation)
+            if (_animation != animation)
             {
                 return;
             }
