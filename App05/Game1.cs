@@ -83,6 +83,7 @@ namespace App05
                 new Player(_graphics.GraphicsDevice,YelloBird,yelloAnimations)
                 {
                     Name = "Flapping Bird",
+                    Color = Color.Green,
                     LinearVelocity = 4f,
                     Position = new Vector2 (100, 100),
                     Input = new Input()

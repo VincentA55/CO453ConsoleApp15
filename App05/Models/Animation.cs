@@ -13,7 +13,7 @@ namespace App05.Models
 
         public int FrameHeight { get { return Texture.Height; } }
 
-        public int FrameWidth { get { return Texture.Width; } }
+        public int FrameWidth { get { return Texture.Width / FrameCount; } }
         
         public float FrameSpeed { get; set; }
 

@@ -43,6 +43,10 @@ namespace App05.Models
                 throw new Exception("Please assign a value to Input");
             }
 
+            if(_animationManager != null)
+            {
+                SetAnimations();
+            }
          
             Move();
 

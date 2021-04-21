@@ -304,10 +304,7 @@ namespace App05
 
         protected virtual void SetAnimations()
         {
-            if (Keyboard.GetState().IsKeyDown(Input.Up))
-            {
                 _animationManager.Play(_animations["FlapWings"]);
-            }
         }
     }
 }
