@@ -67,11 +67,7 @@ namespace App05
                 {"FlapWings", new Animation(Content.Load<Texture2D>("YelloBirdAnimationStrip"), 4) },
             };
 
-            var redAnimations = new Dictionary<string, Animation>()
-            {
-                {"FlapWings", new Animation(Content.Load<Texture2D>("RedBirdAnimationStrip"), 4) },
-
-            };
+            var redAnimations = Content.Load<Texture2D>("RedBirdAnimationStrip");
 
             var YelloBird = Content.Load<Texture2D>("YelloBird");
             var RedBird = Content.Load<Texture2D>("RedBird");
@@ -130,8 +126,19 @@ namespace App05
                         Right = Keys.Right,
                         Shoot = Keys.NumPad0
                     }
-                }
-            };
+                },
+
+                    new AnimatedSprite(redAnimations, 4)
+                    {
+                        Position = new Vector2(300, 300),
+                        Input = new Input()
+                        {
+                            Up = Keys.A,
+                            Down = Keys.S
+                        }
+                    }
+                };
+            
 
             _font = Content.Load<SpriteFont>("Font");
 

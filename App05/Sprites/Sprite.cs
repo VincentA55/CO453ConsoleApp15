@@ -106,7 +106,7 @@ namespace App05
 
             Children = new List<Sprite>();
 
-            
+
         }
 
         /// <summary>
@@ -162,9 +162,7 @@ namespace App05
 
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            SetAnimations();
 
-            _animationManager.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -287,9 +285,5 @@ namespace App05
         {
         }
 
-        protected virtual void SetAnimations()
-        {
-            _animationManager.Play(_animations["FlapWings"]);
-        }
     }
 }
