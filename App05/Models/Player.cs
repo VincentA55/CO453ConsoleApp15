@@ -32,6 +32,8 @@ namespace App05.Models
 
             _texture = texture;
 
+
+
         }
 
 

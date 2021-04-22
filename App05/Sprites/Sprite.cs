@@ -102,10 +102,7 @@ namespace App05
         public Sprite(Dictionary<string, Animation> animations)
         {
             _animations = animations;
-            _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animayion
-
-            
-            
+            _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animation
 
             Children = new List<Sprite>();
 
