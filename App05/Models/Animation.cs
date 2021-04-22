@@ -29,7 +29,7 @@ namespace App05.Models
 
             IsLooping = true;
 
-            FrameSpeed = 0.2f;
+            FrameSpeed = 0.4f;
         }
 
 

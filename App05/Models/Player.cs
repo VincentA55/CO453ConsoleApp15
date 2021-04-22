@@ -32,8 +32,6 @@ namespace App05.Models
 
             _texture = texture;
 
-
-
         }
 
 
@@ -47,6 +45,7 @@ namespace App05.Models
           
          
             Move();
+            Gravity();
 
             Shoot();
             
@@ -69,7 +68,6 @@ namespace App05.Models
                 AddBullet();
             }
         }
-
         /// <summary>
         /// Creates a Bullet.Clone and adds it to an array
         /// </summary>
@@ -87,6 +85,45 @@ namespace App05.Models
 
             Children.Add(bullet);    
         }
+
+        public void Move()
+        {
+            if (Input == null)
+                return;
+
+            // the reason for no elseifs is so they can go diagonal
+
+            if (Keyboard.GetState().IsKeyDown(Input.Left))
+            {
+                Velocity.X += Speed;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Input.Right))
+            {
+                Velocity.X -= Speed;
+            }
+
+
+            if (Keyboard.GetState().IsKeyDown(Input.Up) && this.Position.Y < _texture.Height  * 5)
+            {
+                _rotation -= MathHelper.ToRadians(RotationVelocity);
+
+                Weight = -3;
+                Velocity.Y -= 10;
+                
+            }
+
+            if(_rotation < 0 || _rotation > 0 && Keyboard.GetState().IsKeyUp(Input.Up)) //TRYING TO HAVE BIRD AIM UP WHEN JUMPING
+            {
+                _rotation += MathHelper.ToRadians(RotationVelocity);
+            }
+
+            Position = Direction + Velocity;
+            
+
+
+        }
+
 
         public override void OnCollide(Sprite sprite)
         {

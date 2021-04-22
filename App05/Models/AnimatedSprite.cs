@@ -28,9 +28,9 @@ namespace App05.Models
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            SetAnimations();
+            
 
-            Move();
+            Move(); //POTENTIALLY HAVE UNIQUE MOVE METHOD!!
 
             AnimationManager.Update(gameTime);
         }
@@ -39,6 +39,8 @@ namespace App05.Models
         {
             AnimationManager.Play(Animation);
         }
+
+        
     }
 
 }

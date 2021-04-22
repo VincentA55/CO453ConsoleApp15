@@ -25,6 +25,10 @@ namespace App05
         /// </summary>
         public Vector2 Origin;
 
+
+        public float Weight = 5;
+        public Vector2 Velocity;
+
         public Color Color = Color.White;
         public String Name { get; set; }
 
@@ -188,7 +192,7 @@ namespace App05
         /// <summary>
         /// This movement is similar to tank controls
         /// </summary>
-        public void Move()
+        public void Move() 
         {
             if (Input == null)
                 return;
@@ -215,6 +219,15 @@ namespace App05
             if (Keyboard.GetState().IsKeyDown(Input.Down))
             {
                 Position -= Direction * LinearVelocity;
+            }
+        }
+
+        public void Gravity()
+        {
+            if (Position.Y < Game1.ScreenHeight - 50)
+            {
+                Velocity.Y += Weight;
+                Weight += (float)0.5;
             }
         }
 
