@@ -19,16 +19,18 @@ namespace App05.Models
 
        
         public Player(GraphicsDevice graphicsDevice, Texture2D texture)
-            : base( graphicsDevice ,texture)
+            : base(graphicsDevice, texture)
         {
             LayerDepth = 0.5f;
 
         }
 
-        public Player(GraphicsDevice graphicsDevice, Texture2D texture,Dictionary<string, Animation> animations)
-            : base(graphicsDevice, texture)
+        public Player(Texture2D texture, Dictionary<string, Animation> animations)
+            : base(animations)
         {
             LayerDepth = 0.5f;
+
+            _texture = texture;
 
         }
 
@@ -54,6 +56,9 @@ namespace App05.Models
             _position.Y = MathHelper.Clamp(_position.Y, 0 + _texture.Height / 2, Game1.ScreenHeight - _texture.Height / 2);
         }
 
+        /// <summary>
+        /// Shoots an egg by Cloning the Bullet and adding it to the children array
+        /// </summary>
         public void Shoot()
         {
             _previousKey = _currentKey;
@@ -66,6 +71,9 @@ namespace App05.Models
             }
         }
 
+        /// <summary>
+        /// Creates a Bullet.Clone and adds it to an array
+        /// </summary>
         private void AddBullet()
         {
             var bullet = Bullet.Clone() as Bullet;

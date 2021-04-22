@@ -80,7 +80,7 @@ namespace App05
 
             spriteBatch = new List<Sprite>()
             {
-                new Player(_graphics.GraphicsDevice,YelloBird,yelloAnimations)
+                new Player(YelloBird, yelloAnimations)
                 {
                     Name = "Flapping Bird",
                     Color = Color.Green,

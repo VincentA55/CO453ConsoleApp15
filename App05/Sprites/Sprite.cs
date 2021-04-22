@@ -99,18 +99,17 @@ namespace App05
         }
 
         // extra constuctor
-        public Sprite(Texture2D texture, Dictionary<string, Animation> animations)
+        public Sprite(Dictionary<string, Animation> animations)
         {
             _animations = animations;
             _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animayion
 
-            _texture = texture;
-            Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
+            
+            
 
             Children = new List<Sprite>();
 
-            TextureData = new Color[_texture.Width * _texture.Height];
-            _texture.GetData(TextureData);
+            
         }
 
         /// <summary>
