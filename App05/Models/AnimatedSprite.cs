@@ -18,6 +18,14 @@ namespace App05.Models
             AnimationManager = new AnimationManager(Animation);
         }
 
+        public AnimatedSprite(Dictionary<string, Animation> animations)
+            : base(animations)
+        {
+            Animation = animations["FlapWings"];
+
+            AnimationManager = new AnimationManager(Animation);
+        }
+
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             SetAnimations();

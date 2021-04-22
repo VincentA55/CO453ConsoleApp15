@@ -128,12 +128,12 @@ namespace App05
                     }
                 },
 
-                    new AnimatedSprite(redAnimations, 4)
+                    new AnimatedSprite(yelloAnimations)
                     {
                         Position = new Vector2(300, 300),
                         Input = new Input()
                         {
-                            Up = Keys.A,
+                            Up = Keys.W,
                             Down = Keys.S
                         }
                     }

@@ -40,9 +40,8 @@ namespace App05.Models
 
             _animation = animation;
 
-            _animation.CurrentFrame = 0;
 
-            _timer = 0;
+            _animation.CurrentFrame = 1;
         }
 
         public void Stop()
