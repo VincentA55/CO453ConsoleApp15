@@ -18,8 +18,8 @@ namespace App05.Sprites
             CollisionEnabled = false;
 
             //Spawn location for the clouds
-            Position.X = MathHelper.Clamp(Position.X,Game1.ScreenWidth +_texture.Width, Game1.ScreenWidth);
-            Position.Y = Game1.Random.Next(Game1.ScreenHeight);
+            _position.X = MathHelper.Clamp(_position.X,Game1.ScreenWidth +_texture.Width, Game1.ScreenWidth);
+            _position.Y = Game1.Random.Next(Game1.ScreenHeight);
             Speed = Game1.Random.Next(1, 5);
 
             if (LayerDepth < 0.5)
@@ -31,7 +31,7 @@ namespace App05.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            Position.X -= Speed;
+            _position.X -= Speed;
 
             //if it hits the left of the window
          

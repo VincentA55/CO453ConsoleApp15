@@ -5,11 +5,10 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace App05
 {
-   public class Sprite : ICloneable
+    public class Sprite : ICloneable
     {
         /// <summary>
         /// the actual sprites texture
@@ -20,6 +19,7 @@ namespace App05
         /// the angle of roation
         /// </summary>
         public float _rotation;
+
         /// <summary>
         /// the point from which it rotates
         /// </summary>
@@ -36,7 +36,6 @@ namespace App05
         public float Size = 1;
         public SpriteEffects SpriteEffect;
 
-       
         public Vector2 Direction;
 
         public Input Input;
@@ -50,9 +49,8 @@ namespace App05
         public float LifeSpan = 0f;
         public bool IsRemoved = false;
 
-
-
         protected Texture2D _rectangleTexture;
+
         /// <summary>
         /// returns a "hitbox" of the sprite
         /// </summary>
@@ -62,16 +60,15 @@ namespace App05
             {
                 return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, 10, 10);
             }
-            
         }
 
         public bool ShowRectangle { get; set; }
-
 
         //Hit detection stuff
         public bool CollisionEnabled = true;
 
         public readonly Color[] TextureData;
+
         public Matrix Transform
         {
             get
@@ -84,21 +81,22 @@ namespace App05
 
         //Animation stuff
         protected AnimationManager _animationManager;
+
         protected Dictionary<string, Animation> _animations;
         protected Vector2 _position;
 
-        public Vector2 Position; // NOT EXACTLY SURE ABOUT THIS CODE SO TEMP COMMENTED OUT!
-     //   {
-       //     get { return _position; }
-         //   set
-          //  {
-          //      _position = value; // this is just incase we have a manager but no texture
-          //      if (_animationManager != null)
-          //      {
-          //          _animationManager.Position = _position;
-          //      }
-          //  }
-       // }
+        public Vector2 Position // NOT EXACTLY SURE ABOUT THIS CODE SO TEMP COMMENTED OUT!
+        {
+            get { return _position; }
+            set
+            {
+                _position = value; // this is just incase we have a manager but no texture
+                if (_animationManager != null)
+                {
+                    _animationManager.Position = _position;
+                }
+            }
+        }
 
         // extra constuctor
         public Sprite(Texture2D texture, Dictionary<string, Animation> animations)
@@ -113,7 +111,6 @@ namespace App05
 
             TextureData = new Color[_texture.Width * _texture.Height];
             _texture.GetData(TextureData);
-
         }
 
         /// <summary>
@@ -124,7 +121,6 @@ namespace App05
         {
             _texture = texture;
             Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
-            
 
             ShowRectangle = false;
 
@@ -136,7 +132,7 @@ namespace App05
 
         //rectangle related
         public Sprite(GraphicsDevice graphics, Texture2D texture)
-            :this(texture)
+            : this(texture)
         {
             SetRectangleTexture(graphics, texture);
         }
@@ -153,7 +149,7 @@ namespace App05
                     if (x == 0 || // left side
                         y == 0 || //top side
                         x == texture.Width - 1 || // right side
-                        y == texture.Height -1)// bottom side
+                        y == texture.Height - 1)// bottom side
                     {
                         colours.Add(new Color(255, 255, 255, 255));
                     }
@@ -161,13 +157,11 @@ namespace App05
                     {
                         colours.Add(new Color(0, 0, 0, 0));
                     }
-
                 }
             }
 
             _rectangleTexture = new Texture2D(graphics, texture.Width, texture.Height);
             _rectangleTexture.SetData<Color>(colours.ToArray());
-
         }
 
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
@@ -177,6 +171,29 @@ namespace App05
             _animationManager.Update(gameTime);
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (_animationManager != null)
+            {
+                _animationManager.Draw(spriteBatch);
+            }
+            else if (_texture != null)
+            {
+                spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, Size, SpriteEffect, LayerDepth);
+            }
+
+            if (ShowRectangle)
+            {
+                if (_rectangleTexture != null)
+                {
+                    spriteBatch.Draw(_rectangleTexture, Position, Color);
+                }
+            }
+        }
+
+        /// <summary>
+        /// This movement is similar to tank controls
+        /// </summary>
         public void Move()
         {
             if (Input == null)
@@ -187,16 +204,14 @@ namespace App05
             if (Keyboard.GetState().IsKeyDown(Input.Left))
             {
                 _rotation -= MathHelper.ToRadians(RotationVelocity);
-                
             }
 
             if (Keyboard.GetState().IsKeyDown(Input.Right))
             {
                 _rotation += MathHelper.ToRadians(RotationVelocity);
-
             }
-           
-          Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
+
+            Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
 
             if (Keyboard.GetState().IsKeyDown(Input.Up))
             {
@@ -205,37 +220,12 @@ namespace App05
 
             if (Keyboard.GetState().IsKeyDown(Input.Down))
             {
-                Position -=  Direction * LinearVelocity;
+                Position -= Direction * LinearVelocity;
             }
-
-            
-
-        }
-
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if(_texture != null)
-            {
-            spriteBatch.Draw(_texture, Position, null , Color , _rotation, Origin, Size, SpriteEffect, LayerDepth);
-            }
-            else if (_animationManager != null)
-            {
-                _animationManager.Draw(spriteBatch);
-            }
-
-           if (ShowRectangle)
-           {
-               if (_rectangleTexture != null)
-               {
-                   spriteBatch.Draw(_rectangleTexture, Position, Color);
-               }
-           }
         }
 
         public virtual void OnCollide(Sprite sprite)
         {
-
         }
 
         public bool Intersects(Sprite sprite)
@@ -299,12 +289,11 @@ namespace App05
 
         public virtual void ScoreUp()
         {
-
         }
 
         protected virtual void SetAnimations()
         {
-                _animationManager.Play(_animations["FlapWings"]);
+            _animationManager.Play(_animations["FlapWings"]);
         }
     }
 }

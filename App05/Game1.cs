@@ -13,7 +13,7 @@ namespace App05
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private List<Sprite> _sprites;
+        private List<Sprite> spriteBatch;
 
         public List<Player> _players;
 
@@ -78,7 +78,7 @@ namespace App05
 
             var Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet"));
 
-            _sprites = new List<Sprite>()
+            spriteBatch = new List<Sprite>()
             {
                 new Player(_graphics.GraphicsDevice,YelloBird,yelloAnimations)
                 {
@@ -142,8 +142,8 @@ namespace App05
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            foreach (var sprite in _sprites.ToArray())
-                sprite.Update(gameTime, _sprites);
+            foreach (var sprite in spriteBatch.ToArray())
+                sprite.Update(gameTime, spriteBatch);
 
             SpawnCloud();
 
@@ -154,48 +154,21 @@ namespace App05
 
         private void PostUpdate()
         {
-            foreach (var spriteA in _sprites)
-            {
-                if (spriteA.CollisionEnabled)
-                {
-                    foreach (var spriteB in _sprites)
-                    {
-                        if (spriteB.CollisionEnabled)
-                        {
-                            if (spriteA == spriteB)
-                            {
-                                continue;
-                            }
-
-                            if (spriteA.Intersects(spriteB) && spriteB.Parent != spriteA && spriteA.Parent != spriteB) // HIT DETECTION NOT WORKING PROPERLY. SOMETGHNG TO DO WITH PARENT / CHILD
-                            {
-                                spriteB.OnCollide(spriteA);
-
-                                if(spriteA is Bullet && !(spriteB is Bullet)) 
-                                {
-                                    spriteA.Parent.ScoreUp();
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
-            int count = _sprites.Count;
+         
+            int count = spriteBatch.Count;
             for (int i = 0; i < count; i++)
             {
-                foreach (var child in _sprites[i].Children)
-                    _sprites.Add(child);
+                foreach (var child in spriteBatch[i].Children)
+                    spriteBatch.Add(child);
 
-                _sprites[i].Children.Clear();
+                spriteBatch[i].Children.Clear();
             }
 
-            for (int i = 0; i < _sprites.Count; i++)
+            for (int i = 0; i < spriteBatch.Count; i++)
             {
-                if (_sprites[i].IsRemoved)
+                if (spriteBatch[i].IsRemoved)
                 {
-                    _sprites.RemoveAt(i);
+                    spriteBatch.RemoveAt(i);
                     i--;
                 }
             }
@@ -209,22 +182,12 @@ namespace App05
 
             _spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
-            foreach (var sprite in _sprites)
+            foreach (var sprite in spriteBatch)
             {
                 sprite.Draw(_spriteBatch);
             }
 
-            var fontY = 10;
-            var i = 0;
-            foreach (var sprite in _sprites) // displays the players score
-            {
-                if (sprite is Player)
-                {
-                    string Name = sprite.Name;
-
-                    _spriteBatch.DrawString(_font,( Name + string.Format(" : {1}", ++i, ((Player)sprite).Score)), new Vector2(10, fontY += 20), Color.Black);
-                }
-            }
+            DisplayScore();
 
             _spriteBatch.End();
 
@@ -240,8 +203,24 @@ namespace App05
             if (_timer > 3f)
             {
                 _timer = 0;
-                _sprites.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
+                spriteBatch.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
             }
+        }
+
+        public void DisplayScore()
+        {
+            var fontY = 10;
+            var i = 0;
+            foreach (var sprite in this.spriteBatch) // displays the players score
+            {
+                if (sprite is Player)
+                {
+                    string Name = sprite.Name;
+
+                    _spriteBatch.DrawString(_font, (Name + string.Format(" : {1}", ++i, ((Player)sprite).Score)), new Vector2(10, fontY += 20), Color.Black);
+                }
+            }
+
         }
     }
 }
