@@ -51,6 +51,7 @@ namespace App05.Models
             Shoot();
             
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
+            // the 100 locks them a little along the screen
             _position.X = MathHelper.Clamp(_position.X, 100 + _texture.Width / 2, Game1.ScreenWidth - _texture.Width / 2);
             _position.Y = MathHelper.Clamp(_position.Y, 0 + _texture.Height / 2, Game1.ScreenHeight - _texture.Height / 2);
         }

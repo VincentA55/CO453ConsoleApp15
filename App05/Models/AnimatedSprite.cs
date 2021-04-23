@@ -32,8 +32,9 @@ namespace App05.Models
 
             Move(); //POTENTIALLY HAVE UNIQUE MOVE METHOD!!
 
-            _position.X = MathHelper.Clamp(_position.X, 0 + Animation.CurrentFrame / 2, Game1.ScreenWidth + Animation.CurrentFrame * 2);
-            _position.Y = MathHelper.Clamp(_position.Y, 0 + Animation.CurrentFrame / 2, Game1.ScreenHeight - Animation.CurrentFrame);
+            //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
+            _position.X = MathHelper.Clamp(_position.X, Animation.CurrentFrame / 2, Game1.ScreenWidth - Animation.Texture.Width / 4);
+            _position.Y = MathHelper.Clamp(_position.Y, Animation.CurrentFrame / 2, Game1.ScreenHeight - Animation.Texture.Height);
 
 
             AnimationManager.Update(gameTime);
