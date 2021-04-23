@@ -197,29 +197,37 @@ namespace App05
             if (Input == null)
                 return;
 
-            // the reason for no elseifs is so they can go diagonal
+          
 
             if (Keyboard.GetState().IsKeyDown(Input.Left))
             {
-                _rotation -= MathHelper.ToRadians(RotationVelocity);
+                _position.X -= LinearVelocity;
+                Position += Direction * LinearVelocity;
             }
 
             if (Keyboard.GetState().IsKeyDown(Input.Right))
             {
-                _rotation += MathHelper.ToRadians(RotationVelocity);
+               _position.X += LinearVelocity;
+                Position -= Direction * LinearVelocity;
             }
 
-            Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
+        
 
             if (Keyboard.GetState().IsKeyDown(Input.Up))
             {
+                _position.Y -= LinearVelocity;
                 Position += Direction * LinearVelocity;
             }
 
             if (Keyboard.GetState().IsKeyDown(Input.Down))
             {
-                Position -= Direction * LinearVelocity;
+                _position.Y += LinearVelocity;
+                Position += Direction * LinearVelocity;
             }
+
+            
+
+
         }
 
         public void Gravity()

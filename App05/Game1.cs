@@ -118,8 +118,10 @@ namespace App05
                         Position = new Vector2(300, 300),
                         Input = new Input()
                         {
-                            Up = Keys.W,
-                            Down = Keys.S
+                            Up = Keys.NumPad8,
+                            Down = Keys.NumPad5,
+                            Left = Keys.NumPad4,
+                            Right = Keys.NumPad6
                         }
                     }
                 };

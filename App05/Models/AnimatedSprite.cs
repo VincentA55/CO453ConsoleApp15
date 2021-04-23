@@ -32,6 +32,10 @@ namespace App05.Models
 
             Move(); //POTENTIALLY HAVE UNIQUE MOVE METHOD!!
 
+            _position.X = MathHelper.Clamp(_position.X, 0 + Animation.CurrentFrame / 2, Game1.ScreenWidth + Animation.CurrentFrame * 2);
+            _position.Y = MathHelper.Clamp(_position.Y, 0 + Animation.CurrentFrame / 2, Game1.ScreenHeight - Animation.CurrentFrame);
+
+
             AnimationManager.Update(gameTime);
         }
 
