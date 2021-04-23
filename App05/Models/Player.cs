@@ -93,16 +93,19 @@ namespace App05.Models
 
             // the reason for no elseifs is so they can go diagonal
 
+
             if (Keyboard.GetState().IsKeyDown(Input.Left))
             {
-                Velocity.X += Speed;
+                _rotation -= MathHelper.ToRadians(RotationVelocity);
             }
 
             if (Keyboard.GetState().IsKeyDown(Input.Right))
             {
-                Velocity.X -= Speed;
+                _rotation += MathHelper.ToRadians(RotationVelocity);
             }
 
+
+            Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
 
             if (Keyboard.GetState().IsKeyDown(Input.Up) && this.Position.Y < _texture.Height  * 5)
             {
@@ -113,9 +116,9 @@ namespace App05.Models
                 
             }
 
-            if(_rotation < 0 || _rotation > 0 && Keyboard.GetState().IsKeyUp(Input.Up)) //TRYING TO HAVE BIRD AIM UP WHEN JUMPING
+            if(_rotation != 0 && Keyboard.GetState().IsKeyUp(Input.Up)) //TRYING TO HAVE BIRD AIM UP WHEN JUMPING
             {
-                _rotation += MathHelper.ToRadians(RotationVelocity);
+                _rotation -= MathHelper.ToRadians(_rotation * 2);
             }
 
             Position = Direction + Velocity;

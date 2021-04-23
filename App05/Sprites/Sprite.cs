@@ -32,7 +32,7 @@ namespace App05
         public Color Color = Color.White;
         public String Name { get; set; }
 
-        public float RotationVelocity = 4f;
+        public float RotationVelocity = 2f;
         public float LinearVelocity = 4f;
         public float Speed;
 

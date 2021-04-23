@@ -64,7 +64,7 @@ namespace App05
         {
             var yelloAnimations = new Dictionary<string, Animation>()
             {
-                {"FlapWings", new Animation(Content.Load<Texture2D>("YelloBirdAnimationStrip"), 4) },
+                {"FlapWings", new Animation(Content.Load<Texture2D>("BigBirdAnimationStrip"), 4) },
             };
 
             var redAnimations = Content.Load<Texture2D>("RedBirdAnimationStrip");
@@ -76,23 +76,8 @@ namespace App05
 
             spriteBatch = new List<Sprite>()
             {
-                new Player(YelloBird, yelloAnimations)
-                {
-                    Name = "Flapping Bird",
-                    Color = Color.Green,
-                    LinearVelocity = 4f,
-                    Position = new Vector2 (100, 100),
-                    Input = new Input()
-                    {
-                        Up = Keys.T,
-                        Down = Keys.G,
-                        Left = Keys.F,
-                        Right = Keys.H,
-                    }
-                },
-
-
-                new Player(_graphics.GraphicsDevice,YelloBird)
+                
+               new Player(_graphics.GraphicsDevice,YelloBird)
                 {
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
                     Name = "YelloBird",
