@@ -198,7 +198,6 @@ namespace App05
                 return;
 
           
-
             if (Keyboard.GetState().IsKeyDown(Input.Left))
             {
                 _position.X -= LinearVelocity;
@@ -211,8 +210,7 @@ namespace App05
                 Position -= Direction * LinearVelocity;
             }
 
-        
-
+    
             if (Keyboard.GetState().IsKeyDown(Input.Up))
             {
                 _position.Y -= LinearVelocity;
@@ -225,14 +223,11 @@ namespace App05
                 Position += Direction * LinearVelocity;
             }
 
-            
-
-
         }
 
         public void Gravity()
         {
-            if (Position.Y < Game1.ScreenHeight - 50)
+            if (Position.Y < Game1.ScreenHeight -50)
             {
                 Velocity.Y += Weight;
                 Weight += (float)0.5;
