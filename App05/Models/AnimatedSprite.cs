@@ -51,26 +51,38 @@ namespace App05.Models
         public void RandomMove(GameTime gameTime) //DOENS WORK AT THE MOMENT!!!!
         {
             float elapsedTime = 0; //Time elapsed since the last check
-            int direction = 1; //Default travel direction
+            int direction = 2; //Default travel direction
 
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (elapsedTime > 1)
+            if (elapsedTime < 8)
             { //Get a new random direction every 1 second
-                elapsedTime -= 1; //Subtract the 1 second we've already checked
-                direction = Game1.Random.Next(0, 3); //Set the direction to a random value (0 or 1)
+                
+                direction = Game1.Random.Next(1, 4); //Set the direction to a random value 
             }
 
-            Direction = new Vector2((float)Math.Cos(direction), (float)Math.Sin(direction));
-
-            if (direction == 0)
+            if (direction == 1)
             {
-                
+                _position.X -= LinearVelocity;
                 Position += Direction * LinearVelocity;
             }
-            else if (direction > 1)
+
+            else if (direction == 2)
             {
-                
+                _position.X += LinearVelocity;
                 Position -= Direction * LinearVelocity;
+            }
+
+
+            else if (direction == 3)
+            {
+                _position.Y -= LinearVelocity;
+                Position += Direction * LinearVelocity;
+            }
+
+           else if (direction == 4)
+            {
+                _position.Y += LinearVelocity;
+                Position += Direction * LinearVelocity;
             }
         }
         
