@@ -53,8 +53,8 @@ namespace App05.Models
             float elapsedTime = 0; //Time elapsed since the last check
             int direction = 2; //Default travel direction
 
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (elapsedTime < 8)
+            elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (elapsedTime < 2) // THIS PART CAUSES IT TO JITTER ABOUT!!!
             { //Get a new random direction every 1 second
                 
                 direction = Game1.Random.Next(1, 4); //Set the direction to a random value 
@@ -65,20 +65,16 @@ namespace App05.Models
                 _position.X -= LinearVelocity;
                 Position += Direction * LinearVelocity;
             }
-
             else if (direction == 2)
             {
                 _position.X += LinearVelocity;
                 Position -= Direction * LinearVelocity;
             }
-
-
             else if (direction == 3)
             {
                 _position.Y -= LinearVelocity;
                 Position += Direction * LinearVelocity;
             }
-
            else if (direction == 4)
             {
                 _position.Y += LinearVelocity;
