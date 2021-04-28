@@ -54,7 +54,7 @@ namespace App05.Models
             int direction = 2; //Default travel direction
 
             elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (elapsedTime < 2) // THIS PART CAUSES IT TO JITTER ABOUT!!!
+            if (elapsedTime < 2) // 
             { //Get a new random direction every 1 second
                 
                 direction = Game1.Random.Next(1, 4); //Set the direction to a random value 

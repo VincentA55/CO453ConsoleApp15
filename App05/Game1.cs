@@ -151,6 +151,8 @@ namespace App05
 
             SpawnCloud();
 
+            SpawnPipe();
+
             PostUpdate();
 
             base.Update(gameTime);
@@ -208,6 +210,15 @@ namespace App05
             {
                 _timer = 0;
                 spriteBatch.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
+            }
+        }
+
+        public void SpawnPipe()
+        {
+            if (_timer > 3f)
+            {
+                _timer = 0;
+                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("BasicPipe")));
             }
         }
 

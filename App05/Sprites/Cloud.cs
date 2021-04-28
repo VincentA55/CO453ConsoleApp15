@@ -39,7 +39,7 @@ namespace App05.Sprites
 
         public override void OnCollide(Sprite sprite)
         {
-            return;
+            
         }
     }
 }
