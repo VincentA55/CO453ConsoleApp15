@@ -10,6 +10,7 @@ namespace App05.Models
         private Animation Animation;
 
         public AnimationManager AnimationManager;
+        private float _timer;
 
         public AnimatedSprite(Texture2D texture, int FrameCount)
            : base(texture)
@@ -29,9 +30,9 @@ namespace App05.Models
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            
+            _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            RandomMove(gameTime); //POTENTIALLY HAVE UNIQUE MOVE METHOD!!
+            RandomMove(gameTime); 
 
            
 
@@ -50,37 +51,46 @@ namespace App05.Models
 
         public void RandomMove(GameTime gameTime) //DOENS WORK AT THE MOMENT!!!!
         {
-            float elapsedTime = 0; //Time elapsed since the last check
-            int direction = 2; //Default travel direction
+            
+            int direction = 1; //Default travel direction
 
-            elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (elapsedTime < 2) // 
-            { //Get a new random direction every 1 second
-                
-                direction = Game1.Random.Next(1, 4); //Set the direction to a random value 
+            
+            if (_timer > 2f) 
+            {    
+                direction++; //Set the direction to a random value 
+
+                _timer -= _timer;
             }
+          
 
             if (direction == 1)
             {
                 _position.X -= LinearVelocity;
                 Position += Direction * LinearVelocity;
+                
             }
             else if (direction == 2)
             {
+
                 _position.X += LinearVelocity;
                 Position -= Direction * LinearVelocity;
+              
             }
             else if (direction == 3)
             {
                 _position.Y -= LinearVelocity;
                 Position += Direction * LinearVelocity;
+                
             }
            else if (direction == 4)
             {
                 _position.Y += LinearVelocity;
                 Position += Direction * LinearVelocity;
+                
             }
+
         }
+        
         
     }
 

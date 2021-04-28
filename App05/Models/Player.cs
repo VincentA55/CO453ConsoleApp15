@@ -114,7 +114,7 @@ namespace App05.Models
                 _rotation -= MathHelper.ToRadians(RotationVelocity);
 
                 Weight = -3;
-                Velocity.Y -= 10;
+                Velocity.Y -= 15; // jump speed
                 
             }
 

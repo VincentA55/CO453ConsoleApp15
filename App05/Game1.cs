@@ -149,9 +149,9 @@ namespace App05
             foreach (var sprite in spriteBatch.ToArray())
                 sprite.Update(gameTime, spriteBatch);
 
-            SpawnCloud(gameTime);
+            SpawnPipe(gameTime); //CANT HAVE PIPES AND CLOUDS AT SAME TIME!!!
+          //  SpawnCloud(gameTime);
 
-            SpawnPipe(gameTime);
 
             PostUpdate();
 
@@ -203,14 +203,14 @@ namespace App05
         /// <summary>
         /// Spawns clouds every 3 seconds
         /// </summary>
-        public void SpawnCloud(GameTime gameTime)
+        public void SpawnCloud()
         {
           
             // timer for the clouds
-            if (SpawnTimer(gameTime, 3))
+            if (SpawnTimer(3))
             {
-                
-               // spriteBatch.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
+                _timer = 0; // RESETING THE TIMER IS WHAT MAKES IT WORK AND NOT WORK!!!
+               spriteBatch.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
             }
         }
 
@@ -218,9 +218,9 @@ namespace App05
         {
             
             // timer for the pipes
-            if (SpawnTimer(gameTime, 5))
+            if (SpawnTimer(4))
             {
-                
+                _timer = 0;
                 spriteBatch.Add(new Pipe(Content.Load<Texture2D>("BasicPipe")));
             }
         }
@@ -231,11 +231,11 @@ namespace App05
         /// <param name="gameTime"></param>
         /// <param name="timer"></param>
         /// <returns></returns>
-        public bool SpawnTimer(GameTime gameTime, int timer)
+        public bool SpawnTimer(int timer)
         {
-            int Stimer = (int)gameTime.ElapsedGameTime.TotalSeconds;
+            float Stimer = _timer;
 
-            if ((Stimer % timer) == 0)
+            if (Stimer > timer)
             {
                 Stimer = 0;
                 return true;

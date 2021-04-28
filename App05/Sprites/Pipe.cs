@@ -8,6 +8,11 @@ namespace App05.Sprites
 {
     public class Pipe : Sprite
     {
+
+        int Length = 1;
+
+        private RenderTarget2D TempTexture;
+
         public Pipe(Texture2D texture)
             : base(texture)
         {
@@ -19,7 +24,7 @@ namespace App05.Sprites
             //Spawn location for the pipes
             _position.X = MathHelper.Clamp(_position.X, Game1.ScreenWidth + _texture.Width, Game1.ScreenWidth);
             _position.Y = MathHelper.Clamp(_position.Y,  Game1.ScreenHeight - _texture.Height / 2, _texture.Height / 2);
-            Speed = 3;
+            Speed = 5;
 
         }
 
@@ -29,6 +34,11 @@ namespace App05.Sprites
 
             //if it hits the left of the window
 
+        }
+
+        public void SetLenght()
+        {
+    
         }
     }
 }
