@@ -24,7 +24,10 @@ namespace App05
 
         public static Random Random;
 
-        private float _timer;
+        public float _timer;
+
+        bool HasSpawned = false;
+        double WhenSpawned = 0;
 
         private bool _hasStarted = false;
 
@@ -132,7 +135,9 @@ namespace App05
 
                     new AnimatedSprite(PowerUp)
                     {
-                        Position = new Vector2(400, 300)
+                        
+                        Position = new Vector2(400, 300),
+                       
                     }
                 };
             
@@ -149,8 +154,8 @@ namespace App05
             foreach (var sprite in spriteBatch.ToArray())
                 sprite.Update(gameTime, spriteBatch);
 
-            SpawnPipe(gameTime); //CANT HAVE PIPES AND CLOUDS AT SAME TIME!!!
-          //  SpawnCloud(gameTime);
+           SpawnPipe(); //CANT HAVE PIPES AND CLOUDS AT SAME TIME!!!
+            SpawnCloud();
 
 
             PostUpdate();
@@ -209,18 +214,18 @@ namespace App05
             // timer for the clouds
             if (SpawnTimer(3))
             {
-                _timer = 0; // RESETING THE TIMER IS WHAT MAKES IT WORK AND NOT WORK!!!
+                // RESETING THE TIMER IS WHAT MAKES IT WORK AND NOT WORK!!!
                spriteBatch.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
             }
         }
 
-        public void SpawnPipe(GameTime gameTime)
+        public void SpawnPipe()
         {
             
             // timer for the pipes
-            if (SpawnTimer(4))
+            if (SpawnTimer(1))
             {
-                _timer = 0;
+                
                 spriteBatch.Add(new Pipe(Content.Load<Texture2D>("BasicPipe")));
             }
         }
@@ -233,15 +238,22 @@ namespace App05
         /// <returns></returns>
         public bool SpawnTimer(int timer)
         {
-            float Stimer = _timer;
+            int Stimer = (int)_timer;
 
-            if (Stimer > timer)
+            if ((Stimer % timer) == 0 && !HasSpawned)
             {
-                Stimer = 0;
+                HasSpawned = true;
+                WhenSpawned = Stimer;
                 return true;
+
             }
             else
             {
+                if (Stimer >= (WhenSpawned + timer))
+                {
+                    HasSpawned = false;
+                }
+
                 return false;
             }
         }
@@ -257,8 +269,13 @@ namespace App05
                     string Name = sprite.Name;
 
                     _spriteBatch.DrawString(_font, (Name + string.Format(" : {1}", ++i, ((Player)sprite).Score)), new Vector2(10, fontY += 20), Color.Black);
+
                 }
             }
+                    _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, _timer)), new Vector2(10, fontY += 20), Color.Black); // game timer
+
+                    _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
+                    _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
 
         }
     }

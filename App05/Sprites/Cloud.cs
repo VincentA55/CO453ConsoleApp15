@@ -33,7 +33,7 @@ namespace App05.Sprites
         {
             _position.X -= Speed;
 
-            //if it hits the left of the window
+        
 
 
          
