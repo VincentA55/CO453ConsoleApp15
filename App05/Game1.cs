@@ -72,7 +72,7 @@ namespace App05
 
             var PowerUp = new Dictionary<string, Animation>()
             {
-                {"FlapWings", new Animation(Content.Load<Texture2D>("PowerUpAnimated"),9) }
+                {"FlapWings", new Animation(Content.Load<Texture2D>("BigPowerUpAnimated3"),9) }
             };
 
             var redAnimations = Content.Load<Texture2D>("RedBirdAnimationStrip");
@@ -226,7 +226,7 @@ namespace App05
             if (SpawnTimer(1))
             {
                 
-                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("BasicPipe")));
+                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipe")));
             }
         }
 

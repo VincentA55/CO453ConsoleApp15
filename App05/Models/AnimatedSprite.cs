@@ -10,7 +10,10 @@ namespace App05.Models
         private Animation Animation;
 
         public AnimationManager AnimationManager;
+
         private float _timer;
+        int direction = 1; //Default travel direction
+
 
         public AnimatedSprite(Texture2D texture, int FrameCount)
            : base(texture)
@@ -51,15 +54,14 @@ namespace App05.Models
 
         public void RandomMove(GameTime gameTime) //DOENS WORK AT THE MOMENT!!!!
         {
-            
-            int direction = 1; //Default travel direction
 
+            int MoveTimer = (int)_timer;
             
-            if (_timer > 2f) 
+            if ((MoveTimer % 1) == 0) 
             {    
-                direction++; //Set the direction to a random value 
+                direction = Game1.Random.Next(0,4); //Set the direction to a random value 
 
-                _timer -= _timer;
+                
             }
           
 

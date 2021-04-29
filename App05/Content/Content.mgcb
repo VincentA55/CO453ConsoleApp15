@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:BigBirdAnimationStrip.png
 
+#begin BigPowerUpAnimated3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BigPowerUpAnimated3.png
+
 #begin BirdBullet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -68,7 +80,7 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
-#begin PipeBody.png
+#begin LongPipe.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -78,31 +90,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PipeBody.png
-
-#begin PipeHead.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:PipeHead.png
-
-#begin PowerUpAnimated.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:PowerUpAnimated.png
+/build:LongPipe.png
 
 #begin RedBird.png
 /importer:TextureImporter
