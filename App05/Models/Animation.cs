@@ -21,7 +21,7 @@ namespace App05.Models
 
         public Texture2D Texture { get; private set; }
 
-        public Animation (Texture2D texture, int frameCount)
+        public Animation (Texture2D texture, int frameCount, float frameSpeed)
         {
             Texture = texture;
 
@@ -29,7 +29,7 @@ namespace App05.Models
 
             IsLooping = true;
 
-            FrameSpeed = 0.2f;
+            FrameSpeed = frameSpeed;
         }
 
 

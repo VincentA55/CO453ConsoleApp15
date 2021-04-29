@@ -67,12 +67,12 @@ namespace App05
         {
             var yelloAnimations = new Dictionary<string, Animation>()
             {
-                {"FlapWings", new Animation(Content.Load<Texture2D>("BigBirdAnimationStrip"), 4) },
+                {"FlapWings", new Animation(Content.Load<Texture2D>("BigBirdAnimationStrip"), 4, 0.3f) },
             };
 
             var PowerUp = new Dictionary<string, Animation>()
             {
-                {"FlapWings", new Animation(Content.Load<Texture2D>("BigPowerUpAnimated3"),9) }
+                {"FlapWings", new Animation(Content.Load<Texture2D>("BigPowerUpAnimated3"),9, 0.05f) }
             };
 
             var redAnimations = Content.Load<Texture2D>("RedBirdAnimationStrip");
