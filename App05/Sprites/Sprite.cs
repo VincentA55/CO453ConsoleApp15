@@ -199,12 +199,11 @@ namespace App05
         /// <summary>
         /// This movement is similar to tank controls
         /// </summary>
-        public void Move() 
+        public void Move()
         {
             if (Input == null)
                 return;
 
-          
             if (Keyboard.GetState().IsKeyDown(Input.Left))
             {
                 _position.X -= LinearVelocity;
@@ -213,39 +212,52 @@ namespace App05
 
             if (Keyboard.GetState().IsKeyDown(Input.Right))
             {
-               _position.X += LinearVelocity;
+                _position.X += LinearVelocity;
                 Position -= Direction * LinearVelocity;
             }
 
-    
+
+           // Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
+
             if (Keyboard.GetState().IsKeyDown(Input.Up))
             {
-                _position.Y -= LinearVelocity;
-                Position += Direction * LinearVelocity;
+                _rotation -= MathHelper.ToRadians(RotationVelocity);
+
+                Weight = -3;
+                Velocity.Y -= 15; // jump speed
+
+            }
+
+            if (_rotation != 0 && Keyboard.GetState().IsKeyUp(Input.Up)) //TRYING TO HAVE BIRD AIM UP WHEN JUMPING
+            {
+                _rotation -= MathHelper.ToRadians(_rotation * 2);
             }
 
             if (Keyboard.GetState().IsKeyDown(Input.Down))
             {
-                _position.Y += LinearVelocity;
-                Position += Direction * LinearVelocity;
+                CircleMove();
             }
 
+
+
         }
-        
+
         /// <summary>
         /// testing out cirular movement
         /// </summary>
         public void CircleMove()
         {
-            angle++;
+            _rotation += MathHelper.ToRadians(100);
 
-            _position.X = (float)(originX + Math.Cos(angle) * radius);
-            _position.Y = (float)(originY + Math.Sin(angle) * radius);
+            Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
+
+
+            Position -= Direction * LinearVelocity;
         }
 
         public void Gravity()
         {
-            if (Position.Y < Game1.ScreenHeight -50)
+            if (Position.Y < Game1.ScreenHeight)
             {
                 Velocity.Y += Weight;
                 Weight += (float)0.5;

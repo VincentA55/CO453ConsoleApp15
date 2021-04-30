@@ -19,6 +19,8 @@ namespace App05.Models
             Animation = new Animation(texture, FrameCount, frameSpeed);
 
             AnimationManager = new AnimationManager(Animation);
+
+            _texture = Animation.Texture;
         }
 
         public AnimatedSprite(Dictionary<string, Animation> animations)
@@ -27,17 +29,22 @@ namespace App05.Models
             Animation = animations["FlapWings"];
 
             AnimationManager = new AnimationManager(Animation);
+
+            _texture = Animation.Texture;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            RandomMove();
+            Gravity();
+
+            Move();
+          // RandomMove();
 
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
-            _position.X = MathHelper.Clamp(_position.X, Animation.CurrentFrame / 2, Game1.ScreenWidth - Animation.Texture.Width / 4);
-            _position.Y = MathHelper.Clamp(_position.Y, Animation.CurrentFrame / 2, Game1.ScreenHeight - Animation.Texture.Height);
+            _position.X = MathHelper.Clamp(_position.X, Animation.CurrentFrame / 2, Game1.ScreenWidth);
+            _position.Y = MathHelper.Clamp(_position.Y, 0 + Animation.CurrentFrame / 2, Game1.ScreenHeight - Animation.Texture.Height);
 
             AnimationManager.Update(gameTime);
         }

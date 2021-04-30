@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace App05.Models
 {
@@ -33,6 +34,20 @@ namespace App05.Models
             _texture = texture;
 
         }
+
+        // extra constuctor
+        public Player(Dictionary<string, Animation> animations)
+            :base(animations)
+        {
+
+            _animations = animations;
+            _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animation
+
+            Children = new List<Sprite>();
+
+            AnimatedSprite animatedSprite = new AnimatedSprite(_texture, 4, 0.3f);
+        }
+
 
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
