@@ -256,6 +256,7 @@ namespace App05
         {
         }
 
+        
         public bool Intersects(Sprite sprite)
         {
             // Calculate a matrix which transforms from A's local space into

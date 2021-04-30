@@ -132,8 +132,10 @@ namespace App05.Models
 
         public override void OnCollide(Sprite sprite)
         {
-           
+        
         }
+
+      
 
         /// <summary>
         /// incriments the score by +1
