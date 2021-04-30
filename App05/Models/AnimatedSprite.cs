@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace App05.Models
@@ -12,8 +11,7 @@ namespace App05.Models
         public AnimationManager AnimationManager;
 
         private float _timer;
-        int direction = 1; //Default travel direction
-
+        private double direction = 1; //Default travel direction
 
         public AnimatedSprite(Texture2D texture, int FrameCount, float frameSpeed)
            : base(texture)
@@ -35,14 +33,11 @@ namespace App05.Models
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            RandomMove(gameTime); 
-
-           
+            RandomMove();
 
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
             _position.X = MathHelper.Clamp(_position.X, Animation.CurrentFrame / 2, Game1.ScreenWidth - Animation.Texture.Width / 4);
             _position.Y = MathHelper.Clamp(_position.Y, Animation.CurrentFrame / 2, Game1.ScreenHeight - Animation.Texture.Height);
-
 
             AnimationManager.Update(gameTime);
         }
@@ -52,48 +47,39 @@ namespace App05.Models
             AnimationManager.Play(Animation);
         }
 
-        public void RandomMove(GameTime gameTime) //DOENS WORK AT THE MOMENT!!!!
+        public void RandomMove() //DOENS WORK AT THE MOMENT!!!!
         {
-
             int MoveTimer = (int)_timer;
-            
-            if ((MoveTimer % 3) == 0) 
-            {    
-                direction = Game1.Random.Next(0,4); //Set the direction to a random value 
 
-                
-            }
-          
+            if ((MoveTimer % 1) == 0)
+            {
+                direction = Game1.Random.Next(1, 4);//Set the direction
 
-            if (direction == 1)
-            {
-                _position.X -= LinearVelocity;
-                Position += Direction * LinearVelocity;
-                
+                if (direction == 1)
+                {
+                    _position.X -= LinearVelocity;
+                    Position += Direction * LinearVelocity;
+                }
+                else if (direction == 2)
+                {
+                    _position.X += LinearVelocity;
+                    Position -= Direction * LinearVelocity;
+                }
+                else if (direction == 2)
+                {
+                    _position.Y -= LinearVelocity;
+                    Position += Direction * LinearVelocity;
+                }
+                else if (direction == 3)
+                {
+                    _position.Y += LinearVelocity;
+                    Position += Direction * LinearVelocity;
+                }
             }
-            else if (direction == 2)
+            else if (direction > 4)
             {
-
-                _position.X += LinearVelocity;
-                Position -= Direction * LinearVelocity;
-              
+                direction = 1;
             }
-            else if (direction == 3)
-            {
-                _position.Y -= LinearVelocity;
-                Position += Direction * LinearVelocity;
-                
-            }
-           else if (direction == 4)
-            {
-                _position.Y += LinearVelocity;
-                Position += Direction * LinearVelocity;
-                
-            }
-
         }
-        
-        
     }
-
 }

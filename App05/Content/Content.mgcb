@@ -80,7 +80,7 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
-#begin LongPipe.png
+#begin LongPipe2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -90,7 +90,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:LongPipe.png
+/build:LongPipe2.png
 
 #begin RedBird.png
 /importer:TextureImporter

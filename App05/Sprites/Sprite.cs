@@ -42,6 +42,13 @@ namespace App05
 
         public Vector2 Direction;
 
+        //Circular movement things
+        public float radius = 5;
+        public float angle = 50;
+
+        public float originX = 100;
+        public float originY = 100;
+
         public Input Input;
 
         protected KeyboardState _currentKey;
@@ -89,7 +96,7 @@ namespace App05
         protected Dictionary<string, Animation> _animations;
         protected Vector2 _position;
 
-        public Vector2 Position // NOT EXACTLY SURE ABOUT THIS CODE SO TEMP COMMENTED OUT!
+        public Vector2 Position 
         {
             get { return _position; }
             set
@@ -223,6 +230,17 @@ namespace App05
                 Position += Direction * LinearVelocity;
             }
 
+        }
+        
+        /// <summary>
+        /// testing out cirular movement
+        /// </summary>
+        public void CircleMove()
+        {
+            angle++;
+
+            _position.X = (float)(originX + Math.Cos(angle) * radius);
+            _position.Y = (float)(originY + Math.Sin(angle) * radius);
         }
 
         public void Gravity()

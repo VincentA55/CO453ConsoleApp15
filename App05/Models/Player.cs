@@ -77,11 +77,11 @@ namespace App05.Models
         {
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = this.Direction;
-            bullet.Position = Position;
             bullet.LinearVelocity = 6;
             bullet._rotation = this._rotation;
             bullet.LifeSpan = 2f;
             bullet.Parent = this;
+            bullet.Position =new Vector2(this.Position.X + 190, this.Position.Y);
             bullet.Input = null;
             bullet.LayerDepth = this.LayerDepth - 0.1f;
 

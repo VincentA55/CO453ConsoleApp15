@@ -219,6 +219,10 @@ namespace App05
             }
         }
 
+
+        /// <summary>
+        /// Spawns pipes 
+        /// </summary>
         public void SpawnPipe()
         {
             
@@ -226,7 +230,7 @@ namespace App05
             if (SpawnTimer(1))
             {
                 
-                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipe")));
+                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipe2")));
             }
         }
 
@@ -258,6 +262,9 @@ namespace App05
             }
         }
 
+        /// <summary>
+        /// Displays the score for each player
+        /// </summary>
         public void DisplayScore()
         {
             var fontY = 10;
