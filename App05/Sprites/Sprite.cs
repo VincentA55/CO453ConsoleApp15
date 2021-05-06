@@ -247,12 +247,14 @@ namespace App05
         /// </summary>
         public void CircleMove()
         {
-            _rotation += MathHelper.ToRadians(100);
+            _rotation += MathHelper.ToRadians(1000);
 
             Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
 
 
             Position -= Direction * LinearVelocity;
+
+            Direction = new Vector2(0, 0);
         }
 
         public void Gravity()

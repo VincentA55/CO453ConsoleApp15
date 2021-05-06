@@ -25,6 +25,7 @@ namespace App05
         public static Random Random;
 
         public float _timer;
+        public float coinTimer;
 
         bool HasSpawned = false;
         double WhenSpawned = 0;
@@ -65,98 +66,10 @@ namespace App05
         /// </summary>
         public void Restart()
         {
-            var yelloAnimations = new Dictionary<string, Animation>()
-            {
-                {"Animation1", new Animation(Content.Load<Texture2D>("BigBirdAnimationStripFixed"), 4, 0.3f) },
-            };
-
-            var birdPoweredUp = new Dictionary<string, Animation>()
-            {
-                {"Animation1", new Animation(Content.Load<Texture2D>("BigBirdPowerAnimationStrip"), 8, 0.1f) },
-            };
-
-           
-            var PowerUp = new Dictionary<string, Animation>()
-            {
-                {"Animation1", new Animation(Content.Load<Texture2D>("BigPowerUpAnimated3"),9, 0.05f) }
-            };
-
-            
-
-            var redAnimations = Content.Load<Texture2D>("RedBirdAnimationStrip");
-
-            var YelloBird = Content.Load<Texture2D>("YelloBird");
-            var RedBird = Content.Load<Texture2D>("RedBird");
-
-            var Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet"));
-
-            spriteBatch = new List<Sprite>()
-            {
-                
-               new Player(_graphics.GraphicsDevice,YelloBird)
-                {
-                    Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
-                    Name = "YelloBird",
-                    LinearVelocity = 4f,
-                    Color = Color.White,
-                    Position = new Vector2(YelloBird.Width, 100),
-                    Bullet = Bullet,
-                    Input = new Input()
-                    {
-                        Up = Keys.W,
-                        Down = Keys.S,
-                        Left = Keys.A,
-                        Right = Keys.D,
-                        Shoot = Keys.Space
-                    }
-                },
-
-                new Player(_graphics.GraphicsDevice, RedBird)
-                {
-                    Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
-                    Name = "RedBird",
-                    LinearVelocity = 5f,
-                    Color = Color.White,
-                    Position = new Vector2(ScreenWidth - RedBird.Width, 100),
-                    Bullet = Bullet,
-                    Input = new Input()
-                    {
-                        Up = Keys.Up,
-                        Down = Keys.Down,
-                        Left = Keys.Left,
-                        Right = Keys.Right,
-                        Shoot = Keys.NumPad0
-                    }
-                },
-
-                    new AnimatedSprite(yelloAnimations)
-                    {
-                        Position = new Vector2(300, 300),
-                        Input = new Input()
-                        {
-                            Up = Keys.NumPad8,
-                            Down = Keys.NumPad5,
-                            Left = Keys.NumPad4,
-                            Right = Keys.NumPad6
-                        }
-                    },
-
-                    new AnimatedSprite(PowerUp)
-                    {
-                        
-                        Position = new Vector2(400, 300),
-                       
-                    },
-
-                    new AnimatedSprite(birdPoweredUp)
-                    {
-                        Position = new Vector2(400, 100),
-                    }
+            LoadBirds();
+            LoadAnimations();
 
 
-                };
-
-            
 
             _font = Content.Load<SpriteFont>("Font");
 
@@ -170,7 +83,7 @@ namespace App05
             foreach (var sprite in spriteBatch.ToArray())
                 sprite.Update(gameTime, spriteBatch);
 
-            SpawnPipe(); //CANT HAVE PIPES AND CLOUDS AT SAME TIME!!!
+            SpawnPipe(); //Cant have spawning on the same intervals
             SpawnCloud();
             SpawnCoin();
 
@@ -236,7 +149,6 @@ namespace App05
             }
         }
 
-
         /// <summary>
         /// Spawns pipes 
         /// </summary>
@@ -254,17 +166,114 @@ namespace App05
         /// </summary>
         public void SpawnCoin()
         {
-            var Coin = new Dictionary<string, Animation>()
+           
+
+            // timer for the coins
+            if (SpawnTimer(2))
+
+            {var Coin = new Dictionary<string, Animation>()
             {
                 {"Animation1", new Animation(Content.Load<Texture2D>("Coin"), 9, 0.1f) },
             };
 
-
-            // timer for the coins
-            if (SpawnTimer(1))
-            {
                 spriteBatch.Add(new Coin(Coin));
             }
+        }
+
+        public void LoadBirds()
+        {
+            var YelloBird = Content.Load<Texture2D>("YelloBird");
+            var RedBird = Content.Load<Texture2D>("RedBird");
+
+            var Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet"));
+
+            spriteBatch = new List<Sprite>()
+            {
+
+               new Player(_graphics.GraphicsDevice,YelloBird)
+                {
+                    Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
+                    Name = "YelloBird",
+                    LinearVelocity = 4f,
+                    Color = Color.White,
+                    Position = new Vector2(YelloBird.Width, 100),
+                    Bullet = Bullet,
+                    Input = new Input()
+                    {
+                        Up = Keys.W,
+                        Down = Keys.S,
+                        Left = Keys.A,
+                        Right = Keys.D,
+                        Shoot = Keys.Space
+                    }
+                },
+
+                new Player(_graphics.GraphicsDevice, RedBird)
+                {
+                    Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
+                    Name = "RedBird",
+                    LinearVelocity = 5f,
+                    Color = Color.White,
+                    Position = new Vector2(ScreenWidth - RedBird.Width, 100),
+                    Bullet = Bullet,
+                    Input = new Input()
+                    {
+                        Up = Keys.Up,
+                        Down = Keys.Down,
+                        Left = Keys.Left,
+                        Right = Keys.Right,
+                        Shoot = Keys.NumPad0
+                    }
+                } };
+        }
+
+        /// <summary>
+        /// loads the animations
+        /// </summary>
+        public void LoadAnimations()
+        {
+            var yelloAnimations = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(Content.Load<Texture2D>("BigBirdAnimationStripFixed"), 4, 0.3f) },
+            };
+
+            var birdPoweredUp = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(Content.Load<Texture2D>("BigBirdPowerAnimationStrip"), 8, 0.1f) },
+            };
+
+            var PowerUp = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(Content.Load<Texture2D>("BigPowerUpAnimated3"),9, 0.05f) }
+            };
+
+                spriteBatch.Add(
+
+                        new AnimatedSprite(yelloAnimations)
+                        {
+                            Position = new Vector2(300, 300),
+                            Input = new Input()
+                            {
+                                Up = Keys.NumPad8,
+                                Down = Keys.NumPad5,
+                                Left = Keys.NumPad4,
+                                Right = Keys.NumPad6
+                            }
+                        });
+
+            spriteBatch.Add(new AnimatedSprite(PowerUp)
+            {
+
+                Position = new Vector2(400, 300),
+
+            });
+
+            spriteBatch.Add(new AnimatedSprite(birdPoweredUp)
+            {
+                Position = new Vector2(400, 100),
+            });
+
+               
         }
 
 
