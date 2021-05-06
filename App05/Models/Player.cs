@@ -24,8 +24,10 @@ namespace App05.Models
         {
             LayerDepth = 0.5f;
 
-        }
+            CollisionEnabled = true;
 
+        }
+        // extra constructor
         public Player(Texture2D texture, Dictionary<string, Animation> animations)
             : base(animations)
         {
@@ -57,8 +59,6 @@ namespace App05.Models
                 throw new Exception("Please assign a value to Input");
             }
 
-          
-         
             Move();
 
             Gravity();
@@ -107,8 +107,6 @@ namespace App05.Models
         {
             if (Input == null)
                 return;
-
-            // the reason for no elseifs is so they can go diagonal
 
 
             if (Keyboard.GetState().IsKeyDown(Input.Left))

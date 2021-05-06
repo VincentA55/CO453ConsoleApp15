@@ -76,7 +76,7 @@ namespace App05
         public bool ShowRectangle { get; set; }
 
         //Hit detection stuff
-        public bool CollisionEnabled = true;
+        public bool CollisionEnabled = false;
 
         public readonly Color[] TextureData;
 
@@ -257,6 +257,9 @@ namespace App05
             Direction = new Vector2(0, 0);
         }
 
+        /// <summary>
+        /// adds gravity for a sprite
+        /// </summary>
         public void Gravity()
         {
             if (Position.Y < Game1.ScreenHeight)

@@ -17,7 +17,7 @@ namespace App05.Sprites
         {
 
             Size = Game1.Random.Next(1, 3);
-            LayerDepth = Game1.Random.Next(0, 2);
+            LayerDepth = 0.5f;
 
             CollisionEnabled = false;
 

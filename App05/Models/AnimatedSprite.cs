@@ -40,7 +40,7 @@ namespace App05.Models
             Gravity();
 
             Move();
-          // RandomMove();
+         
 
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
             _position.X = MathHelper.Clamp(_position.X, Animation.CurrentFrame / 2, Game1.ScreenWidth);
@@ -49,6 +49,9 @@ namespace App05.Models
             AnimationManager.Update(gameTime);
         }
 
+        /// <summary>
+        /// Plays the animation for an AnimatedSprite
+        /// </summary>
         protected virtual void SetAnimations()
         {
             AnimationManager.Play(Animation);

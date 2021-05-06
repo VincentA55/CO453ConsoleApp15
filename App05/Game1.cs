@@ -27,8 +27,8 @@ namespace App05
         public float _timer;
         public float coinTimer;
 
-        bool HasSpawned = false;
-        double WhenSpawned = 0;
+        private bool HasSpawned = false;
+        private double WhenSpawned = 0;
 
         private bool _hasStarted = false;
 
@@ -55,9 +55,6 @@ namespace App05
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-          
-            
-
             Restart();
         }
 
@@ -67,9 +64,7 @@ namespace App05
         public void Restart()
         {
             LoadBirds();
-            LoadAnimations();
-
-
+          //  LoadAnimations();
 
             _font = Content.Load<SpriteFont>("Font");
 
@@ -87,7 +82,6 @@ namespace App05
             SpawnCloud();
             SpawnCoin();
 
-
             PostUpdate();
 
             base.Update(gameTime);
@@ -95,7 +89,6 @@ namespace App05
 
         private void PostUpdate()
         {
-         
             int count = spriteBatch.Count;
             for (int i = 0; i < count; i++)
             {
@@ -140,17 +133,16 @@ namespace App05
         /// </summary>
         public void SpawnCloud()
         {
-          
             // timer for the clouds
             if (SpawnTimer(3))
             {
                 // RESETING THE TIMER IS WHAT MAKES IT WORK AND NOT WORK!!!
-               spriteBatch.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
+                spriteBatch.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
             }
         }
 
         /// <summary>
-        /// Spawns pipes 
+        /// Spawns pipes
         /// </summary>
         public void SpawnPipe()
         {
@@ -166,12 +158,11 @@ namespace App05
         /// </summary>
         public void SpawnCoin()
         {
-           
-
             // timer for the coins
             if (SpawnTimer(2))
 
-            {var Coin = new Dictionary<string, Animation>()
+            {
+                var Coin = new Dictionary<string, Animation>()
             {
                 {"Animation1", new Animation(Content.Load<Texture2D>("Coin"), 9, 0.1f) },
             };
@@ -180,6 +171,9 @@ namespace App05
             }
         }
 
+        /// <summary>
+        /// loads the player birds
+        /// </summary>
         public void LoadBirds()
         {
             var YelloBird = Content.Load<Texture2D>("YelloBird");
@@ -189,7 +183,6 @@ namespace App05
 
             spriteBatch = new List<Sprite>()
             {
-
                new Player(_graphics.GraphicsDevice,YelloBird)
                 {
                     Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
@@ -247,35 +240,30 @@ namespace App05
                 {"Animation1", new Animation(Content.Load<Texture2D>("BigPowerUpAnimated3"),9, 0.05f) }
             };
 
-                spriteBatch.Add(
+            spriteBatch.Add(
 
-                        new AnimatedSprite(yelloAnimations)
+                    new AnimatedSprite(yelloAnimations)
+                    {
+                        Position = new Vector2(300, 300),
+                        Input = new Input()
                         {
-                            Position = new Vector2(300, 300),
-                            Input = new Input()
-                            {
-                                Up = Keys.NumPad8,
-                                Down = Keys.NumPad5,
-                                Left = Keys.NumPad4,
-                                Right = Keys.NumPad6
-                            }
-                        });
+                            Up = Keys.NumPad8,
+                            Down = Keys.NumPad5,
+                            Left = Keys.NumPad4,
+                            Right = Keys.NumPad6
+                        }
+                    });
 
             spriteBatch.Add(new AnimatedSprite(PowerUp)
             {
-
                 Position = new Vector2(400, 300),
-
             });
 
             spriteBatch.Add(new AnimatedSprite(birdPoweredUp)
             {
                 Position = new Vector2(400, 100),
             });
-
-               
         }
-
 
         /// <summary>
         /// takes in a timer and returns true if modulo = 0
@@ -292,7 +280,6 @@ namespace App05
                 HasSpawned = true;
                 WhenSpawned = Stimer;
                 return true;
-
             }
             else
             {
@@ -319,14 +306,12 @@ namespace App05
                     string Name = sprite.Name;
 
                     _spriteBatch.DrawString(_font, (Name + string.Format(" : {1}", ++i, ((Player)sprite).Score)), new Vector2(10, fontY += 20), Color.Black);
-
                 }
             }
-                    _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, _timer)), new Vector2(10, fontY += 20), Color.Black); // game timer
+            _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, _timer)), new Vector2(10, fontY += 20), Color.Black); // game timer
 
-                    _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
-                    _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
-
+            _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
+            _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
         }
     }
 }
