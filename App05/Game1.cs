@@ -24,6 +24,8 @@ namespace App05
 
         public static Random Random;
 
+        public int Difficulty = 1;
+
         public float _timer;
         public float coinTimer;
 
@@ -81,6 +83,8 @@ namespace App05
             SpawnPipe(); //Cant have spawning on the same intervals
             SpawnCloud();
             SpawnCoin();
+
+            DifficultyLevel();
 
             PostUpdate();
 
@@ -146,6 +150,8 @@ namespace App05
         /// </summary>
         public void SpawnPipe()
         {
+            //WORKING ON DIFFUCLTY TIMER
+
             // timer for the pipes
             if (SpawnTimer(1))
             {
@@ -312,6 +318,14 @@ namespace App05
 
             _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
             _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
+        }
+
+        public void DifficultyLevel()
+        {
+            if((_timer % 5) == 0)
+            {
+                Difficulty++;
+            }
         }
     }
 }
