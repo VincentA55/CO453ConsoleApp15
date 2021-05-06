@@ -67,13 +67,21 @@ namespace App05
         {
             var yelloAnimations = new Dictionary<string, Animation>()
             {
-                {"FlapWings", new Animation(Content.Load<Texture2D>("BigBirdAnimationStrip"), 4, 0.3f) },
+                {"Animation1", new Animation(Content.Load<Texture2D>("BigBirdAnimationStripFixed"), 4, 0.3f) },
             };
 
+            var birdPoweredUp = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(Content.Load<Texture2D>("BigBirdPowerAnimationStrip"), 8, 0.1f) },
+            };
+
+           
             var PowerUp = new Dictionary<string, Animation>()
             {
-                {"FlapWings", new Animation(Content.Load<Texture2D>("BigPowerUpAnimated3"),9, 0.05f) }
+                {"Animation1", new Animation(Content.Load<Texture2D>("BigPowerUpAnimated3"),9, 0.05f) }
             };
+
+            
 
             var redAnimations = Content.Load<Texture2D>("RedBirdAnimationStrip");
 
@@ -138,8 +146,16 @@ namespace App05
                         
                         Position = new Vector2(400, 300),
                        
+                    },
+
+                    new AnimatedSprite(birdPoweredUp)
+                    {
+                        Position = new Vector2(400, 100),
                     }
+
+
                 };
+
             
 
             _font = Content.Load<SpriteFont>("Font");
@@ -154,8 +170,9 @@ namespace App05
             foreach (var sprite in spriteBatch.ToArray())
                 sprite.Update(gameTime, spriteBatch);
 
-           SpawnPipe(); //CANT HAVE PIPES AND CLOUDS AT SAME TIME!!!
+            SpawnPipe(); //CANT HAVE PIPES AND CLOUDS AT SAME TIME!!!
             SpawnCloud();
+            SpawnCoin();
 
 
             PostUpdate();
@@ -225,14 +242,31 @@ namespace App05
         /// </summary>
         public void SpawnPipe()
         {
-            
             // timer for the pipes
             if (SpawnTimer(1))
             {
-                
-                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipe2")));
+                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
             }
         }
+
+        /// <summary>
+        /// Spawns Coins
+        /// </summary>
+        public void SpawnCoin()
+        {
+            var Coin = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(Content.Load<Texture2D>("Coin"), 9, 0.1f) },
+            };
+
+
+            // timer for the coins
+            if (SpawnTimer(1))
+            {
+                spriteBatch.Add(new Coin(Coin));
+            }
+        }
+
 
         /// <summary>
         /// takes in a timer and returns true if modulo = 0

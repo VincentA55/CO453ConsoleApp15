@@ -6,7 +6,7 @@ namespace App05.Models
 {
     public class AnimatedSprite : Sprite
     {
-        private Animation Animation;
+        public Animation Animation;
 
         public AnimationManager AnimationManager;
 
@@ -26,7 +26,7 @@ namespace App05.Models
         public AnimatedSprite(Dictionary<string, Animation> animations)
             : base(animations)
         {
-            Animation = animations["FlapWings"];
+            Animation = animations["Animation1"];
 
             AnimationManager = new AnimationManager(Animation);
 

@@ -266,6 +266,7 @@ namespace App05
 
         public virtual void OnCollide(Sprite sprite)
         {
+           
         }
 
         
