@@ -32,6 +32,5 @@ namespace App05.Models
             FrameSpeed = frameSpeed;
         }
 
-
     }
 }
