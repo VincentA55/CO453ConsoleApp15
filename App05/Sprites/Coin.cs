@@ -28,12 +28,9 @@ namespace App05.Sprites
 
         public override void OnCollide(Sprite sprite)
         {
-            if(Intersects(sprite) && sprite.CollisionEnabled)
+            if(sprite is Player)
             {
-                if(sprite is Player)
-                {
-                    sprite.ScoreUp();
-                }
+                IsRemoved = true;
             }
 
         }

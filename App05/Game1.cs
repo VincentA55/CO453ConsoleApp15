@@ -66,7 +66,7 @@ namespace App05
         public void Restart()
         {
             LoadBirds();
-          //  LoadAnimations();
+            //  LoadAnimations();
 
             _font = Content.Load<SpriteFont>("Font");
 
@@ -93,6 +93,23 @@ namespace App05
 
         private void PostUpdate()
         {
+            foreach (var spriteA in spriteBatch)
+            {
+                if (spriteA.CollisionEnabled)
+                {
+                    foreach (var spriteB in spriteBatch)
+                    {
+                        if (spriteA == spriteB)
+                            continue;
+
+                        if (spriteA.Intersects(spriteB))
+                        {
+                            spriteA.OnCollide(spriteB);
+                        }
+                    }
+                }
+            }
+
             int count = spriteBatch.Count;
             for (int i = 0; i < count; i++)
             {
@@ -147,16 +164,14 @@ namespace App05
                     cloud.IncreaseSpeed(0);
 
                     spriteBatch.Add(cloud);
-
                 }
-                else if(Difficulty >= 10 && Difficulty < 15)
+                else if (Difficulty >= 10 && Difficulty < 15)
                 {
                     Cloud cloud = new Cloud(Content.Load<Texture2D>("Cloud"));
 
                     cloud.IncreaseSpeed(2);
 
                     spriteBatch.Add(cloud);
-
                 }
                 else if (Difficulty >= 15 && Difficulty < 20)
                 {
@@ -165,7 +180,6 @@ namespace App05
                     cloud.IncreaseSpeed(4);
 
                     spriteBatch.Add(cloud);
-
                 }
                 else if (Difficulty > 20)
                 {
@@ -174,7 +188,6 @@ namespace App05
                     cloud.IncreaseSpeed(6);
 
                     spriteBatch.Add(cloud);
-
                 }
             }
         }
@@ -189,18 +202,16 @@ namespace App05
             {
                 if (Difficulty < 5)
                 {
-                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
-
+                    spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
                 }
 
-                if(Difficulty == 5)
+                if (Difficulty == 5)
                 {
                     Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
 
                     pipe.IncreasePipeSpeed(1);
 
                     spriteBatch.Add(pipe);
-                    
                 }
                 if (Difficulty >= 5 && Difficulty < 10)
                 {
@@ -209,7 +220,6 @@ namespace App05
                     pipe.IncreasePipeSpeed(2);
 
                     spriteBatch.Add(pipe);
-
                 }
                 if (Difficulty >= 10 && Difficulty < 15)
                 {
@@ -227,8 +237,7 @@ namespace App05
                 }
                 if (Difficulty >= 15)
                 {
-                    int speed = (int)Difficulty / 5; 
-
+                    int speed = (int)Difficulty / 5;
 
                     Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
 
@@ -236,14 +245,12 @@ namespace App05
 
                     spriteBatch.Add(pipe);
 
-
                     Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
 
                     pipe.IncreasePipeSpeed(speed);
 
                     spriteBatch.Add(pipe2);
                 }
-
             }
         }
 
@@ -417,11 +424,10 @@ namespace App05
         {
             int Stimer = (int)_timer;
 
-            int level = 10 ;
+            int level = 10;
 
             if ((Stimer % 5) == 0)
             {
-
                 level = Stimer - 5;
 
                 Difficulty = level;

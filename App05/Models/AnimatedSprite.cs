@@ -31,6 +31,10 @@ namespace App05.Models
             AnimationManager = new AnimationManager(Animation);
 
             _texture = Animation.Texture;
+
+            Rectangle = 
+
+            Origin = new Vector2(Position.X, Position.Y);
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)

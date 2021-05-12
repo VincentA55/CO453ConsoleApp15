@@ -69,7 +69,7 @@ namespace App05
         {
             get
             {
-                return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, 10, 10);
+                return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, _texture.Width, _texture.Height);
             }
         }
 
@@ -116,8 +116,6 @@ namespace App05
             _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animation
 
             Children = new List<Sprite>();
-
-
         }
 
         /// <summary>
@@ -269,12 +267,12 @@ namespace App05
             }
         }
 
+
         public virtual void OnCollide(Sprite sprite)
         {
            
         }
-
-        
+  
         public bool Intersects(Sprite sprite)
         {
             // Calculate a matrix which transforms from A's local space into
