@@ -65,7 +65,7 @@ namespace App05.Sprites
         {
             Speed += speed;
 
-            _position.X -= 30;
+            _position.X += 40;
         }
     }
 }

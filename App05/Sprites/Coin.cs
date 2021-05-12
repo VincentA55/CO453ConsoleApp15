@@ -22,7 +22,7 @@ namespace App05.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            Position -= new Vector2(2, 0);
+            Position -= new Vector2(Speed, 0);
             AnimationManager.Update(gameTime);
         }
 
@@ -36,6 +36,15 @@ namespace App05.Sprites
                 }
             }
 
+        }
+
+        /// <summary>
+        /// increases the speed of a coin
+        /// </summary>
+        /// <param name="speed"></param>
+        public void IncreaseSpeed(int speed)
+        {
+            Speed += speed;
         }
     }
 }

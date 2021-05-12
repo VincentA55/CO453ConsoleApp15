@@ -184,12 +184,14 @@ namespace App05
         /// </summary>
         public void SpawnPipe()
         {
-            //WORKING ON DIFFUCLTY TIMER
-
             // timer for the pipes
             if (SpawnTimer(1))
             {
+                if (Difficulty < 5)
+                {
                 spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
+
+                }
 
                 if(Difficulty == 5)
                 {
@@ -217,18 +219,29 @@ namespace App05
 
                     spriteBatch.Add(pipe);
 
-                    spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
+                    Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
 
+                    pipe.IncreasePipeSpeed(3);
+
+                    spriteBatch.Add(pipe2);
                 }
                 if (Difficulty >= 15)
                 {
+                    int speed = (int)Difficulty / 5; 
+
+
                     Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
 
-                    pipe.IncreasePipeSpeed(6);
+                    pipe.IncreasePipeSpeed(speed);
 
                     spriteBatch.Add(pipe);
-                    spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
 
+
+                    Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                    pipe.IncreasePipeSpeed(speed);
+
+                    spriteBatch.Add(pipe2);
                 }
 
             }
@@ -241,14 +254,17 @@ namespace App05
         {
             // timer for the coins
             if (SpawnTimer(2))
-
             {
                 var Coin = new Dictionary<string, Animation>()
             {
                 {"Animation1", new Animation(Content.Load<Texture2D>("Coin"), 9, 0.1f) },
             };
 
-                spriteBatch.Add(new Coin(Coin));
+                Coin coin = new Coin(Coin);
+
+                coin.IncreaseSpeed((int)Difficulty / 5);
+
+                spriteBatch.Add(coin);
             }
         }
 
