@@ -24,7 +24,7 @@ namespace App05
 
         public static Random Random;
 
-        public int Difficulty = 1;
+        public double Difficulty = 1;
 
         public float _timer;
         public float coinTimer;
@@ -140,8 +140,42 @@ namespace App05
             // timer for the clouds
             if (SpawnTimer(3))
             {
-                // RESETING THE TIMER IS WHAT MAKES IT WORK AND NOT WORK!!!
-                spriteBatch.Add(new Cloud(Content.Load<Texture2D>("Cloud")));
+                if (Difficulty <= 5)
+                {
+                    Cloud cloud = new Cloud(Content.Load<Texture2D>("Cloud"));
+
+                    cloud.IncreaseSpeed(0);
+
+                    spriteBatch.Add(cloud);
+
+                }
+                else if(Difficulty >= 10 && Difficulty < 15)
+                {
+                    Cloud cloud = new Cloud(Content.Load<Texture2D>("Cloud"));
+
+                    cloud.IncreaseSpeed(2);
+
+                    spriteBatch.Add(cloud);
+
+                }
+                else if (Difficulty >= 15 && Difficulty < 20)
+                {
+                    Cloud cloud = new Cloud(Content.Load<Texture2D>("Cloud"));
+
+                    cloud.IncreaseSpeed(4);
+
+                    spriteBatch.Add(cloud);
+
+                }
+                else if (Difficulty > 20)
+                {
+                    Cloud cloud = new Cloud(Content.Load<Texture2D>("Cloud"));
+
+                    cloud.IncreaseSpeed(6);
+
+                    spriteBatch.Add(cloud);
+
+                }
             }
         }
 
@@ -156,6 +190,47 @@ namespace App05
             if (SpawnTimer(1))
             {
                 spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
+
+                if(Difficulty == 5)
+                {
+                    Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                    pipe.IncreasePipeSpeed(1);
+
+                    spriteBatch.Add(pipe);
+                    
+                }
+                if (Difficulty >= 5 && Difficulty < 10)
+                {
+                    Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                    pipe.IncreasePipeSpeed(2);
+
+                    spriteBatch.Add(pipe);
+
+                }
+                if (Difficulty >= 10 && Difficulty < 15)
+                {
+                    Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                    pipe.IncreasePipeSpeed(4);
+
+                    spriteBatch.Add(pipe);
+
+                    spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
+
+                }
+                if (Difficulty >= 15)
+                {
+                    Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                    pipe.IncreasePipeSpeed(6);
+
+                    spriteBatch.Add(pipe);
+                    spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
+
+                }
+
             }
         }
 
@@ -316,15 +391,24 @@ namespace App05
             }
             _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, _timer)), new Vector2(10, fontY += 20), Color.Black); // game timer
 
+            _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, Difficulty)), new Vector2(10, fontY += 20), Color.Black); //DifficultyTimer
+
             _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
             _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
         }
 
         public void DifficultyLevel()
         {
-            if((_timer % 5) == 0)
+            int Stimer = (int)_timer;
+
+            int level = 10 ;
+
+            if ((Stimer % 5) == 0)
             {
-                Difficulty++;
+
+                level = Stimer - 5;
+
+                Difficulty = level;
             }
         }
     }

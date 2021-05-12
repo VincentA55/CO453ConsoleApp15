@@ -56,5 +56,16 @@ namespace App05.Sprites
                 SpawnHeight = 1;
             }
         }
+
+        /// <summary>
+        /// increase the pipes speed
+        /// </summary>
+        /// <param name="speed"></param>
+        public void IncreasePipeSpeed(int speed)
+        {
+            Speed += speed;
+
+            _position.X -= 30;
+        }
     }
 }

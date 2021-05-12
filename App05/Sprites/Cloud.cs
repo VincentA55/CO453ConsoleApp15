@@ -32,10 +32,6 @@ namespace App05.Sprites
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             _position.X -= Speed;
-
-        
-
-
          
         }
 
@@ -44,6 +40,10 @@ namespace App05.Sprites
             
         }
 
+        public void IncreaseSpeed(int speed)
+        {
+            Speed += speed;
+        }
       
     }
 }
