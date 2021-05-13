@@ -34,6 +34,8 @@ namespace App05
 
         private bool _hasStarted = false;
 
+        public Pipe pipe;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -68,6 +70,8 @@ namespace App05
             LoadBirds();
             //  LoadAnimations();
 
+            pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
             _font = Content.Load<SpriteFont>("Font");
 
             _hasStarted = false;
@@ -77,12 +81,20 @@ namespace App05
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            SpawnPipe(); //Cant have spawning on the same intervals
+
             foreach (var sprite in spriteBatch.ToArray())
+            {
                 sprite.Update(gameTime, spriteBatch);
 
-            SpawnPipe(); //Cant have spawning on the same intervals
-            SpawnCloud();
-         //   SpawnCoin();
+                foreach (var spriteB in spriteBatch)
+                {
+                    PostUpdateHitDetection(sprite, spriteB);//SLOWS DOWN THE GAME!
+                }
+            }
+
+            // SpawnCloud();
+            //SpawnCoin();
 
             DifficultyLevel();
 
@@ -93,8 +105,6 @@ namespace App05
 
         private void PostUpdate()
         {
-           PostUpdateHitDetection();
-
             int count = spriteBatch.Count;
             for (int i = 0; i < count; i++)
             {
@@ -185,56 +195,41 @@ namespace App05
             // timer for the pipes
             if (SpawnTimer(1))
             {
+                pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
                 if (Difficulty < 5)
                 {
-                    spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
+                    spriteBatch.Add((Sprite)pipe.Clone());
                 }
-
-                if (Difficulty == 5)
+                else if (Difficulty == 5)
                 {
-                    Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
                     pipe.IncreasePipeSpeed(1);
 
-                    spriteBatch.Add(pipe);
+                    spriteBatch.Add((Sprite)pipe.Clone());
                 }
-                if (Difficulty >= 5 && Difficulty < 10)
+                else if (Difficulty >= 5 && Difficulty < 10)
                 {
-                    Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+                    pipe.IncreasePipeSpeed(1);
 
-                    pipe.IncreasePipeSpeed(2);
-
-                    spriteBatch.Add(pipe);
+                    spriteBatch.Add((Sprite)pipe.Clone());
                 }
-                if (Difficulty >= 10 && Difficulty < 15)
+                else if (Difficulty >= 10 && Difficulty < 15)
                 {
-                    Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+                    pipe.IncreasePipeSpeed(1);
 
-                    pipe.IncreasePipeSpeed(4);
-
-                    spriteBatch.Add(pipe);
-
-                    Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
-                    pipe.IncreasePipeSpeed(3);
-
-                    spriteBatch.Add(pipe2);
+                    spriteBatch.Add((Sprite)pipe.Clone());
                 }
-                if (Difficulty >= 15)
+                else if (Difficulty >= 15)
                 {
                     int speed = (int)Difficulty / 5;
 
-                    Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+                    pipe.IncreasePipeSpeed(speed);
+
+                    spriteBatch.Add((Sprite)pipe.Clone());
 
                     pipe.IncreasePipeSpeed(speed);
 
-                    spriteBatch.Add(pipe);
-
-                    Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
-                    pipe.IncreasePipeSpeed(speed);
-
-                    spriteBatch.Add(pipe2);
+                    spriteBatch.Add((Sprite)pipe.Clone());
                 }
             }
         }
@@ -422,25 +417,70 @@ namespace App05
         /// <summary>
         /// goes through the batch to determine a collision
         /// </summary>
-        public void PostUpdateHitDetection()
+        public void PostUpdateHitDetection(Sprite spriteA, Sprite spriteB)
         {
-            foreach (var spriteA in spriteBatch)
+            if (spriteA.CollisionEnabled)
             {
-                if (spriteA.CollisionEnabled)
+                if (spriteA.Intersects(spriteB))
                 {
-                    foreach (var spriteB in spriteBatch)
-                    {
-                        if (spriteA == spriteB)
-                            continue;
-
-                        if (spriteA.Intersects(spriteB))
-                        {
-                            spriteA.OnCollide(spriteB);
-                        }
-                    }
+                    spriteA.OnCollide(spriteB);
                 }
             }
         }
-    }
 
+        public void TemPHolding()
+        {
+            if (Difficulty < 5)
+            {
+                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
+            }
+
+            if (Difficulty == 5)
+            {
+                Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                pipe.IncreasePipeSpeed(1);
+
+                spriteBatch.Add((Sprite)pipe.Clone());
+            }
+            if (Difficulty >= 5 && Difficulty < 10)
+            {
+                Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                pipe.IncreasePipeSpeed(2);
+
+                spriteBatch.Add(pipe);
+            }
+            if (Difficulty >= 10 && Difficulty < 15)
+            {
+                Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                pipe.IncreasePipeSpeed(4);
+
+                spriteBatch.Add(pipe);
+
+                Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                pipe.IncreasePipeSpeed(3);
+
+                spriteBatch.Add(pipe2);
+            }
+            if (Difficulty >= 15)
+            {
+                int speed = (int)Difficulty / 5;
+
+                Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                pipe.IncreasePipeSpeed(speed);
+
+                spriteBatch.Add(pipe);
+
+                Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+
+                pipe.IncreasePipeSpeed(speed);
+
+                spriteBatch.Add(pipe2);
+            }
+        }
+    }
 }

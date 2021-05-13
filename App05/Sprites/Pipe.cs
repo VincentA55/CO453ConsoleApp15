@@ -82,7 +82,6 @@ namespace App05.Sprites
 
         }
 
-
         /// <summary>
         /// checks if the pipe goes off the left of the screen
         /// </summary>
