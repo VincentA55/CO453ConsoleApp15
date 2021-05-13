@@ -10,7 +10,7 @@ namespace App05.Sprites
         public Coin(Dictionary<string, Animation> animations)
               : base(animations)
         {
-            CollisionEnabled = true;
+            CollisionEnabled = false;
             LinearVelocity = 2;
 
 
@@ -28,10 +28,7 @@ namespace App05.Sprites
 
         public override void OnCollide(Sprite sprite)
         {
-            if(sprite is Player)
-            {
-                IsRemoved = true;
-            }
+          
 
         }
 

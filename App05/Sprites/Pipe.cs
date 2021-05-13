@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using App05.Models;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace App05.Sprites
             Size = Game1.Random.Next(1, 3);
             LayerDepth = 0.5f;
 
-            CollisionEnabled = false;
+            CollisionEnabled = true;
 
             //Spawn location for the pipes
             _position.X = MathHelper.Clamp(_position.X, Game1.ScreenWidth + _texture.Width, Game1.ScreenWidth);
@@ -35,12 +36,12 @@ namespace App05.Sprites
         {
             _position.X -= Speed;
 
-            //if it hits the left of the window
+            CheckIfOffScreen();
 
         }
 
         /// <summary>
-        /// returns true if the pipe spawns on the "ground"
+        /// determines if the pipe spawns on the "ground"
         /// </summary>
         /// <returns></returns>
         public void GroundOrSky()
@@ -66,6 +67,31 @@ namespace App05.Sprites
             Speed += speed;
 
             _position.X += 40;
+        }
+
+        /// <summary>
+        /// does something when a collision is detected
+        /// </summary>
+        /// <param name="sprite"></param>
+        public override void OnCollide(Sprite sprite)
+        {
+            if (sprite is Player)
+            {
+                IsRemoved = true;
+            }
+
+        }
+
+
+        /// <summary>
+        /// checks if the pipe goes off the left of the screen
+        /// </summary>
+        public void CheckIfOffScreen()
+        {
+            if (_position.X < 0)
+            {
+                IsRemoved = true;
+            }
         }
     }
 }

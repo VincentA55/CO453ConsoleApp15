@@ -32,9 +32,7 @@ namespace App05.Models
 
             _texture = Animation.Texture;
 
-            Rectangle = 
-
-            Origin = new Vector2(Position.X, Position.Y);
+            Origin = new Vector2(_texture.Width / 2 , _texture.Height / 2);
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)

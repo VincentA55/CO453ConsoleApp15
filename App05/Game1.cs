@@ -82,7 +82,7 @@ namespace App05
 
             SpawnPipe(); //Cant have spawning on the same intervals
             SpawnCloud();
-            SpawnCoin();
+         //   SpawnCoin();
 
             DifficultyLevel();
 
@@ -93,22 +93,7 @@ namespace App05
 
         private void PostUpdate()
         {
-            foreach (var spriteA in spriteBatch)
-            {
-                if (spriteA.CollisionEnabled)
-                {
-                    foreach (var spriteB in spriteBatch)
-                    {
-                        if (spriteA == spriteB)
-                            continue;
-
-                        if (spriteA.Intersects(spriteB))
-                        {
-                            spriteA.OnCollide(spriteB);
-                        }
-                    }
-                }
-            }
+           PostUpdateHitDetection();
 
             int count = spriteBatch.Count;
             for (int i = 0; i < count; i++)
@@ -433,5 +418,29 @@ namespace App05
                 Difficulty = level;
             }
         }
+
+        /// <summary>
+        /// goes through the batch to determine a collision
+        /// </summary>
+        public void PostUpdateHitDetection()
+        {
+            foreach (var spriteA in spriteBatch)
+            {
+                if (spriteA.CollisionEnabled)
+                {
+                    foreach (var spriteB in spriteBatch)
+                    {
+                        if (spriteA == spriteB)
+                            continue;
+
+                        if (spriteA.Intersects(spriteB))
+                        {
+                            spriteA.OnCollide(spriteB);
+                        }
+                    }
+                }
+            }
+        }
     }
+
 }
