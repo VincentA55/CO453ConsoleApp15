@@ -87,14 +87,11 @@ namespace App05
             {
                 sprite.Update(gameTime, spriteBatch);
 
-                foreach (var spriteB in spriteBatch)
-                {
-                    PostUpdateHitDetection(sprite, spriteB);//SLOWS DOWN THE GAME!
-                }
+              
             }
 
-            // SpawnCloud();
-            //SpawnCoin();
+            SpawnCloud();
+            SpawnCoin();
 
             DifficultyLevel();
 

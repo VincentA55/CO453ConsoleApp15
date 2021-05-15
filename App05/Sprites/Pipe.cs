@@ -77,7 +77,7 @@ namespace App05.Sprites
         {
             if (sprite is Player)
             {
-                IsRemoved = true;
+                sprite.Color = Color.Red;
             }
 
         }
@@ -87,7 +87,7 @@ namespace App05.Sprites
         /// </summary>
         public void CheckIfOffScreen()
         {
-            if (_position.X < 0)
+            if (_position.X < -10)
             {
                 IsRemoved = true;
             }

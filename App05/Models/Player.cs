@@ -18,15 +18,14 @@ namespace App05.Models
 
         public int Score { get; set; }
 
-       
         public Player(GraphicsDevice graphicsDevice, Texture2D texture)
             : base(graphicsDevice, texture)
         {
             LayerDepth = 0.5f;
 
-            CollisionEnabled = true;
-
+            CollisionEnabled = false;
         }
+
         // extra constructor
         public Player(Texture2D texture, Dictionary<string, Animation> animations)
             : base(animations)
@@ -34,14 +33,12 @@ namespace App05.Models
             LayerDepth = 0.5f;
 
             _texture = texture;
-
         }
 
         // extra constuctor
         public Player(Dictionary<string, Animation> animations)
-            :base(animations)
+            : base(animations)
         {
-
             _animations = animations;
             _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animation
 
@@ -49,8 +46,6 @@ namespace App05.Models
 
             AnimatedSprite animatedSprite = new AnimatedSprite(_texture, 4, 0.3f);
         }
-
-
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
@@ -64,11 +59,13 @@ namespace App05.Models
             Gravity();
 
             Shoot();
-            
+
             //Keep the sprite on the screen : takes in 1st the thing being clamped, 2nd the top left, 3rd bottom right
             // the 100 locks them a little along the screen
             _position.X = MathHelper.Clamp(_position.X, 100 + _texture.Width / 2, Game1.ScreenWidth - _texture.Width / 2);
             _position.Y = MathHelper.Clamp(_position.Y, 0 + _texture.Height / 2, Game1.ScreenHeight - _texture.Height / 2);
+
+            PlayerHitDetection(sprites);
         }
 
         /// <summary>
@@ -85,6 +82,7 @@ namespace App05.Models
                 AddBullet();
             }
         }
+
         /// <summary>
         /// Creates a Bullet.Clone and adds it to an array
         /// </summary>
@@ -96,18 +94,17 @@ namespace App05.Models
             bullet._rotation = this._rotation;
             bullet.LifeSpan = 2f;
             bullet.Parent = this;
-            bullet.Position =new Vector2(this.Position.X + 190, this.Position.Y);
+            bullet.Position = new Vector2(this.Position.X + 190, this.Position.Y);
             bullet.Input = null;
             bullet.LayerDepth = this.LayerDepth - 0.1f;
 
-            Children.Add(bullet);    
+            Children.Add(bullet);
         }
 
         public void Move()
         {
             if (Input == null)
                 return;
-
 
             if (Keyboard.GetState().IsKeyDown(Input.Left))
             {
@@ -119,43 +116,46 @@ namespace App05.Models
                 _rotation += MathHelper.ToRadians(RotationVelocity);
             }
 
-
             Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
 
-            if (Keyboard.GetState().IsKeyDown(Input.Up) && this.Position.Y < _texture.Height  * 5)
+            if (Keyboard.GetState().IsKeyDown(Input.Up) && this.Position.Y < _texture.Height * 5)
             {
                 _rotation -= MathHelper.ToRadians(RotationVelocity);
 
                 Weight = -3;
                 Velocity.Y -= 15; // jump speed
-                
             }
 
-            if(_rotation != 0 && Keyboard.GetState().IsKeyUp(Input.Up)) //TRYING TO HAVE BIRD AIM UP WHEN JUMPING
+            if (_rotation != 0 && Keyboard.GetState().IsKeyUp(Input.Up)) //TRYING TO HAVE BIRD AIM UP WHEN JUMPING
             {
                 _rotation -= MathHelper.ToRadians(_rotation * 2);
             }
 
             Position = Direction + Velocity;
-            
-
-
         }
 
-
-        public override void OnCollide(Sprite sprite)
+        public void PlayerHitDetection(List<Sprite> sprites)
         {
-        
+            foreach (var spriteB in sprites)
+            {
+                if (spriteB.CollisionEnabled && Intersects(spriteB))
+                {
+                    spriteB.OnCollide(this);
+                }
+            }
         }
 
-      
-
-        /// <summary>
-        /// incriments the score by +1
-        /// </summary>
-        public override void ScoreUp()
-        {
-            Score++;
-        }
+    public override void OnCollide(Sprite sprite)
+    {
+        this.Color = Color.Red;
     }
+
+    /// <summary>
+    /// incriments the score by +1
+    /// </summary>
+    public override void ScoreUp()
+    {
+        Score++;
+    }
+}
 }
