@@ -32,7 +32,8 @@ namespace App05.Sprites
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             _position.X -= Speed;
-         
+            ToggleShowRectangle();
+
         }
 
         public override void OnCollide(Sprite sprite, GameTime gameTime)

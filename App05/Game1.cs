@@ -68,7 +68,8 @@ namespace App05
         public void Restart()
         {
             LoadBirds();
-            //  LoadAnimations();
+
+            //LoadAnimations();
 
             pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
 
@@ -242,7 +243,7 @@ namespace App05
                 {"Animation1", new Animation(Content.Load<Texture2D>("Coin"), 9, 0.1f) },
             };
 
-                Coin coin = new Coin(Coin);
+                Coin coin = new Coin(Coin, _graphics.GraphicsDevice);
 
                 coin.IncreaseSpeed((int)Difficulty / 5);
 
@@ -321,7 +322,7 @@ namespace App05
 
             spriteBatch.Add(
 
-                    new AnimatedSprite(yelloAnimations)
+                    new AnimatedSprite(yelloAnimations, _graphics.GraphicsDevice)
                     {
                         Position = new Vector2(300, 300),
                         Input = new Input()
@@ -333,12 +334,12 @@ namespace App05
                         }
                     });
 
-            spriteBatch.Add(new AnimatedSprite(PowerUp)
+            spriteBatch.Add(new AnimatedSprite(PowerUp, _graphics.GraphicsDevice)
             {
                 Position = new Vector2(400, 300),
             });
 
-            spriteBatch.Add(new AnimatedSprite(birdPoweredUp)
+            spriteBatch.Add(new AnimatedSprite(birdPoweredUp, _graphics.GraphicsDevice)
             {
                 Position = new Vector2(400, 100),
             });

@@ -16,6 +16,8 @@ namespace App05.Models
 
         public Bullet Bullet;
 
+        public bool HasBeenHit = false;
+
         public int Score { get; set; }
 
         public Player(GraphicsDevice graphicsDevice, Texture2D texture)
@@ -66,6 +68,7 @@ namespace App05.Models
             _position.Y = MathHelper.Clamp(_position.Y, 0 + _texture.Height / 2, Game1.ScreenHeight - _texture.Height / 2);
 
             PlayerHitDetection(gameTime, sprites);
+            ToggleShowRectangle();
         }
 
         /// <summary>
@@ -147,7 +150,6 @@ namespace App05.Models
 
         public override void OnCollide(Sprite sprite, GameTime gameTime)
         {
-            this.Color = Color.Red;
         }
 
         /// <summary>
@@ -166,24 +168,40 @@ namespace App05.Models
             Score--;
         }
 
+        /// <summary>
+        /// alternates the colour of the player red to white
+        /// </summary>
         public void FlashRed()
         {
-            for (int i = 0; i < 10; i++)
+            if (!HasBeenHit)
             {
                 this.Color = Color.Red;
+                HasBeenHit = true;
+            }
+            else if (HasBeenHit)
+            {
+                this.Color = Color.White;
+                HasBeenHit = false;
             }
         }
 
         /// <summary>
-        /// Is called when the player gets hit
+        /// Is called when the player gets hit 
         /// </summary>
         public override void PlayerGetHit(GameTime gameTime)
         {
             ScoreDown();
-
-            float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             FlashRed();
+
+            _position.X -= 50;
+        }
+
+        /// <summary>
+        /// increased the score when collecting a coin
+        /// </summary>
+        public override void PlayerCollectCoin()
+        {
+            ScoreUp();
         }
     }
 }

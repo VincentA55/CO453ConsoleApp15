@@ -7,8 +7,8 @@ namespace App05.Sprites
 {
     public class Coin : AnimatedSprite
     {
-        public Coin(Dictionary<string, Animation> animations)
-              : base(animations)
+        public Coin(Dictionary<string, Animation> animations, GraphicsDevice graphics)
+              : base(animations, graphics)
         {
             CollisionEnabled = false;
             LinearVelocity = 2;
@@ -24,12 +24,16 @@ namespace App05.Sprites
         {
             Position -= new Vector2(Speed, 0);
             AnimationManager.Update(gameTime);
+            ToggleShowRectangle();
         }
 
         public override void OnCollide(Sprite sprite, GameTime gameTime)
         {
-            IsRemoved = true;
-
+            if (sprite is Player)
+            {
+                IsRemoved = true;
+                sprite.PlayerCollectCoin();
+            }
         }
 
         /// <summary>

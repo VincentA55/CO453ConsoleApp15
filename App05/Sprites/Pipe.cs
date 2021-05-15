@@ -37,6 +37,7 @@ namespace App05.Sprites
             _position.X -= Speed;
 
             CheckIfOffScreen();
+            ToggleShowRectangle();
 
         }
 
@@ -79,7 +80,6 @@ namespace App05.Sprites
             {
                 sprite.PlayerGetHit(gameTime);
             }
-
         }
 
         /// <summary>

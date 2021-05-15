@@ -267,7 +267,19 @@ namespace App05
             }
         }
 
+        /// <summary>
+        /// Is called when the player gets hit 
+        /// </summary>
+        /// <param name="gameTime"></param>
         public virtual void PlayerGetHit(GameTime gameTime)
+        {
+
+        }
+
+        /// <summary>
+        /// Called when the player collects a coin
+        /// </summary>
+        public virtual void PlayerCollectCoin()
         {
 
         }
@@ -309,7 +321,7 @@ namespace App05
                     {
                         // Get the colors of the overlapping pixels
                         var colourA = this.TextureData[xA + yA * this.Rectangle.Width];
-                        var colourB = sprite.TextureData[xB + yB * sprite.Rectangle.Width];
+                        var colourB = sprite.TextureData[xB + yB * sprite.Rectangle.Width]; //IS NOT SET AN INSANCE OF AN OBJECT! COIN CAUSING ERROR
 
                         // If both pixel are not completely transparent
                         if (colourA.A != 0 && colourB.A != 0)
@@ -337,6 +349,21 @@ namespace App05
 
         public virtual void ScoreUp()
         {
+        }
+
+        /// <summary>
+        /// Toggles the rectangle for a sprite
+        /// </summary>
+        public virtual void ToggleShowRectangle()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                ShowRectangle = true;
+            }
+            else
+            {
+                ShowRectangle = false;
+            }
         }
 
     }

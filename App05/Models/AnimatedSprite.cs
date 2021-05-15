@@ -23,7 +23,7 @@ namespace App05.Models
             _texture = Animation.Texture;
         }
 
-        public AnimatedSprite(Dictionary<string, Animation> animations)
+        public AnimatedSprite(Dictionary<string, Animation> animations, GraphicsDevice graphics)
             : base(animations)
         {
             Animation = animations["Animation1"];
@@ -33,6 +33,10 @@ namespace App05.Models
             _texture = Animation.Texture;
 
             Origin = new Vector2(_texture.Width / 2 , _texture.Height / 2);
+
+            SetRectangleTexture(graphics, _texture);
+
+           
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
