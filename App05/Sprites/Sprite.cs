@@ -267,8 +267,11 @@ namespace App05
             }
         }
 
+        public virtual void PlayerGetHit(GameTime gameTime)
+        {
 
-        public virtual void OnCollide(Sprite sprite)
+        }
+        public virtual void OnCollide(Sprite sprite, GameTime gameTime)
         {
            
         }

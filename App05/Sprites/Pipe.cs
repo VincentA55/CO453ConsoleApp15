@@ -73,11 +73,11 @@ namespace App05.Sprites
         /// does something when a collision is detected
         /// </summary>
         /// <param name="sprite"></param>
-        public override void OnCollide(Sprite sprite)
+        public override void OnCollide(Sprite sprite, GameTime gameTime)
         {
             if (sprite is Player)
             {
-                sprite.Color = Color.Red;
+                sprite.PlayerGetHit(gameTime);
             }
 
         }

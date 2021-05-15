@@ -65,7 +65,7 @@ namespace App05.Models
             _position.X = MathHelper.Clamp(_position.X, 100 + _texture.Width / 2, Game1.ScreenWidth - _texture.Width / 2);
             _position.Y = MathHelper.Clamp(_position.Y, 0 + _texture.Height / 2, Game1.ScreenHeight - _texture.Height / 2);
 
-            PlayerHitDetection(sprites);
+            PlayerHitDetection(gameTime, sprites);
         }
 
         /// <summary>
@@ -134,28 +134,56 @@ namespace App05.Models
             Position = Direction + Velocity;
         }
 
-        public void PlayerHitDetection(List<Sprite> sprites)
+        public void PlayerHitDetection(GameTime gameTime, List<Sprite> sprites)
         {
             foreach (var spriteB in sprites)
             {
                 if (spriteB.CollisionEnabled && Intersects(spriteB))
                 {
-                    spriteB.OnCollide(this);
+                    spriteB.OnCollide(this, gameTime);
                 }
             }
         }
 
-    public override void OnCollide(Sprite sprite)
-    {
-        this.Color = Color.Red;
-    }
+        public override void OnCollide(Sprite sprite, GameTime gameTime)
+        {
+            this.Color = Color.Red;
+        }
 
-    /// <summary>
-    /// incriments the score by +1
-    /// </summary>
-    public override void ScoreUp()
-    {
-        Score++;
+        /// <summary>
+        /// incriments the score by 1
+        /// </summary>
+        public override void ScoreUp()
+        {
+            Score++;
+        }
+
+        /// <summary>
+        /// Decreases the score by 1
+        /// </summary>
+        public void ScoreDown()
+        {
+            Score--;
+        }
+
+        public void FlashRed()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                this.Color = Color.Red;
+            }
+        }
+
+        /// <summary>
+        /// Is called when the player gets hit
+        /// </summary>
+        public override void PlayerGetHit(GameTime gameTime)
+        {
+            ScoreDown();
+
+            float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            FlashRed();
+        }
     }
-}
 }

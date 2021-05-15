@@ -26,7 +26,7 @@ namespace App05.Sprites
             AnimationManager.Update(gameTime);
         }
 
-        public override void OnCollide(Sprite sprite)
+        public override void OnCollide(Sprite sprite, GameTime gameTime)
         {
             IsRemoved = true;
 

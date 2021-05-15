@@ -35,7 +35,7 @@ namespace App05.Sprites
          
         }
 
-        public override void OnCollide(Sprite sprite)
+        public override void OnCollide(Sprite sprite, GameTime gameTime)
         {
             
         }

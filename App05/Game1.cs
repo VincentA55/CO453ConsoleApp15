@@ -86,8 +86,6 @@ namespace App05
             foreach (var sprite in spriteBatch.ToArray())
             {
                 sprite.Update(gameTime, spriteBatch);
-
-              
             }
 
             SpawnCloud();
@@ -373,6 +371,7 @@ namespace App05
             }
         }
 
+      
         /// <summary>
         /// Displays the score for each player
         /// </summary>
@@ -420,7 +419,7 @@ namespace App05
             {
                 if (spriteA.Intersects(spriteB))
                 {
-                    spriteA.OnCollide(spriteB);
+                    //spriteA.OnCollide(spriteB);
                 }
             }
         }

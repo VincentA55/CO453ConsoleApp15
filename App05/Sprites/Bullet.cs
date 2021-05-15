@@ -27,7 +27,7 @@ namespace App05.Sprites
             Position += Direction * LinearVelocity;
         }
 
-        public override void OnCollide(Sprite sprite)
+        public override void OnCollide(Sprite sprite, GameTime gameTime)
         {
             if (sprite is Bullet)
             {
