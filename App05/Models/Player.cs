@@ -12,8 +12,6 @@ namespace App05.Models
     {
         public bool HadDied = false;
 
-        public Bird Bird;
-
         public Bullet Bullet;
 
         public bool HasBeenHit = false;
@@ -26,27 +24,7 @@ namespace App05.Models
             LayerDepth = 0.5f;
 
             CollisionEnabled = false;
-        }
-
-        // extra constructor
-        public Player(Texture2D texture, Dictionary<string, Animation> animations)
-            : base(animations)
-        {
-            LayerDepth = 0.5f;
-
-            _texture = texture;
-        }
-
-        // extra constuctor
-        public Player(Dictionary<string, Animation> animations)
-            : base(animations)
-        {
-            _animations = animations;
-            _animationManager = new AnimationManager(_animations.First().Value); //this bit returns an animation
-
-            Children = new List<Sprite>();
-
-            AnimatedSprite animatedSprite = new AnimatedSprite(_texture, 4, 0.3f);
+           
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)

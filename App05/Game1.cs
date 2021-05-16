@@ -13,7 +13,7 @@ namespace App05
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private List<Sprite> spriteBatch;
+        public List<Sprite> spriteBatch;
 
         public List<Player> _players;
 
@@ -250,6 +250,7 @@ namespace App05
                 coin = new Coin(Coin, _graphics.GraphicsDevice);
                 //coin.IncreaseSpeed((int)Difficulty / 5);
                 spriteBatch.Add((Sprite)coin.Clone());
+                
             }
         }
 

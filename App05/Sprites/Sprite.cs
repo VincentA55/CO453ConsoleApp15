@@ -78,7 +78,7 @@ namespace App05
         //Hit detection stuff
         public bool CollisionEnabled = false;
 
-        public readonly Color[] TextureData;
+        public Color[] TextureData;
 
         public Matrix Transform
         {
@@ -283,6 +283,12 @@ namespace App05
         {
 
         }
+
+        /// <summary>
+        /// When the sprite collides with another sprite
+        /// </summary>
+        /// <param name="sprite"></param>
+        /// <param name="gameTime"></param>
         public virtual void OnCollide(Sprite sprite, GameTime gameTime)
         {
            

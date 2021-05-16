@@ -20,7 +20,7 @@ namespace App05.Models
 
             AnimationManager = new AnimationManager(Animation);
 
-            _texture = Animation.Texture;
+           _texture = Animation.Texture;
         }
 
         public AnimatedSprite(Dictionary<string, Animation> animations, GraphicsDevice graphics)
@@ -34,9 +34,10 @@ namespace App05.Models
 
             Origin = new Vector2(_texture.Width / 2 , _texture.Height / 2);
 
-            SetRectangleTexture(graphics, _texture);
+          //  TextureData = new Color[_texture.Width / 4 * _texture.Height];
+          //  _texture.GetData(TextureData); //assigns the array to the data
 
-           
+            SetRectangleTexture(graphics, _texture);
         }
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace App05.Models
                 {
                     if (x == 0 || // left side
                         y == 0 || //top side
-                        x == texture.Width - 1 || // right side
+                        x == texture.Width / Animation.FrameCount || // right side
                         y == texture.Height - 1)// bottom side
                     {
                         colours.Add(new Color(255, 255, 255, 255));

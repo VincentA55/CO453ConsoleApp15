@@ -7,9 +7,12 @@ namespace App05.Sprites
 {
     public class Coin : AnimatedSprite
     {
+       
+
         public Coin(Dictionary<string, Animation> animations, GraphicsDevice graphics)
               : base(animations, graphics)
         {
+
             CollisionEnabled = false;
             LinearVelocity = 2;
 
@@ -17,11 +20,13 @@ namespace App05.Sprites
             _position.X = MathHelper.Clamp(_position.X, Game1.ScreenWidth, Game1.ScreenWidth + Animation.FrameWidth);
             Position = new Vector2(Game1.ScreenWidth + 20, Game1.Random.Next(Game1.ScreenHeight));
             Speed = 2;
+            
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             Position -= new Vector2(Speed, 0);
+            
             AnimationManager.Update(gameTime);
             ToggleShowRectangle();
         }
