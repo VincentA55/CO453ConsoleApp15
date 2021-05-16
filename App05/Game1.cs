@@ -32,6 +32,9 @@ namespace App05
         private bool HasSpawned = false;
         private double WhenSpawned = 0;
 
+        private bool PipeHasSpawned = false;
+        private double WhenPipeSpawned = 0;
+
         private bool _hasStarted = false;
 
         public Pipe pipe;
@@ -188,10 +191,10 @@ namespace App05
         /// </summary>
         public void SpawnPipe()
         {
-            // timer for the pipes
-            if (SpawnTimer(1))
-            {
                 pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+            // timer for the pipes
+            if (PipeSpawnTimer(1))
+            {
 
                 if (Difficulty < 5)
                 {
@@ -223,6 +226,8 @@ namespace App05
 
                     spriteBatch.Add((Sprite)pipe.Clone());
 
+                    pipe.FlipSpawnHight();
+
                     pipe.IncreasePipeSpeed(speed);
 
                     spriteBatch.Add((Sprite)pipe.Clone());
@@ -248,6 +253,60 @@ namespace App05
                 coin.IncreaseSpeed((int)Difficulty / 5);
 
                 spriteBatch.Add(coin);
+            }
+        }
+
+        /// <summary>
+        /// takes in a timer and returns true if modulo = 0
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="timer"></param>
+        /// <returns></returns>
+        public bool SpawnTimer(int timer)
+        {
+            int Stimer = (int)_timer;
+
+            if ((Stimer % timer) == 0 && !HasSpawned)
+            {
+                HasSpawned = true;
+                WhenSpawned = Stimer;
+                return true;
+            }
+            else
+            {
+                if (Stimer >= (WhenSpawned + timer))
+                {
+                    HasSpawned = false;
+                }
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// takes in a timer and returns true if modulo = 0
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="timer"></param>
+        /// <returns></returns>
+        public bool PipeSpawnTimer(int timer)
+        {
+            int Stimer = (int)_timer;
+
+            if ((Stimer % timer) == 0 && !PipeHasSpawned)
+            {
+                PipeHasSpawned = true;
+                WhenPipeSpawned = Stimer;
+                return true;
+            }
+            else
+            {
+                if (Stimer >= (WhenPipeSpawned + timer))
+                {
+                    PipeHasSpawned = false;
+                }
+
+                return false;
             }
         }
 
@@ -345,34 +404,7 @@ namespace App05
             });
         }
 
-        /// <summary>
-        /// takes in a timer and returns true if modulo = 0
-        /// </summary>
-        /// <param name="gameTime"></param>
-        /// <param name="timer"></param>
-        /// <returns></returns>
-        public bool SpawnTimer(int timer)
-        {
-            int Stimer = (int)_timer;
 
-            if ((Stimer % timer) == 0 && !HasSpawned)
-            {
-                HasSpawned = true;
-                WhenSpawned = Stimer;
-                return true;
-            }
-            else
-            {
-                if (Stimer >= (WhenSpawned + timer))
-                {
-                    HasSpawned = false;
-                }
-
-                return false;
-            }
-        }
-
-      
         /// <summary>
         /// Displays the score for each player
         /// </summary>

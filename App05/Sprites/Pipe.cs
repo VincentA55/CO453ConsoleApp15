@@ -60,6 +60,21 @@ namespace App05.Sprites
         }
 
         /// <summary>
+        /// Flips the spawn location 
+        /// </summary>
+        public void FlipSpawnHight()
+        {
+            if (SpawnHeight == 1)
+            {
+                _position.Y = 0;
+            }
+            if (SpawnHeight == 0)
+            {
+                _position.Y = Game1.ScreenHeight;
+            }
+        }
+
+        /// <summary>
         /// increase the pipes speed
         /// </summary>
         /// <param name="speed"></param>

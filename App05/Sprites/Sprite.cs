@@ -358,12 +358,10 @@ namespace App05
         {
             if (Keyboard.GetState().IsKeyDown(Keys.R))
             {
-                ShowRectangle = true;
+                ShowRectangle = !ShowRectangle;
             }
-            else
-            {
-                ShowRectangle = false;
-            }
+
+
         }
 
     }
