@@ -143,7 +143,7 @@ namespace App05
         }
 
         //rectangle related
-        public void SetRectangleTexture(GraphicsDevice graphics, Texture2D texture)
+        public virtual void SetRectangleTexture(GraphicsDevice graphics, Texture2D texture)
         {
             var colours = new List<Color>();
 

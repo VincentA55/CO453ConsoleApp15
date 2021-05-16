@@ -39,6 +39,37 @@ namespace App05.Models
            
         }
 
+        /// <summary>
+        /// sets the rectangle for animated sprites to account for the frame count
+        /// </summary>
+        /// <param name="graphics"></param>
+        /// <param name="texture"></param>
+        public override void SetRectangleTexture(GraphicsDevice graphics, Texture2D texture)
+        {
+            var colours = new List<Color>();
+
+            for (int y = 0; y < texture.Height; y++)
+            {
+                for (int x = 0; x < texture.Width / Animation.FrameCount; x++)
+                {
+                    if (x == 0 || // left side
+                        y == 0 || //top side
+                        x == texture.Width - 1 || // right side
+                        y == texture.Height - 1)// bottom side
+                    {
+                        colours.Add(new Color(255, 255, 255, 255));
+                    }
+                    else
+                    {
+                        colours.Add(new Color(0, 0, 0, 0));
+                    }
+                }
+            }
+
+            _rectangleTexture = new Texture2D(graphics, texture.Width / Animation.FrameCount, texture.Height);
+            _rectangleTexture.SetData<Color>(colours.ToArray());
+        }
+
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;

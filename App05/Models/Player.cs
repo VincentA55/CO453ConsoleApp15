@@ -141,7 +141,7 @@ namespace App05.Models
         {
             foreach (var spriteB in sprites)
             {
-                if (spriteB.CollisionEnabled && Intersects(spriteB))
+                if (spriteB.CollisionEnabled && Intersects((Sprite)spriteB))
                 {
                     spriteB.OnCollide(this, gameTime);
                 }
@@ -192,6 +192,7 @@ namespace App05.Models
         {
             ScoreDown();
             FlashRed();
+            _rotation = MathHelper.ToRadians(250);
 
             _position.X -= 50;
         }
@@ -201,7 +202,7 @@ namespace App05.Models
         /// </summary>
         public override void PlayerCollectCoin()
         {
-            ScoreUp();
+            Score += 100;
         }
     }
 }

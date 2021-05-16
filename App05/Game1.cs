@@ -39,6 +39,8 @@ namespace App05
 
         public Pipe pipe;
 
+        public Coin coin;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -73,8 +75,6 @@ namespace App05
             LoadBirds();
 
             //LoadAnimations();
-
-            pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
 
             _font = Content.Load<SpriteFont>("Font");
 
@@ -191,11 +191,10 @@ namespace App05
         /// </summary>
         public void SpawnPipe()
         {
-                pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
+            pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
             // timer for the pipes
             if (PipeSpawnTimer(1))
             {
-
                 if (Difficulty < 5)
                 {
                     spriteBatch.Add((Sprite)pipe.Clone());
@@ -244,15 +243,13 @@ namespace App05
             if (SpawnTimer(2))
             {
                 var Coin = new Dictionary<string, Animation>()
-            {
+                    {
                 {"Animation1", new Animation(Content.Load<Texture2D>("Coin"), 9, 0.1f) },
-            };
+                    };
 
-                Coin coin = new Coin(Coin, _graphics.GraphicsDevice);
-
-                coin.IncreaseSpeed((int)Difficulty / 5);
-
-                spriteBatch.Add(coin);
+                coin = new Coin(Coin, _graphics.GraphicsDevice);
+                //coin.IncreaseSpeed((int)Difficulty / 5);
+                spriteBatch.Add((Sprite)coin.Clone());
             }
         }
 
@@ -403,7 +400,6 @@ namespace App05
                 Position = new Vector2(400, 100),
             });
         }
-
 
         /// <summary>
         /// Displays the score for each player
