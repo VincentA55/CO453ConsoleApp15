@@ -34,7 +34,7 @@ namespace App05.Models
 
             Origin = new Vector2(_texture.Width / 2 , _texture.Height / 2);
 
-          //  TextureData = new Color[_texture.Width / 4 * _texture.Height];
+          //  TextureData = new Color[_texture.Width / 4 * _texture.Height]; //THIS PART NOT WORKING 
           //  _texture.GetData(TextureData); //assigns the array to the data
 
             SetRectangleTexture(graphics, _texture);
