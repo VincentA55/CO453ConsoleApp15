@@ -74,7 +74,7 @@ namespace App05
         {
             LoadBirds();
 
-            //LoadAnimations();
+            LoadAnimations();
 
             _font = Content.Load<SpriteFont>("Font");
 
