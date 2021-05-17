@@ -42,7 +42,6 @@ namespace App05
 
         private List<Component> _gameComponents;
 
-
         public Pipe pipe;
 
         public Coin coin;
@@ -135,28 +134,31 @@ namespace App05
 
         protected override void Update(GameTime gameTime)
         {
-            _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            SpawnPipe(); //Cant have spawning on the same intervals
-
-            foreach (var sprite in spriteBatch.ToArray())
+            if (_hasStarted)
             {
-                sprite.Update(gameTime, spriteBatch);
+                _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                SpawnPipe(); //Cant have spawning on the same intervals
+
+                foreach (var sprite in spriteBatch.ToArray())
+                {
+                    sprite.Update(gameTime, spriteBatch);
+                }
+
+                foreach (var component in _gameComponents)
+                {
+                    component.Update(gameTime);
+                }
+
+                SpawnCloud();
+                SpawnCoin();
+
+                DifficultyLevel();
+
+                PostUpdate();
+
+                base.Update(gameTime);
             }
-
-            foreach(var component in _gameComponents)
-            {
-                component.Update(gameTime);
-            }
-
-            SpawnCloud();
-            SpawnCoin();
-
-            DifficultyLevel();
-
-            PostUpdate();
-
-            base.Update(gameTime);
         }
 
         private void PostUpdate()
@@ -193,7 +195,7 @@ namespace App05
                 sprite.Draw(_spriteBatch);
             }
 
-            foreach(var component in _gameComponents)
+            foreach (var component in _gameComponents)
             {
                 component.Draw(gameTime, _spriteBatch);
             }
@@ -312,7 +314,6 @@ namespace App05
                 coin = new Coin(Coin, _graphics.GraphicsDevice);
                 //coin.IncreaseSpeed((int)Difficulty / 5);
                 spriteBatch.Add((Sprite)coin.Clone());
-                
             }
         }
 
