@@ -1,4 +1,5 @@
-﻿using App05.Models;
+﻿using App05.Menus;
+using App05.Models;
 using App05.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,6 +13,8 @@ namespace App05
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private Color _backGroundColour = Color.CornflowerBlue;
 
         public List<Sprite> spriteBatch;
 
@@ -37,6 +40,9 @@ namespace App05
 
         private bool _hasStarted = false;
 
+        private List<Component> _gameComponents;
+
+
         public Pipe pipe;
 
         public Coin coin;
@@ -55,7 +61,7 @@ namespace App05
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -64,7 +70,53 @@ namespace App05
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            var newGameButton = new Button(Content.Load<Texture2D>("BasicButton"), Content.Load<SpriteFont>("Font"))
+            {
+                Postition = new Vector2(150, 100),
+                Text = "New Game",
+            };
+
+            newGameButton.Click += NewGameButton_Click;
+
+            var randomButton = new Button(Content.Load<Texture2D>("BasicButton"), Content.Load<SpriteFont>("Font"))
+            {
+                Postition = new Vector2(150, 200),
+                Text = "Random",
+            };
+
+            randomButton.Click += RandomButton_Click;
+
+            var quitButton = new Button(Content.Load<Texture2D>("BasicButton"), Content.Load<SpriteFont>("Font"))
+            {
+                Postition = new Vector2(150, 300),
+                Text = "Quit",
+            };
+
+            quitButton.Click += QuitButton_Click;
+
+            _gameComponents = new List<Component>()
+            {
+               newGameButton,
+               randomButton,
+               quitButton
+            };
+
             Restart();
+        }
+
+        private void NewGameButton_Click(object sender, EventArgs e)
+        {
+            Restart();
+        }
+
+        private void QuitButton_Click(object sender, EventArgs e)
+        {
+            Exit();
+        }
+
+        private void RandomButton_Click(object sender, EventArgs e)
+        {
+            _backGroundColour = new Color(Random.Next(0, 255), Random.Next(0, 255), Random.Next(0, 255));
         }
 
         /// <summary>
@@ -78,7 +130,7 @@ namespace App05
 
             _font = Content.Load<SpriteFont>("Font");
 
-            _hasStarted = false;
+            _hasStarted = true;
         }
 
         protected override void Update(GameTime gameTime)
@@ -90,6 +142,11 @@ namespace App05
             foreach (var sprite in spriteBatch.ToArray())
             {
                 sprite.Update(gameTime, spriteBatch);
+            }
+
+            foreach(var component in _gameComponents)
+            {
+                component.Update(gameTime);
             }
 
             SpawnCloud();
@@ -125,7 +182,7 @@ namespace App05
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(_backGroundColour);
 
             //front to back is layer 0 at thoe bottom
 
@@ -134,6 +191,11 @@ namespace App05
             foreach (var sprite in spriteBatch)
             {
                 sprite.Draw(_spriteBatch);
+            }
+
+            foreach(var component in _gameComponents)
+            {
+                component.Draw(gameTime, _spriteBatch);
             }
 
             DisplayScore();
