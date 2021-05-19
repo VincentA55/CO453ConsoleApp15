@@ -74,6 +74,8 @@ namespace App05.States
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             //load new state
+
+            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
         }
 
     }

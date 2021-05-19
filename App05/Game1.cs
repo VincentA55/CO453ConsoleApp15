@@ -81,9 +81,10 @@ namespace App05
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
-          //  LoadTestingButtons();
 
-         
+
+
+          //  LoadTestingButtons();
 
             Restart();
         }
@@ -156,52 +157,29 @@ namespace App05
 
         protected override void Update(GameTime gameTime)
         {
-            if (_hasStarted)
+            if(_nextState != null)
             {
-                _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _currentState = _nextState;
 
-                SpawnPipe(); //Cant have spawning on the same intervals
+                _nextState = null;
+            }
 
-                foreach (var sprite in spriteBatch.ToArray())
-                {
-                    sprite.Update(gameTime, spriteBatch);
-                }
 
-                foreach (var component in _gameComponents)
-                {
-                    component.Update(gameTime);
-                }
+            _currentState.Update(gameTime);
 
-                SpawnCloud();
-                SpawnCoin();
+            _currentState.PostUpdate(gameTime);
 
-                DifficultyLevel();
 
-                PostUpdate();
+
+
 
                 base.Update(gameTime);
-            }
+            
         }
 
-        private void PostUpdate()
+        public void PostUpdate()
         {
-            int count = spriteBatch.Count;
-            for (int i = 0; i < count; i++)
-            {
-                foreach (var child in spriteBatch[i].Children)
-                    spriteBatch.Add(child);
-
-                spriteBatch[i].Children.Clear();
-            }
-
-            for (int i = 0; i < spriteBatch.Count; i++)
-            {
-                if (spriteBatch[i].IsRemoved)
-                {
-                    spriteBatch.RemoveAt(i);
-                    i--;
-                }
-            }
+           
         }
 
         protected override void Draw(GameTime gameTime)
@@ -210,21 +188,7 @@ namespace App05
 
             //front to back is layer 0 at thoe bottom
 
-            _spriteBatch.Begin(SpriteSortMode.FrontToBack);
-
-            foreach (var sprite in spriteBatch)
-            {
-                sprite.Draw(_spriteBatch);
-            }
-
-            foreach (var component in _gameComponents)
-            {
-                component.Draw(gameTime, _spriteBatch);
-            }
-
-            DisplayScore();
-
-            _spriteBatch.End();
+            _currentState.Draw(gameTime, _spriteBatch);
 
             base.Draw(gameTime);
         }
