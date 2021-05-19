@@ -1,6 +1,7 @@
 ﻿using App05.Menus;
 using App05.Models;
 using App05.Sprites;
+using App05.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,6 +12,10 @@ namespace App05
 {
     public class Game1 : Game
     {
+        private State _currentState;
+
+        private State _nextState; 
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -46,6 +51,11 @@ namespace App05
 
         public Coin coin;
 
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -69,6 +79,19 @@ namespace App05
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+
+          //  LoadTestingButtons();
+
+         
+
+            Restart();
+        }
+        /// <summary>
+        /// Temporary holding of buttons MIGHT DELETE LATER 
+        /// </summary>
+        private void LoadTestingButtons()
+        {
             var newGameButton = new Button(Content.Load<Texture2D>("BasicButton"), Content.Load<SpriteFont>("Font"))
             {
                 Postition = new Vector2(150, 100),
@@ -99,8 +122,6 @@ namespace App05
                randomButton,
                quitButton
             };
-
-            Restart();
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
@@ -117,6 +138,7 @@ namespace App05
         {
             _backGroundColour = new Color(Random.Next(0, 255), Random.Next(0, 255), Random.Next(0, 255));
         }
+
 
         /// <summary>
         /// Loads the players and their sprites
