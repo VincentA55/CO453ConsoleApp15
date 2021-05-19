@@ -14,7 +14,7 @@ namespace App05
     {
         private State _currentState;
 
-        private State _nextState; 
+        private State _nextState;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -43,9 +43,7 @@ namespace App05
         private bool PipeHasSpawned = false;
         private double WhenPipeSpawned = 0;
 
-        private bool _hasStarted = false;
-
-        private List<Component> _gameComponents;
+        private bool DevStats = false;
 
         public Pipe pipe;
 
@@ -81,65 +79,9 @@ namespace App05
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
-
-
-
-          //  LoadTestingButtons();
-
+          
             Restart();
         }
-        /// <summary>
-        /// Temporary holding of buttons MIGHT DELETE LATER 
-        /// </summary>
-        private void LoadTestingButtons()
-        {
-            var newGameButton = new Button(Content.Load<Texture2D>("BasicButton"), Content.Load<SpriteFont>("Font"))
-            {
-                Postition = new Vector2(150, 100),
-                Text = "New Game",
-            };
-
-            newGameButton.Click += NewGameButton_Click;
-
-            var randomButton = new Button(Content.Load<Texture2D>("BasicButton"), Content.Load<SpriteFont>("Font"))
-            {
-                Postition = new Vector2(150, 200),
-                Text = "Random",
-            };
-
-            randomButton.Click += RandomButton_Click;
-
-            var quitButton = new Button(Content.Load<Texture2D>("BasicButton"), Content.Load<SpriteFont>("Font"))
-            {
-                Postition = new Vector2(150, 300),
-                Text = "Quit",
-            };
-
-            quitButton.Click += QuitButton_Click;
-
-            _gameComponents = new List<Component>()
-            {
-               newGameButton,
-               randomButton,
-               quitButton
-            };
-        }
-
-        private void NewGameButton_Click(object sender, EventArgs e)
-        {
-            Restart();
-        }
-
-        private void QuitButton_Click(object sender, EventArgs e)
-        {
-            Exit();
-        }
-
-        private void RandomButton_Click(object sender, EventArgs e)
-        {
-            _backGroundColour = new Color(Random.Next(0, 255), Random.Next(0, 255), Random.Next(0, 255));
-        }
-
 
         /// <summary>
         /// Loads the players and their sprites
@@ -148,45 +90,36 @@ namespace App05
         {
             LoadBirds();
 
-            LoadAnimations();
+            //LoadAnimations();
 
             _font = Content.Load<SpriteFont>("Font");
-
-            _hasStarted = true;
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if(_nextState != null)
+            if (_nextState != null)
             {
                 _currentState = _nextState;
 
                 _nextState = null;
             }
 
-
             _currentState.Update(gameTime);
 
             _currentState.PostUpdate(gameTime);
 
-
-
-
-
-                base.Update(gameTime);
-            
+            base.Update(gameTime);
         }
 
         public void PostUpdate()
         {
-           
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(_backGroundColour);
 
-            //front to back is layer 0 at thoe bottom
+            //front to back is layer 0 at the bottom
 
             _currentState.Draw(gameTime, _spriteBatch);
 
@@ -463,16 +396,21 @@ namespace App05
                 if (sprite is Player)
                 {
                     string Name = sprite.Name;
+                    DevStats = sprite.ShowRectangle;
 
                     _spriteBatch.DrawString(_font, (Name + string.Format(" : {1}", ++i, ((Player)sprite).Score)), new Vector2(10, fontY += 20), Color.Black);
                 }
             }
-            _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, _timer)), new Vector2(10, fontY += 20), Color.Black); // game timer
+            if (DevStats)
+            {
 
-            _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, Difficulty)), new Vector2(10, fontY += 20), Color.Black); //DifficultyTimer
+            _spriteBatch.DrawString(_font, ("Game Timer" + string.Format(" : {1}", ++i, _timer)), new Vector2(10, fontY += 20), Color.Black); // game timer
 
-            _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
-            _spriteBatch.DrawString(_font, (string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
+            _spriteBatch.DrawString(_font, ("Difficulty" + string.Format(" : {1}", ++i, Difficulty)), new Vector2(10, fontY += 20), Color.Black); //DifficultyTimer
+
+            _spriteBatch.DrawString(_font, ("WhenSpawned" + string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
+            _spriteBatch.DrawString(_font, ("HasSpawned" + string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
+            }
         }
 
         public void DifficultyLevel()
@@ -503,59 +441,6 @@ namespace App05
             }
         }
 
-        public void TemPHolding()
-        {
-            if (Difficulty < 5)
-            {
-                spriteBatch.Add(new Pipe(Content.Load<Texture2D>("LongPipeFixed")));
-            }
-
-            if (Difficulty == 5)
-            {
-                Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
-                pipe.IncreasePipeSpeed(1);
-
-                spriteBatch.Add((Sprite)pipe.Clone());
-            }
-            if (Difficulty >= 5 && Difficulty < 10)
-            {
-                Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
-                pipe.IncreasePipeSpeed(2);
-
-                spriteBatch.Add(pipe);
-            }
-            if (Difficulty >= 10 && Difficulty < 15)
-            {
-                Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
-                pipe.IncreasePipeSpeed(4);
-
-                spriteBatch.Add(pipe);
-
-                Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
-                pipe.IncreasePipeSpeed(3);
-
-                spriteBatch.Add(pipe2);
-            }
-            if (Difficulty >= 15)
-            {
-                int speed = (int)Difficulty / 5;
-
-                Pipe pipe = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
-                pipe.IncreasePipeSpeed(speed);
-
-                spriteBatch.Add(pipe);
-
-                Pipe pipe2 = new Pipe(Content.Load<Texture2D>("LongPipeFixed"));
-
-                pipe.IncreasePipeSpeed(speed);
-
-                spriteBatch.Add(pipe2);
-            }
-        }
+   
     }
 }

@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace App05.States
 {
@@ -16,7 +13,6 @@ namespace App05.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
             foreach (var sprite in _game.spriteBatch)
@@ -27,7 +23,6 @@ namespace App05.States
             _game.DisplayScore();
 
             spriteBatch.End();
-
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -53,22 +48,21 @@ namespace App05.States
 
         public override void Update(GameTime gameTime)
         {
-            
-           _game._timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _game._timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-           _game.SpawnPipe(); //Cant have spawning on the same intervals
+            _game.SpawnPipe(); //Cant have spawning on the same intervals
 
             foreach (var sprite in _game.spriteBatch.ToArray())
             {
                 sprite.Update(gameTime, _game.spriteBatch);
             }
 
-           _game.SpawnCloud();
+            _game.SpawnCloud();
             _game.SpawnCoin();
 
-           _game.DifficultyLevel();
+            _game.DifficultyLevel();
 
-          _game.PostUpdate();
+            _game.PostUpdate();
         }
     }
 }

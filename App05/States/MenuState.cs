@@ -1,4 +1,5 @@
 ﻿using App05.Menus;
+using App05.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,6 +12,8 @@ namespace App05.States
     public class MenuState : State
     {
         private List<Component> _components;
+
+        private List<AnimatedSprite> _animatedSprites;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
             :base(game, graphicsDevice, content)
@@ -35,10 +38,49 @@ namespace App05.States
             quitButton.Click += QuitButton_Click;
 
 
+            var birdPoweredUp = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(_content.Load<Texture2D>("BigBirdPowerAnimationStrip"), 8, 0.1f) },
+            };
+
+           var PowerBird = new AnimatedSprite(birdPoweredUp, _graphicsDevice)
+            {
+                Position = new Vector2(550, 200),
+            };
+
+            var redBirdFlapping = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(_content.Load<Texture2D>("RedBirdAnimationStrip"), 4, 0.1f) },
+            };
+
+            var RedBird = new AnimatedSprite(redBirdFlapping, _graphicsDevice)
+            {
+                Position = new Vector2(350, 180),
+            };
+
+
+            var birdFlapping  = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(_content.Load<Texture2D>("BigBirdAnimationStripFixed"), 4, 0.3f) },
+            };
+
+            var YelloBird = new AnimatedSprite(birdFlapping, _graphicsDevice)
+            {
+                Position = new Vector2(100, 200),
+            };
+
+            _animatedSprites = new List<AnimatedSprite>()
+            {
+                PowerBird,
+                YelloBird,
+                RedBird,
+            };
+
             _components = new List<Component>()
             {
                 newGameButton,
                 quitButton,
+                
             };
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -48,6 +90,12 @@ namespace App05.States
             foreach(var component in _components)
             {
                 component.Draw(gameTime, spriteBatch);
+            }
+
+            foreach(var sprite in _animatedSprites)
+            {
+                sprite.Draw(spriteBatch);
+                sprite.AnimationManager.Update(gameTime);
             }
 
             spriteBatch.End();

@@ -348,6 +348,10 @@ namespace App05
             return false;
         }
 
+        /// <summary>
+        /// returns a shallow clone of the sprite
+        /// </summary>
+        /// <returns></returns>
         public object Clone()
         {
             return this.MemberwiseClone();
