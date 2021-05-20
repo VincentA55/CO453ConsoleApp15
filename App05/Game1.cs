@@ -440,7 +440,7 @@ namespace App05
                 Difficulty = level;
             }
 
-            if (Difficulty == 10)
+            if (Difficulty == 50)
             {
                 GameOver = true;
             }
