@@ -48,6 +48,7 @@ namespace App05.States
 
         public override void Update(GameTime gameTime)
         {
+
             _game._timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             _game.SpawnPipe(); //Cant have spawning on the same intervals
@@ -63,6 +64,12 @@ namespace App05.States
             _game.DifficultyLevel();
 
             _game.PostUpdate();
+           
+            if (_game.GameOver)
+            {
+                _game.GameOver = false;
+                _game.ChangeState(new EndState(_game, _graphicsDevice, _content, _game._players));
+            }
         }
     }
 }

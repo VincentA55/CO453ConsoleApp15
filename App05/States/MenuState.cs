@@ -38,6 +38,14 @@ namespace App05.States
             quitButton.Click += QuitButton_Click;
 
 
+            var logoTexture = _content.Load<Texture2D>("CluckysRevenge");
+            var logoButton = new Button(logoTexture, buttonFont)
+            {
+                Postition = new Vector2(150, 10),
+                Text = " ",
+            };
+
+
             var birdPoweredUp = new Dictionary<string, Animation>()
             {
                 {"Animation1", new Animation(_content.Load<Texture2D>("BigBirdPowerAnimationStrip"), 8, 0.1f) },
@@ -57,7 +65,6 @@ namespace App05.States
             {
                 Position = new Vector2(350, 180),
             };
-
 
             var birdFlapping  = new Dictionary<string, Animation>()
             {
@@ -80,6 +87,7 @@ namespace App05.States
             {
                 newGameButton,
                 quitButton,
+                logoButton,
                 
             };
         }

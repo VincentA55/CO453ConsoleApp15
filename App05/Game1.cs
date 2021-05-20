@@ -1,5 +1,4 @@
-﻿using App05.Menus;
-using App05.Models;
+﻿using App05.Models;
 using App05.Sprites;
 using App05.States;
 using Microsoft.Xna.Framework;
@@ -45,6 +44,8 @@ namespace App05
 
         private bool DevStats = false;
 
+        public bool GameOver = false;
+
         public Pipe pipe;
 
         public Coin coin;
@@ -56,6 +57,7 @@ namespace App05
 
         public Game1()
         {
+            GameOver = false;
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -79,7 +81,6 @@ namespace App05
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
-          
             Restart();
         }
 
@@ -300,43 +301,54 @@ namespace App05
 
             var Bullet = new Bullet(Content.Load<Texture2D>("BirdBullet"));
 
+            Player YelloPlayer = new Player(_graphics.GraphicsDevice, YelloBird)
+            {
+                Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
+                Name = "YelloBird",
+                LinearVelocity = 4f,
+                Color = Color.White,
+                Position = new Vector2(YelloBird.Width, 100),
+                Bullet = Bullet,
+                Input = new Input()
+                {
+                    Up = Keys.W,
+                    Down = Keys.S,
+                    Left = Keys.A,
+                    Right = Keys.D,
+                    Shoot = Keys.Space
+                },
+            };
+
+            Player RedPlayer = new Player(_graphics.GraphicsDevice, RedBird)
+            {
+                Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
+                Name = "RedBird",
+                LinearVelocity = 5f,
+                Color = Color.White,
+                Position = new Vector2(ScreenWidth - RedBird.Width, 100),
+                Bullet = Bullet,
+                Input = new Input()
+                {
+                    Up = Keys.Up,
+                    Down = Keys.Down,
+                    Left = Keys.Left,
+                    Right = Keys.Right,
+                    Shoot = Keys.NumPad0
+                }
+            };
+
             spriteBatch = new List<Sprite>()
             {
-               new Player(_graphics.GraphicsDevice,YelloBird)
-                {
-                    Origin = new Vector2(YelloBird.Width / 2, YelloBird.Height / 2),
-                    Name = "YelloBird",
-                    LinearVelocity = 4f,
-                    Color = Color.White,
-                    Position = new Vector2(YelloBird.Width, 100),
-                    Bullet = Bullet,
-                    Input = new Input()
-                    {
-                        Up = Keys.W,
-                        Down = Keys.S,
-                        Left = Keys.A,
-                        Right = Keys.D,
-                        Shoot = Keys.Space
-                    }
-                },
+                 YelloPlayer ,
+                 RedPlayer
+            };
 
-                new Player(_graphics.GraphicsDevice, RedBird)
-                {
-                    Origin = new Vector2(RedBird.Width / 2, RedBird.Height / 2),
-                    Name = "RedBird",
-                    LinearVelocity = 5f,
-                    Color = Color.White,
-                    Position = new Vector2(ScreenWidth - RedBird.Width, 100),
-                    Bullet = Bullet,
-                    Input = new Input()
-                    {
-                        Up = Keys.Up,
-                        Down = Keys.Down,
-                        Left = Keys.Left,
-                        Right = Keys.Right,
-                        Shoot = Keys.NumPad0
-                    }
-                } };
+            _players = new List<Player>()
+            {
+                YelloPlayer,
+                RedPlayer
+            };
+
         }
 
         /// <summary>
@@ -403,16 +415,18 @@ namespace App05
             }
             if (DevStats)
             {
+                _spriteBatch.DrawString(_font, ("Game Timer" + string.Format(" : {1}", ++i, _timer)), new Vector2(10, fontY += 20), Color.Black); // game timer
 
-            _spriteBatch.DrawString(_font, ("Game Timer" + string.Format(" : {1}", ++i, _timer)), new Vector2(10, fontY += 20), Color.Black); // game timer
+                _spriteBatch.DrawString(_font, ("Difficulty" + string.Format(" : {1}", ++i, Difficulty)), new Vector2(10, fontY += 20), Color.Black); //DifficultyTimer
 
-            _spriteBatch.DrawString(_font, ("Difficulty" + string.Format(" : {1}", ++i, Difficulty)), new Vector2(10, fontY += 20), Color.Black); //DifficultyTimer
-
-            _spriteBatch.DrawString(_font, ("WhenSpawned" + string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
-            _spriteBatch.DrawString(_font, ("HasSpawned" + string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
+                _spriteBatch.DrawString(_font, ("WhenSpawned" + string.Format(" : {1}", ++i, WhenSpawned)), new Vector2(10, fontY += 20), Color.Black);
+                _spriteBatch.DrawString(_font, ("HasSpawned" + string.Format(" : {1}", ++i, HasSpawned)), new Vector2(10, fontY += 20), Color.Black);
             }
         }
 
+        /// <summary>
+        /// increases the difficulty every 5 seconds 
+        /// </summary>
         public void DifficultyLevel()
         {
             int Stimer = (int)_timer;
@@ -424,6 +438,11 @@ namespace App05
                 level = Stimer - 5;
 
                 Difficulty = level;
+            }
+
+            if (Difficulty == 10)
+            {
+                GameOver = true;
             }
         }
 
@@ -440,7 +459,5 @@ namespace App05
                 }
             }
         }
-
-   
     }
 }

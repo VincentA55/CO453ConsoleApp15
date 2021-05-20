@@ -147,6 +147,15 @@ namespace App05.Models
         }
 
         /// <summary>
+        /// returns a players score
+        /// </summary>
+        /// <returns></returns>
+        public int GetScore()
+        {
+            return this.Score;
+        }
+
+        /// <summary>
         /// alternates the colour of the player red to white
         /// </summary>
         public void FlashRed()
