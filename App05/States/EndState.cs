@@ -90,6 +90,10 @@ namespace App05.States
             _game.Restart();
         }
 
+        /// <summary>
+        /// postitions the birds depending on which has the heigher score
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         private void WinnerLoser(SpriteBatch spriteBatch)
         {
             foreach(Player playerA in _players)
