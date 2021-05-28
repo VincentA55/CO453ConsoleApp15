@@ -45,13 +45,23 @@ namespace App05.States
                 Text = " ",
             };
 
+            var powerUp = new Dictionary<string, Animation>()
+            {
+                {"Animation1", new Animation(_content.Load<Texture2D>("BigPowerUpAnimated3"), 9, 0.1f) },
+            };
+
+            var PowerUp = new AnimatedSprite(powerUp, _graphicsDevice)
+            {
+                Position = new Vector2(580, 350),
+            };
+
 
             var birdPoweredUp = new Dictionary<string, Animation>()
             {
                 {"Animation1", new Animation(_content.Load<Texture2D>("BigBirdPowerAnimationStrip"), 8, 0.1f) },
             };
 
-           var PowerBird = new AnimatedSprite(birdPoweredUp, _graphicsDevice)
+            var PowerBird = new AnimatedSprite(birdPoweredUp, _graphicsDevice)
             {
                 Position = new Vector2(550, 200),
             };
@@ -81,6 +91,7 @@ namespace App05.States
                 PowerBird,
                 YelloBird,
                 RedBird,
+                PowerUp,
             };
 
             _components = new List<Component>()
