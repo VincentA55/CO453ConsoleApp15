@@ -77,18 +77,29 @@ namespace App05
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
-
+           
             Restart();
         }
 
+        public void Menu()
+        {
+        }
         /// <summary>
         /// Loads the players and their sprites
         /// </summary>
         public void Restart()
         {
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            _nextState = new MenuState(this, _graphics.GraphicsDevice, Content);
+
+            _timer = 0;
+
+            GameOver = false;
+
+            Difficulty = 0;
+
+
             LoadBirds();
 
             //LoadAnimations();
@@ -440,7 +451,7 @@ namespace App05
                 Difficulty = level;
             }
 
-            if (Difficulty == 40)
+            if (Difficulty == 15)
             {
                 GameOver = true;
             }

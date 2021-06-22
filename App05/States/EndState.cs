@@ -18,8 +18,6 @@ namespace App05.States
         private Vector2 WinPosition = new Vector2(350, 100);
         private Vector2 LosePosition = new Vector2(350, 300);
 
-        private Vector2 WinText = new Vector2(300, 90);
-        private Vector2 LoseText = new Vector2(300, 290);
 
         public SpriteFont buttonFont;
 
@@ -43,6 +41,8 @@ namespace App05.States
             {
                 newGameButton,
             };
+
+          
 
          
         }
@@ -70,7 +70,23 @@ namespace App05.States
 
         public override void PostUpdate(GameTime gameTime)
         {
-            
+            int count = _game.spriteBatch.Count;
+            for (int i = 0; i < count; i++)
+            {
+                foreach (var child in _game.spriteBatch[i].Children)
+                    _game.spriteBatch.Add(child);
+
+                _game.spriteBatch[i].Children.Clear();
+            }
+
+            for (int i = 0; i < _game.spriteBatch.Count; i++)
+            {
+                if (_game.spriteBatch[i].IsRemoved)
+                {
+                    _game.spriteBatch.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -85,9 +101,13 @@ namespace App05.States
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             //load new state
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            //  _game.ChangeState(new GameState(new Game1(), _graphicsDevice, _content));
 
+            
             _game.Restart();
+
+
+          
         }
 
         /// <summary>
